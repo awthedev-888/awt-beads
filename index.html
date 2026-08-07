@@ -850,7 +850,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 <script type="text/x-dc" data-dc-script data-props="{
   &quot;remotePosters&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Privacy — video posters from YouTube's cookie-free image CDN; off = zero third-party requests before play&quot;},
   &quot;showIllustrativeFlags&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Content&quot;},
-  &quot;formEndpoint&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Form — POST target for the line sheet request (Formspree etc.); empty = demo mode&quot;}
+  &quot;formEndpoint&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;https://formspree.io/f/xjybkzgj&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Form — POST target for the line sheet request (Formspree: AWT line sheet requests); empty = demo mode&quot;}
 }">
 class Component extends DCLogic {
   state = { page: 'home', cat: 'All', motif: 'All', product: null, vidFull: false, vidShort: false, formDone: false, sending: false, menuOpen: false };
