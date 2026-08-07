@@ -99,13 +99,23 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
   .main-nav.open{display:flex !important;flex-direction:column !important;align-items:stretch !important;gap:0 !important;flex-basis:100%;order:10;border-top:1px solid #DACBAE;padding:6px 0 16px;margin-top:2px}
   .main-nav.open a{padding:13px 0 !important;font-size:15px !important}
 }
+/* Mobile composition: on phones, center hero/section/page headers, tickers and captions,
+   and stack CTAs full-width. Body copy stays left-aligned for readability. */
+@media (max-width:640px){
+  .cm{text-align:center !important}
+  .cmb{margin-left:auto !important;margin-right:auto !important;text-align:center !important}
+  .cmf{justify-content:center !important}
+  .cmf .ml0-m{margin-left:0 !important}
+  .btn-row{flex-direction:column !important;align-items:stretch !important}
+  .btn-row>*{justify-content:center !important}
+}
 @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
 </style>
 <script src="./image-slot.js"></script>
 </helmet>
 
 <header style="position:sticky;top:0;z-index:60;background:rgba(247,241,229,.94);backdrop-filter:blur(8px);border-bottom:1px solid #DACBAE">
-  <div style="max-width:1240px;margin:0 auto;padding:0 clamp(16px,3.5vw,44px);display:flex;align-items:center;flex-wrap:wrap;gap:8px 26px;min-height:74px">
+  <div style="max-width:1240px;margin:0 auto;padding:0 clamp(24px,3.5vw,44px);display:flex;align-items:center;flex-wrap:wrap;gap:8px 26px;min-height:74px">
     <a href="#" onClick="{{ toHome }}" style="text-decoration:none;color:#34291D;margin-right:auto;padding:10px 0">
       <span style="display:block;font-family:'Young Serif',serif;font-size:19px;line-height:1">Alana Wina Trudi</span>
       <span style="display:block;font-family:Archivo,sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#8E2321;margin-top:5px">Dayak beadwork &middot; wholesale</span>
@@ -128,13 +138,13 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
 <div data-screen-label="Home">
 
-  <section style="max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(16px,3.5vw,44px) clamp(40px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,72px);align-items:stretch">
-    <div style="flex:1 1 460px;min-width:0;display:flex;flex-direction:column;justify-content:center;animation:rise .8s cubic-bezier(.2,.7,.3,1) both">
-      <p style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Kampung Manik &middot; Samarinda &middot; East Kalimantan</p>
-      <div style="width:216px;height:36px;margin:22px 0 0;background:#2A211A url('bead-band.svg') left center/auto 36px repeat-x" aria-hidden="true"></div>
-      <h1 style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(40px,5.4vw,64px);line-height:1.04;letter-spacing:-.01em;margin:26px 0 0;color:#34291D;text-wrap:balance">Beadwork from the Bead Village.</h1>
-      <p style="font-size:clamp(17px,1.5vw,19px);line-height:1.6;color:#4A3B2A;max-width:56ch;margin:22px 0 0">Alana Wina Trudi produces hand-beaded Dayak craft — home d&eacute;cor, jewelry, bags and small accessories — beaded one glass bead at a time by the women of Kampung Manik, Samarinda. Wholesale only, shipped worldwide from Indonesia.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:34px">
+  <section style="max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(24px,3.5vw,44px) clamp(40px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,72px);align-items:stretch">
+    <div class="cm" style="flex:1 1 460px;min-width:0;display:flex;flex-direction:column;justify-content:center;animation:rise .8s cubic-bezier(.2,.7,.3,1) both">
+      <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Kampung Manik &middot; Samarinda &middot; East Kalimantan</p>
+      <div class="cmb" style="width:216px;height:36px;margin:22px 0 0;background:#2A211A url('bead-band.svg') left center/auto 36px repeat-x" aria-hidden="true"></div>
+      <h1 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(40px,5.4vw,64px);line-height:1.04;letter-spacing:-.01em;margin:26px 0 0;color:#34291D;text-wrap:balance">Beadwork from the Bead Village.</h1>
+      <p class="cmb" style="font-size:clamp(17px,1.5vw,19px);line-height:1.6;color:#4A3B2A;max-width:56ch;margin:22px 0 0">Alana Wina Trudi produces hand-beaded Dayak craft — home d&eacute;cor, jewelry, bags and small accessories — beaded one glass bead at a time by the women of Kampung Manik, Samarinda. Wholesale only, shipped worldwide from Indonesia.</p>
+      <div class="btn-row" style="display:flex;flex-wrap:wrap;gap:14px;margin-top:34px">
         <button onClick="{{ toForm }}" style="display:inline-flex;align-items:center;background:#8E2321;color:#F7F1E5;border:none;padding:16px 28px;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#701A19">Request the line sheet</button>
         <button onClick="{{ toCollection }}" style="display:inline-flex;align-items:center;background:transparent;color:#34291D;border:1.5px solid #B79B7C;padding:15px 26px;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="border-color:#8E2321;color:#8E2321">Browse the collection</button>
       </div>
@@ -144,13 +154,13 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
         <div class="imgwrap" style="aspect-ratio:4/5;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)">
           <image-slot id="hero-hands" shape="rect" placeholder="4:5 — Hands threading beads onto cotton, macro, warm indirect daylight. Beads in a tray at the edge of frame."></image-slot>
         </div>
-        <p style="font-family:Archivo,sans-serif;font-size:12.5px;line-height:1.5;color:#6D5B45;margin:12px 0 0">Shot 01 &middot; 4:5 &middot; A beader&rsquo;s hands at work, close &mdash; the beads, the thread, the count.</p>
+        <p class="cm" style="font-family:Archivo,sans-serif;font-size:12.5px;line-height:1.5;color:#6D5B45;margin:12px 0 0">Shot 01 &middot; 4:5 &middot; A beader&rsquo;s hands at work, close &mdash; the beads, the thread, the count.</p>
       </div>
     </div>
   </section>
 
   <section style="background:#EFE6D3;border-top:1px solid #DACBAE">
-    <div style="max-width:1240px;margin:0 auto;padding:16px clamp(16px,3.5vw,44px);display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px">
+    <div class="cmf" style="max-width:1240px;margin:0 auto;padding:16px clamp(24px,3.5vw,44px);display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px">
       <span style="font-family:Archivo,sans-serif;font-size:13px;letter-spacing:.02em;color:#5C4B36">Hand-beaded in Kampung Manik, East Kalimantan</span>
       <span style="width:4px;height:4px;border-radius:50%;background:#8E2321;flex:none" aria-hidden="true"></span>
       <span style="font-family:Archivo,sans-serif;font-size:13px;letter-spacing:.02em;color:#5C4B36">Traditional Dayak motifs</span>
@@ -164,9 +174,9 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
   </section>
   <div style="height:42px;background:#2A211A url('bead-band.svg') center/auto 42px repeat-x" aria-hidden="true"></div>
 
-  <section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,104px) clamp(16px,3.5vw,44px)" data-reveal="">
-    <p style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Why Dayak beadwork</p>
-    <h2 style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(28px,3.4vw,40px);line-height:1.12;margin:14px 0 0;max-width:24ch;text-wrap:balance">What it brings to a European shelf</h2>
+  <section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,104px) clamp(24px,3.5vw,44px)" data-reveal="">
+    <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Why Dayak beadwork</p>
+    <h2 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(28px,3.4vw,40px);line-height:1.12;margin:14px 0 0;max-width:24ch;text-wrap:balance">What it brings to a European shelf</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(24px,3vw,44px);margin-top:clamp(32px,4vw,52px)">
       <div style="border-top:2px solid #34291D;padding-top:20px">
         <h3 style="font-family:'Young Serif',serif;font-weight:400;font-size:21px;margin:0">A living Borneo tradition</h3>
@@ -183,10 +193,10 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
     </div>
   </section>
 
-  <section style="max-width:1240px;margin:0 auto;padding:0 clamp(16px,3.5vw,44px) clamp(56px,8vw,104px)" data-reveal="">
-    <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 24px;border-top:1px solid #DACBAE;padding-top:clamp(32px,4vw,52px)">
+  <section style="max-width:1240px;margin:0 auto;padding:0 clamp(24px,3.5vw,44px) clamp(56px,8vw,104px)" data-reveal="">
+    <div class="cmf" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 24px;border-top:1px solid #DACBAE;padding-top:clamp(32px,4vw,52px)">
       <h2 style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(26px,3vw,36px);line-height:1.12;margin:0">The line, in five shelves</h2>
-      <a href="#" onClick="{{ toCollection }}" style="font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:#8E2321;margin-left:auto" style-hover="color:#601614">Browse all {{ totalCount }} pieces &rarr;</a>
+      <a href="#" onClick="{{ toCollection }}" class="ml0-m" style="font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:#8E2321;margin-left:auto" style-hover="color:#601614">Browse all {{ totalCount }} pieces &rarr;</a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:clamp(16px,2vw,28px);margin-top:clamp(28px,3.5vw,44px)">
       <div class="card">
@@ -214,7 +224,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 
   <div style="height:42px;background:#2A211A url('bead-band.svg') center/auto 42px repeat-x" aria-hidden="true"></div>
   <section style="background:#2A211A;color:#EAE0CC">
-    <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,96px) clamp(16px,3.5vw,44px);display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,64px);align-items:center" data-reveal="">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,96px) clamp(24px,3.5vw,44px);display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,64px);align-items:center" data-reveal="">
       <div style="flex:0 1 300px;min-width:min(100%,270px)">
         <div style="width:min(100%,304px);aspect-ratio:9/16;position:relative;background:#221A14 url('bead-band.svg') center/auto 54px repeat;border-radius:4px;overflow:hidden;margin:0 auto">
           <sc-if value="{{ vidShort }}" hint-placeholder-val="{{ false }}">
@@ -233,26 +243,26 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
         <p style="font-family:Archivo,sans-serif;font-size:12.5px;line-height:1.5;color:#B7A98C;margin:12px auto 0;max-width:304px">The women of Kampung Manik at work &mdash; filmed in the village. Privacy-enhanced embed; nothing loads from YouTube until you press play.</p>
       </div>
       <div style="flex:1 1 380px;min-width:0">
-        <p style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#C99435">The women of Kampung Manik</p>
-        <h2 style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(28px,3.4vw,40px);line-height:1.12;margin:14px 0 0;color:#F2E8D5;text-wrap:balance">Kampung Manik means the Bead Village. It is a literal name.</h2>
+        <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#C99435">The women of Kampung Manik</p>
+        <h2 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(28px,3.4vw,40px);line-height:1.12;margin:14px 0 0;color:#F2E8D5;text-wrap:balance">Kampung Manik means the Bead Village. It is a literal name.</h2>
         <p style="font-size:16.5px;line-height:1.7;color:#D8CBB2;max-width:58ch;margin:20px 0 0">In this Samarinda neighbourhood on the Mahakam River, beading is what the women do. The tradition is Dayak; the hands are Dayak, Banjar and Bugis &mdash; neighbours who learned from neighbours, mothers who taught daughters. Most of the work happens at home, between family life: a runner is about three weeks of one woman&rsquo;s hands, roughly 28,000 beads, each one placed. A wholesale order lands here as weeks of paid work for a group of women, at rates the groups set with us.</p>
         <a href="#" onClick="{{ toAbout }}" style="display:inline-block;margin-top:26px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#F7F1E5;text-decoration:underline;text-underline-offset:5px;text-decoration-color:#C99435" style-hover="color:#C99435">The full story — Our Makers &rarr;</a>
       </div>
       <div style="flex:1 1 260px;min-width:min(100%,240px);max-width:380px">
         <div style="aspect-ratio:3/4;position:relative;background:#3A2E23"><image-slot id="home-hands" shape="rect" placeholder="3:4 — One beader at work on her porch, mid shot, face where permitted"></image-slot></div>
-        <p style="font-family:Archivo,sans-serif;font-size:12.5px;line-height:1.5;color:#B7A98C;margin:12px 0 0">Shot 02 &middot; 3:4 &middot; A beader on her porch, work in her lap.</p>
+        <p class="cm" style="font-family:Archivo,sans-serif;font-size:12.5px;line-height:1.5;color:#B7A98C;margin:12px 0 0">Shot 02 &middot; 3:4 &middot; A beader on her porch, work in her lap.</p>
       </div>
     </div>
   </section>
 
-  <section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,104px) clamp(16px,3.5vw,44px)" data-reveal="">
+  <section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,104px) clamp(24px,3.5vw,44px)" data-reveal="">
     <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,56px);align-items:end">
       <div style="flex:1 1 420px">
-        <p style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Wholesale</p>
-        <h2 style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(28px,3.4vw,40px);line-height:1.12;margin:14px 0 0;text-wrap:balance">See the line. Price your margin.</h2>
+        <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Wholesale</p>
+        <h2 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(28px,3.4vw,40px);line-height:1.12;margin:14px 0 0;text-wrap:balance">See the line. Price your margin.</h2>
         <p style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:56ch;margin:16px 0 0">The EUR line sheet carries wholesale prices, FOB indications, colourways and current lead times &mdash; sent as a PDF within two business days of your request.</p>
       </div>
-      <div style="flex:0 1 auto;display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+      <div class="btn-row" style="flex:0 1 auto;display:flex;flex-wrap:wrap;gap:14px;align-items:center">
         <button onClick="{{ toForm }}" style="display:inline-flex;align-items:center;background:#8E2321;color:#F7F1E5;border:none;padding:16px 28px;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#701A19">Request the line sheet</button>
       </div>
     </div>
@@ -267,10 +277,10 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 
 <!-- ================= COLLECTION ================= -->
 <sc-if value="{{ isCollection }}" hint-placeholder-val="{{ false }}">
-<div data-screen-label="Collection" style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(16px,3.5vw,44px) clamp(64px,8vw,110px)">
-  <p style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Collection</p>
-  <h1 style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.06;margin:14px 0 0">Hand-beaded, piece by piece</h1>
-  <p style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:62ch;margin:16px 0 0">Every piece is beaded in Kampung Manik on glass seed beads, cotton and rattan. Wholesale prices are quoted in EUR and live in the line sheet &mdash; <a href="#" onClick="{{ toForm }}" style="color:#8E2321">request it any time</a>.</p>
+<div data-screen-label="Collection" style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(24px,3.5vw,44px) clamp(64px,8vw,110px)">
+  <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Collection</p>
+  <h1 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.06;margin:14px 0 0">Hand-beaded, piece by piece</h1>
+  <p class="cmb" style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:62ch;margin:16px 0 0">Every piece is beaded in Kampung Manik on glass seed beads, cotton and rattan. Wholesale prices are quoted in EUR and live in the line sheet &mdash; <a href="#" onClick="{{ toForm }}" style="color:#8E2321">request it any time</a>.</p>
 
   <div style="display:flex;flex-direction:column;gap:12px;border-top:1px solid #DACBAE;border-bottom:1px solid #DACBAE;padding:18px 0;margin-top:clamp(28px,4vw,44px)">
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px">
@@ -288,7 +298,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
     </div>
   </div>
 
-  <p style="font-family:Archivo,sans-serif;font-size:13px;color:#6D5B45;margin:18px 0 0">{{ shownCount }} of {{ totalCount }} pieces &middot; no prices on this page &mdash; wholesale EUR in the line sheet</p>
+  <p class="cm" style="font-family:Archivo,sans-serif;font-size:13px;color:#6D5B45;margin:18px 0 0">{{ shownCount }} of {{ totalCount }} pieces &middot; no prices on this page &mdash; wholesale EUR in the line sheet</p>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:clamp(24px,3vw,40px) clamp(18px,2.5vw,28px);margin-top:22px">
     <sc-for list="{{ shown }}" as="p" hint-placeholder-count="6">
@@ -311,19 +321,19 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 <!-- ================= MOTIFS & MEANING ================= -->
 <sc-if value="{{ isMotifs }}" hint-placeholder-val="{{ false }}">
 <div data-screen-label="Motifs and Meaning">
-  <div style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(16px,3.5vw,44px) clamp(40px,5vw,64px)">
-    <p style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Motifs &amp; Meaning</p>
-    <h1 style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.06;margin:14px 0 0;max-width:20ch;text-wrap:balance">Four families of motif</h1>
-    <p style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:62ch;margin:16px 0 0">Every piece in the collection carries one of a small family of Dayak motifs. Knowing them is good floor talk &mdash; this page is written to be borrowed for your shelf cards and product pages.</p>
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(24px,3.5vw,44px) clamp(40px,5vw,64px)">
+    <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Motifs &amp; Meaning</p>
+    <h1 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.06;margin:14px 0 0;max-width:20ch;text-wrap:balance">Four families of motif</h1>
+    <p class="cmb" style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:62ch;margin:16px 0 0">Every piece in the collection carries one of a small family of Dayak motifs. Knowing them is good floor talk &mdash; this page is written to be borrowed for your shelf cards and product pages.</p>
   </div>
   <div style="height:42px;background:#2A211A url('bead-band.svg') center/auto 42px repeat-x" aria-hidden="true"></div>
 
-  <div style="max-width:1240px;margin:0 auto;padding:0 clamp(16px,3.5vw,44px)">
+  <div style="max-width:1240px;margin:0 auto;padding:0 clamp(24px,3.5vw,44px)">
 
     <section style="display:flex;flex-wrap:wrap;gap:clamp(28px,4.5vw,64px);align-items:center;padding:clamp(48px,6vw,88px) 0;border-bottom:1px solid #DACBAE" data-reveal="">
       <div style="flex:1 1 340px;min-width:min(100%,300px);max-width:520px">
         <div style="aspect-ratio:1/1;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><image-slot id="motif-aso" shape="rect" placeholder="1:1 — Macro detail of aso' beadwork: coiled hooks and spirals on dark ground"></image-slot></div>
-        <p style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:12px 0 0">Shot &middot; 1:1 &middot; Aso&rsquo; motif in beads, close enough to count.</p>
+        <p class="cm" style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:12px 0 0">Shot &middot; 1:1 &middot; Aso&rsquo; motif in beads, close enough to count.</p>
       </div>
       <div style="flex:1 1 400px;min-width:0">
         <p style="margin:0;font-family:Archivo,sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#6D5B45">Motif family 01</p>
@@ -346,14 +356,14 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       </div>
       <div style="flex:1 1 340px;min-width:min(100%,300px);max-width:520px">
         <div style="aspect-ratio:1/1;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><image-slot id="motif-tinggang" shape="rect" placeholder="1:1 — Macro detail of hornbill beadwork: curved casque and tail lines"></image-slot></div>
-        <p style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:12px 0 0">Shot &middot; 1:1 &middot; The hornbill&rsquo;s curve, beaded.</p>
+        <p class="cm" style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:12px 0 0">Shot &middot; 1:1 &middot; The hornbill&rsquo;s curve, beaded.</p>
       </div>
     </section>
 
     <section style="display:flex;flex-wrap:wrap;gap:clamp(28px,4.5vw,64px);align-items:center;padding:clamp(48px,6vw,88px) 0;border-bottom:1px solid #DACBAE" data-reveal="">
       <div style="flex:1 1 340px;min-width:min(100%,300px);max-width:520px">
         <div style="aspect-ratio:1/1;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><image-slot id="motif-kelunan" shape="rect" placeholder="1:1 — Macro detail of kelunan beadwork: standing figure, arms raised"></image-slot></div>
-        <p style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:12px 0 0">Shot &middot; 1:1 &middot; The standing figure, arms raised.</p>
+        <p class="cm" style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:12px 0 0">Shot &middot; 1:1 &middot; The standing figure, arms raised.</p>
       </div>
       <div style="flex:1 1 400px;min-width:0">
         <p style="margin:0;font-family:Archivo,sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#6D5B45">Motif family 03</p>
@@ -376,7 +386,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       </div>
       <div style="flex:1 1 340px;min-width:min(100%,300px);max-width:520px">
         <div style="aspect-ratio:1/1;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><image-slot id="motif-borders" shape="rect" placeholder="1:1 — Macro detail of border patterns: diamonds and zigzag rows"></image-slot></div>
-        <p style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:12px 0 0">Shot &middot; 1:1 &middot; Border patterns in rows &mdash; the grammar of the work.</p>
+        <p class="cm" style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:12px 0 0">Shot &middot; 1:1 &middot; Border patterns in rows &mdash; the grammar of the work.</p>
       </div>
     </section>
 
@@ -391,10 +401,10 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 <!-- ================= WHOLESALE ================= -->
 <sc-if value="{{ isWholesale }}" hint-placeholder-val="{{ false }}">
 <div data-screen-label="Wholesale">
-  <div style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(16px,3.5vw,44px) 0">
-    <p style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Wholesale</p>
-    <h1 style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.06;margin:14px 0 0;max-width:22ch;text-wrap:balance">How buying works</h1>
-    <p style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:64ch;margin:16px 0 0">Everything on this page is the standard arrangement. Everything specific &mdash; prices, quantities, current lead times &mdash; lives in the EUR line sheet and in direct conversation. Request it at the bottom of the page.</p>
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(24px,3.5vw,44px) 0">
+    <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Wholesale</p>
+    <h1 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.06;margin:14px 0 0;max-width:22ch;text-wrap:balance">How buying works</h1>
+    <p class="cmb" style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:64ch;margin:16px 0 0">Everything on this page is the standard arrangement. Everything specific &mdash; prices, quantities, current lead times &mdash; lives in the EUR line sheet and in direct conversation. Request it at the bottom of the page.</p>
     <nav aria-label="On this page" style="display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid #DACBAE;border-bottom:1px solid #DACBAE;padding:14px 0;margin-top:clamp(24px,3vw,40px)">
       <a href="#" onClick="{{ toHow }}" style="font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5C4B36;text-decoration:none" style-hover="color:#8E2321">How to order</a>
       <a href="#" onClick="{{ toTerms }}" style="font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5C4B36;text-decoration:none" style-hover="color:#8E2321">Terms</a>
@@ -548,9 +558,9 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 
   <div style="height:42px;background:#2A211A url('bead-band.svg') center/auto 42px repeat-x" aria-hidden="true"></div>
   <section id="linesheet-form" style="background:#EFE6D3;border-bottom:1px solid #DACBAE">
-    <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,6vw,88px) clamp(16px,3.5vw,44px)">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,6vw,88px) clamp(24px,3.5vw,44px)">
       <div style="max-width:880px">
-        <h2 style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(28px,3.4vw,40px);margin:0">Request the line sheet</h2>
+        <h2 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(28px,3.4vw,40px);margin:0">Request the line sheet</h2>
         <p style="font-size:16px;line-height:1.65;color:#4A3B2A;margin:14px 0 0">The EUR line sheet PDF &mdash; wholesale prices, FOB indications, colourways, lead times &mdash; within two business days.</p>
 
         <sc-if value="{{ formNotDone }}" hint-placeholder-val="{{ true }}">
@@ -631,10 +641,10 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 <!-- ================= ABOUT / OUR MAKERS ================= -->
 <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
 <div data-screen-label="About — Our Makers">
-  <div style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(16px,3.5vw,44px)">
-    <p style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Our makers</p>
-    <h1 style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.06;margin:14px 0 0;max-width:22ch;text-wrap:balance">Kampung Manik, the Bead Village</h1>
-    <p style="font-size:clamp(16.5px,1.4vw,18px);line-height:1.65;color:#4A3B2A;max-width:62ch;margin:16px 0 0">One neighbourhood in Samarinda, on the Mahakam River, where beadwork is the daily craft of its women. This is where every piece we sell is made. Watch first &mdash; the film says it better than the page does.</p>
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(24px,3.5vw,44px)">
+    <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Our makers</p>
+    <h1 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.06;margin:14px 0 0;max-width:22ch;text-wrap:balance">Kampung Manik, the Bead Village</h1>
+    <p class="cmb" style="font-size:clamp(16.5px,1.4vw,18px);line-height:1.65;color:#4A3B2A;max-width:62ch;margin:16px 0 0">One neighbourhood in Samarinda, on the Mahakam River, where beadwork is the daily craft of its women. This is where every piece we sell is made. Watch first &mdash; the film says it better than the page does.</p>
 
     <div style="max-width:980px;margin:clamp(28px,4vw,48px) 0 0">
       <div style="aspect-ratio:16/9;position:relative;background:#221A14 url('bead-band.svg') center/auto 54px repeat;overflow:hidden;border-radius:4px">
@@ -664,11 +674,11 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       <div style="flex:1 1 300px;min-width:min(100%,280px);max-width:460px;display:flex;flex-direction:column;gap:22px">
         <div>
           <div class="imgwrap" style="aspect-ratio:4/5;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><image-slot id="about-portrait" shape="rect" placeholder="4:5 — Portrait of a beader at work, face where permitted, natural light"></image-slot></div>
-          <p style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:10px 0 0">Shot 03 &middot; 4:5 &middot; Portrait of a beader at work.</p>
+          <p class="cm" style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:10px 0 0">Shot 03 &middot; 4:5 &middot; Portrait of a beader at work.</p>
         </div>
         <div>
           <div style="aspect-ratio:1/1;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><image-slot id="about-beads" shape="rect" placeholder="1:1 — Glass seed beads in sorting trays, top-down"></image-slot></div>
-          <p style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:10px 0 0">Shot 04 &middot; 1:1 &middot; The beads themselves, in sorting trays.</p>
+          <p class="cm" style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:10px 0 0">Shot 04 &middot; 1:1 &middot; The beads themselves, in sorting trays.</p>
         </div>
       </div>
     </div>
@@ -676,22 +686,22 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(16px,2vw,28px);margin-top:clamp(40px,5vw,64px)">
       <div>
         <div style="aspect-ratio:3/2;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><image-slot id="about-village" shape="rect" placeholder="3:2 — Village lane in Kampung Manik, houses and porches"></image-slot></div>
-        <p style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:10px 0 0">Shot 05 &middot; 3:2 &middot; The village lane.</p>
+        <p class="cm" style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:10px 0 0">Shot 05 &middot; 3:2 &middot; The village lane.</p>
       </div>
       <div>
         <div style="aspect-ratio:3/2;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><image-slot id="about-river" shape="rect" placeholder="3:2 — The Mahakam River at Samarinda, boats, late light"></image-slot></div>
-        <p style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:10px 0 0">Shot 06 &middot; 3:2 &middot; The Mahakam at Samarinda.</p>
+        <p class="cm" style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:10px 0 0">Shot 06 &middot; 3:2 &middot; The Mahakam at Samarinda.</p>
       </div>
       <div>
         <div style="aspect-ratio:3/2;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><image-slot id="about-group" shape="rect" placeholder="3:2 — A beading group working together on a porch, wide shot"></image-slot></div>
-        <p style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:10px 0 0">Shot 07 &middot; 3:2 &middot; A beading group at work together.</p>
+        <p class="cm" style="font-family:Archivo,sans-serif;font-size:12.5px;color:#6D5B45;margin:10px 0 0">Shot 07 &middot; 3:2 &middot; A beading group at work together.</p>
       </div>
     </div>
 
     <section style="border-top:1px solid #DACBAE;margin-top:clamp(44px,6vw,72px);padding-top:clamp(28px,4vw,44px);max-width:860px" data-reveal="">
-      <p style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Materials &amp; sourcing</p>
+      <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Materials &amp; sourcing</p>
       <p style="font-size:16px;line-height:1.7;color:#4A3B2A;margin:14px 0 0">Three materials do almost all of the work: glass seed beads, bought by the kilo in Samarinda&rsquo;s craft market; cotton thread and canvas; and natural rattan for frames, trays and bag bodies. Brass fittings appear where a piece needs them. Material declarations ship with every order; care and handling notes are included in the carton.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:26px">
+      <div class="btn-row" style="display:flex;flex-wrap:wrap;gap:14px;margin-top:26px">
         <button onClick="{{ toForm }}" style="display:inline-flex;align-items:center;background:#8E2321;color:#F7F1E5;border:none;padding:15px 26px;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#701A19">Request the line sheet</button>
         <button onClick="{{ toCollection }}" style="display:inline-flex;align-items:center;background:transparent;color:#34291D;border:1.5px solid #B79B7C;padding:14px 24px;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="border-color:#8E2321;color:#8E2321">Browse the collection</button>
       </div>
@@ -702,9 +712,9 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 
 <!-- ================= CONTACT ================= -->
 <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
-<div data-screen-label="Contact" style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(16px,3.5vw,44px) clamp(64px,8vw,110px)">
-  <p style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Contact</p>
-  <h1 style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.06;margin:14px 0 0">Reach Samarinda</h1>
+<div data-screen-label="Contact" style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(24px,3.5vw,44px) clamp(64px,8vw,110px)">
+  <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Contact</p>
+  <h1 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.06;margin:14px 0 0">Reach Samarinda</h1>
   <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px);margin-top:clamp(28px,4vw,48px)">
     <div style="flex:1 1 400px;min-width:0">
       <dl style="margin:0">
@@ -801,7 +811,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 <footer>
   <div style="height:42px;background:#2A211A url('bead-band.svg') center/auto 42px repeat-x" aria-hidden="true"></div>
   <div style="background:#2A211A;color:#D8CBB2">
-    <div style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,72px) clamp(16px,3.5vw,44px) 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(28px,4vw,56px)">
+    <div class="cm" style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,72px) clamp(24px,3.5vw,44px) 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(28px,4vw,56px)">
       <div>
         <p style="margin:0;font-family:'Young Serif',serif;font-size:20px;color:#F2E8D5">Alana Wina Trudi</p>
         <p style="margin:6px 0 0;font-family:Archivo,sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#C99435">Dayak beadwork &middot; wholesale</p>
@@ -839,9 +849,9 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       </div>
     </div>
     <div style="border-top:1px solid #4A3B2C">
-      <div style="max-width:1240px;margin:0 auto;padding:18px clamp(16px,3.5vw,44px);display:flex;flex-wrap:wrap;gap:8px 20px;font-family:Archivo,sans-serif;font-size:12.5px;color:#B7A98C">
+      <div class="cmf" style="max-width:1240px;margin:0 auto;padding:18px clamp(24px,3.5vw,44px);display:flex;flex-wrap:wrap;gap:8px 20px;font-family:Archivo,sans-serif;font-size:12.5px;color:#B7A98C">
         <span>&copy; {{ year }} Alana Wina Trudi &middot; Samarinda, East Kalimantan, Indonesia</span>
-        <span style="margin-left:auto">Wholesale only &mdash; no consumer sales</span>
+        <span class="ml0-m" style="margin-left:auto">Wholesale only &mdash; no consumer sales</span>
       </div>
     </div>
   </div>
