@@ -88,10 +88,12 @@ function render(key) {
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
 
-// Each route becomes <path>/index.html, so a plain request for /collection
-// resolves to a real file whose <head> is already correct.
+// Each route becomes a FLAT <path>.html. Cloudflare Pages serves /collection
+// straight from collection.html with a 200. Using collection/index.html instead
+// makes Pages 308-redirect /collection to /collection/, which would contradict
+// the canonical URL the page declares.
 for (const key of names) {
-  const rel = routes[key].path === '/' ? 'index.html' : join(routes[key].path.replace(/^\//, ''), 'index.html');
+  const rel = routes[key].path === '/' ? 'index.html' : routes[key].path.replace(/^\//, '') + '.html';
   const out = join(OUT, rel);
   mkdirSync(dirname(out), { recursive: true });
   writeFileSync(out, render(key));
