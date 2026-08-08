@@ -1,0 +1,4 @@
+# Cloudflare Pages: serve the SPA shell for every route so /collection,
+# /motifs, /wholesale, /our-makers and /contact work on direct load,
+# refresh and when shared as links.
+/*  /index.html  200

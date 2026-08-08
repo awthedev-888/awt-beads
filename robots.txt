@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://beads.alwintru.com/sitemap.xml
