@@ -75,7 +75,7 @@
   }
 }
 </script>
-<script src="./support.js"></script>
+<script src="/support.js"></script>
 </head>
 <body>
 <x-dc>
@@ -118,13 +118,13 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 }
 @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
 </style>
-<script src="./image-slot.js"></script>
+<script src="/image-slot.js"></script>
 </helmet>
 
 <header style="position:sticky;top:0;z-index:60;background:rgba(247,241,229,.94);backdrop-filter:blur(8px);border-bottom:1px solid #DACBAE">
   <div style="max-width:1240px;margin:0 auto;padding:0 clamp(24px,3.5vw,44px);display:flex;align-items:center;flex-wrap:wrap;gap:8px 26px;min-height:74px">
     <a href="/" onClick="{{ toHome }}" style="text-decoration:none;color:#34291D;margin-right:auto;padding:10px 0;display:flex;align-items:center;gap:11px">
-      <img src="logo-180.png" alt="" width="38" height="38" style="display:block;width:38px;height:38px;flex:none"/>
+      <img src="/logo-180.png" alt="" width="38" height="38" style="display:block;width:38px;height:38px;flex:none"/>
       <span style="display:block">
         <span style="display:block;font-family:'Young Serif',serif;font-size:19px;line-height:1">Alana Wina Trudi</span>
         <span style="display:block;font-family:Archivo,sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#8E2321;margin-top:5px">Dayak beadwork &middot; wholesale</span>
@@ -151,7 +151,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
   <section style="max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(24px,3.5vw,44px) clamp(40px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,72px);align-items:stretch">
     <div class="cm" style="flex:1 1 460px;min-width:0;display:flex;flex-direction:column;justify-content:center;animation:rise .8s cubic-bezier(.2,.7,.3,1) both">
       <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Kampung Manik &middot; Samarinda &middot; East Kalimantan</p>
-      <div class="cmb" style="width:216px;height:36px;margin:22px 0 0;background:#2A211A url('bead-band.svg') left center/auto 36px repeat-x" aria-hidden="true"></div>
+      <div class="cmb" style="width:216px;height:36px;margin:22px 0 0;background:#2A211A url('/bead-band.svg') left center/auto 36px repeat-x" aria-hidden="true"></div>
       <h1 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(40px,5.4vw,64px);line-height:1.04;letter-spacing:-.01em;margin:26px 0 0;color:#34291D;text-wrap:balance">Beadwork from the Bead Village.</h1>
       <p class="cmb" style="font-size:clamp(17px,1.5vw,19px);line-height:1.6;color:#4A3B2A;max-width:56ch;margin:22px 0 0">Alana Wina Trudi brings to you the hand-beaded Dayak craft of home d&eacute;cor, jewelry, bags and small accessories, beaded one glass bead at a time by the women of Kampung Manik, Samarinda. Wholesale only, shipped worldwide from Indonesia.</p>
       <div class="btn-row" style="display:flex;flex-wrap:wrap;gap:14px;margin-top:34px">
@@ -182,7 +182,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       <span style="font-family:Archivo,sans-serif;font-size:13px;letter-spacing:.02em;color:#5C4B36">Wholesale only</span>
     </div>
   </section>
-  <div style="height:42px;background:#2A211A url('bead-band.svg') center/auto 42px repeat-x" aria-hidden="true"></div>
+  <div style="height:42px;background:#2A211A url('/bead-band.svg') center/auto 42px repeat-x" aria-hidden="true"></div>
 
   <section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,104px) clamp(24px,3.5vw,44px)" data-reveal="">
     <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Why Dayak beadwork</p>
@@ -218,7 +218,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
         <button onClick="{{ toCatJewelry }}" style="display:flex;align-items:baseline;gap:8px;width:100%;background:none;border:none;padding:12px 0 0;cursor:pointer;text-align:left" style-hover="color:#8E2321"><span style="font-family:'Young Serif',serif;font-size:17px;color:inherit">Jewelry</span><span style="font-family:Archivo,sans-serif;font-size:12px;color:#6D5B45;margin-left:auto">{{ countJewelry }} &rarr;</span></button>
       </div>
       <div class="card">
-        <div class="imgwrap" style="aspect-ratio:4/5;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><img src="images/bags/amira.jpg" alt="Amira beaded tote, hand-beaded Dayak craft" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#FFFFFF;padding:6%;box-sizing:border-box"/></div>
+        <div class="imgwrap" style="aspect-ratio:4/5;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><img src="/images/bags/amira.jpg" alt="Amira beaded tote, hand-beaded Dayak craft" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#FFFFFF;padding:6%;box-sizing:border-box"/></div>
         <button onClick="{{ toCatBags }}" style="display:flex;align-items:baseline;gap:8px;width:100%;background:none;border:none;padding:12px 0 0;cursor:pointer;text-align:left" style-hover="color:#8E2321"><span style="font-family:'Young Serif',serif;font-size:17px;color:inherit">Bags</span><span style="font-family:Archivo,sans-serif;font-size:12px;color:#6D5B45;margin-left:auto">{{ countBags }} &rarr;</span></button>
       </div>
       <div class="card">
@@ -232,11 +232,11 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
     </div>
   </section>
 
-  <div style="height:42px;background:#2A211A url('bead-band.svg') center/auto 42px repeat-x" aria-hidden="true"></div>
+  <div style="height:42px;background:#2A211A url('/bead-band.svg') center/auto 42px repeat-x" aria-hidden="true"></div>
   <section style="background:#2A211A;color:#EAE0CC">
     <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,96px) clamp(24px,3.5vw,44px);display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,64px);align-items:center" data-reveal="">
       <div style="flex:0 1 300px;min-width:min(100%,270px)">
-        <div style="width:min(100%,304px);aspect-ratio:9/16;position:relative;background:#221A14 url('bead-band.svg') center/auto 54px repeat;border-radius:4px;overflow:hidden;margin:0 auto">
+        <div style="width:min(100%,304px);aspect-ratio:9/16;position:relative;background:#221A14 url('/bead-band.svg') center/auto 54px repeat;border-radius:4px;overflow:hidden;margin:0 auto">
           <sc-if value="{{ vidShort }}" hint-placeholder-val="{{ false }}">
             <iframe src="https://www.youtube-nocookie.com/embed/weOzeAlgBjI?autoplay=1&amp;rel=0" title="Film: the women of Kampung Manik at work (vertical short)" style="position:absolute;inset:0;width:100%;height:100%;border:0" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen="{{ true }}"></iframe>
           </sc-if>
@@ -325,7 +325,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
     <h1 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.06;margin:14px 0 0;max-width:20ch;text-wrap:balance">Four families of motif</h1>
     <p class="cmb" style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:62ch;margin:16px 0 0">Every piece in the collection carries one of a small family of Dayak motifs. Knowing them is good floor talk, and this page is written to be borrowed for your shelf cards and product pages.</p>
   </div>
-  <div style="height:42px;background:#2A211A url('bead-band.svg') center/auto 42px repeat-x" aria-hidden="true"></div>
+  <div style="height:42px;background:#2A211A url('/bead-band.svg') center/auto 42px repeat-x" aria-hidden="true"></div>
 
   <div style="max-width:1240px;margin:0 auto;padding:0 clamp(24px,3.5vw,44px)">
 
@@ -540,7 +540,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
     </section>
   </div>
 
-  <div style="height:42px;background:#2A211A url('bead-band.svg') center/auto 42px repeat-x" aria-hidden="true"></div>
+  <div style="height:42px;background:#2A211A url('/bead-band.svg') center/auto 42px repeat-x" aria-hidden="true"></div>
   <section id="linesheet-form" style="background:#EFE6D3;border-bottom:1px solid #DACBAE">
     <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,6vw,88px) clamp(24px,3.5vw,44px)">
       <div style="max-width:880px">
@@ -611,7 +611,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
         </sc-if>
         <sc-if value="{{ formDone }}" hint-placeholder-val="{{ false }}">
           <div style="border:1px solid #B79B7C;background:#F7F1E5;padding:clamp(24px,3.5vw,44px);margin-top:clamp(24px,3vw,36px)">
-            <div style="width:168px;height:28px;background:#2A211A url('bead-band.svg') left center/auto 28px repeat-x" aria-hidden="true"></div>
+            <div style="width:168px;height:28px;background:#2A211A url('/bead-band.svg') left center/auto 28px repeat-x" aria-hidden="true"></div>
             <h3 style="font-family:'Young Serif',serif;font-weight:400;font-size:24px;margin:18px 0 0">Request received.</h3>
             <p style="font-size:16px;line-height:1.7;color:#4A3B2A;max-width:56ch;margin:12px 0 0">The line sheet PDF goes out within two business days, sent from Samarinda by a person, not an autoresponder. If samples are urgent, write to <a href="mailto:hello@alwintru.com">hello@alwintru.com</a> and we will start there.</p>
           </div>
@@ -631,7 +631,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
     <p class="cmb" style="font-size:clamp(16.5px,1.4vw,18px);line-height:1.65;color:#4A3B2A;max-width:62ch;margin:16px 0 0">One neighbourhood in Samarinda, on the Mahakam River, where beadwork is the daily craft of its women. This is where every piece we sell is made. Watch first; the film says it better than the page does.</p>
 
     <div style="max-width:980px;margin:clamp(28px,4vw,48px) 0 0">
-      <div style="aspect-ratio:16/9;position:relative;background:#221A14 url('bead-band.svg') center/auto 54px repeat;overflow:hidden;border-radius:4px">
+      <div style="aspect-ratio:16/9;position:relative;background:#221A14 url('/bead-band.svg') center/auto 54px repeat;overflow:hidden;border-radius:4px">
         <sc-if value="{{ vidFull }}" hint-placeholder-val="{{ false }}">
           <iframe src="https://www.youtube-nocookie.com/embed/WNEcb6La0Nk?autoplay=1&amp;rel=0" title="Film: the women of Kampung Manik at work" style="position:absolute;inset:0;width:100%;height:100%;border:0" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen="{{ true }}"></iframe>
         </sc-if>
@@ -788,11 +788,11 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
   <section style="background:#EFE6D3;border-top:1px solid #DACBAE;border-bottom:1px solid #DACBAE">
     <div style="max-width:1240px;margin:0 auto;padding:26px clamp(24px,3.5vw,44px);display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:18px 40px">
       <span style="font-family:Archivo,sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#6D5B45">Registered Indonesian exporter</span>
-      <a href="https://insw.go.id/" target="_blank" rel="noopener" aria-label="Indonesia National Single Window" style="display:inline-flex;align-items:center"><img src="images/badges/insw.png" alt="Indonesia National Single Window" loading="lazy" style="height:42px;width:auto;display:block"/></a>
-      <a href="https://inaexport.id/perusahaan/80801-alana-wina-trudi" target="_blank" rel="noopener" aria-label="InaExport company profile" style="display:inline-flex;align-items:center"><img src="images/badges/inaexport.png" alt="InaExport" loading="lazy" style="height:30px;width:auto;display:block"/></a>
+      <a href="https://insw.go.id/" target="_blank" rel="noopener" aria-label="Indonesia National Single Window" style="display:inline-flex;align-items:center"><img src="/images/badges/insw.png" alt="Indonesia National Single Window" loading="lazy" style="height:42px;width:auto;display:block"/></a>
+      <a href="https://inaexport.id/perusahaan/80801-alana-wina-trudi" target="_blank" rel="noopener" aria-label="InaExport company profile" style="display:inline-flex;align-items:center"><img src="/images/badges/inaexport.png" alt="InaExport" loading="lazy" style="height:30px;width:auto;display:block"/></a>
     </div>
   </section>
-  <div style="height:42px;background:#2A211A url('bead-band.svg') center/auto 42px repeat-x" aria-hidden="true"></div>
+  <div style="height:42px;background:#2A211A url('/bead-band.svg') center/auto 42px repeat-x" aria-hidden="true"></div>
   <div style="background:#2A211A;color:#D8CBB2">
     <div class="cm" style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,72px) clamp(24px,3.5vw,44px) 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(28px,4vw,56px)">
       <div>
@@ -885,21 +885,17 @@ class Component extends DCLogic {
   // Each screen gets a real URL so it can be linked, shared and indexed.
   // Cloudflare Pages serves index.html for every path (see _redirects), and the
   // component picks the screen from location.pathname on load and on popstate.
+  // NOTE: build.mjs reads this table with a plain regex to pre-render each
+  // route's static <head>. Keep every value a single double-quoted literal on
+  // one line — no concatenation, no template strings — or the build will fail.
   ROUTES() {
-    const B = 'Alana Wina Trudi';
     return {
-      home:       { path: '/',            title: B + ' | Hand-beaded Dayak Craft, Wholesale',
-                    desc: 'Hand-beaded Dayak craft from Kampung Manik, Samarinda: bags, home décor, jewelry and table textiles. Wholesale only, shipped worldwide.' },
-      collection: { path: '/collection',  title: 'Collection | ' + B,
-                    desc: 'The full line of hand-beaded Dayak craft from Kampung Manik: bags, pouches, home décor, jewelry, keychains and table textiles. Wholesale only.' },
-      motifs:     { path: '/motifs',      title: 'Motifs & Meaning | ' + B,
-                    desc: "The four families of Dayak motif behind the beadwork: aso' the dragon-dog, tinggang the hornbill, kelunan the human figure, and the border patterns." },
-      wholesale:  { path: '/wholesale',   title: 'Wholesale | ' + B,
-                    desc: 'How to buy hand-beaded Dayak craft wholesale: line sheet, samples, lead times, Incoterms, shipping from Samarinda and Balikpapan, and export documentation.' },
-      about:      { path: '/our-makers',  title: 'Our Makers | ' + B,
-                    desc: 'Kampung Manik, the Bead Village in Samarinda, East Kalimantan, where the women of the Dayak, Banjar and Bugis communities bead every piece by hand.' },
-      contact:    { path: '/contact',     title: 'Contact | ' + B,
-                    desc: 'Reach Alana Wina Trudi in Samarinda, East Kalimantan: email, WhatsApp, Instagram, LinkedIn and our InaExport profile. We reply within two business days.' }
+      home:       { path: "/", title: "Alana Wina Trudi | Hand-beaded Dayak Craft, Wholesale", desc: "Hand-beaded Dayak craft from Kampung Manik, Samarinda: bags, home décor, jewelry and table textiles. Wholesale only, shipped worldwide." },
+      collection: { path: "/collection", title: "Collection | Alana Wina Trudi", desc: "The full line of hand-beaded Dayak craft from Kampung Manik: bags, pouches, home décor, jewelry, keychains and table textiles. Wholesale only." },
+      motifs:     { path: "/motifs", title: "Motifs & Meaning | Alana Wina Trudi", desc: "The four families of Dayak motif behind the beadwork: aso' the dragon-dog, tinggang the hornbill, kelunan the human figure, and the border patterns." },
+      wholesale:  { path: "/wholesale", title: "Wholesale | Alana Wina Trudi", desc: "How to buy hand-beaded Dayak craft wholesale: line sheet, samples, lead times, Incoterms, shipping from Samarinda and Balikpapan, and export documentation." },
+      about:      { path: "/our-makers", title: "Our Makers | Alana Wina Trudi", desc: "Kampung Manik, the Bead Village in Samarinda, East Kalimantan, where the women of the Dayak, Banjar and Bugis communities bead every piece by hand." },
+      contact:    { path: "/contact", title: "Contact | Alana Wina Trudi", desc: "Reach Alana Wina Trudi in Samarinda, East Kalimantan: email, WhatsApp, Instagram, LinkedIn and our InaExport profile. We reply within two business days." }
     };
   }
   routingOn() { return typeof history !== 'undefined' && !!history.pushState && location.protocol !== 'file:'; }
@@ -1000,15 +996,15 @@ class Component extends DCLogic {
       { id: 'keychains', name: 'Keychain Counter Display (12)', cat: 'Keychains', motif: 'Borders', matsShort: 'glass beads, brass rings', materials: 'Glass seed beads, cotton thread, brass split rings; rattan counter tray included', dims: '9 cm each · tray 22 cm Ø', weight: '≈ 400 g / set', colours: 'Assorted borders, no two alike', lead: '3–4 weeks', care: 'See line sheet', story: 'Twelve beaded tags, each a different border pattern, in a rattan counter tray. The till-side item that pays for its shelf space.', img: 'Filled counter tray beside a till, shallow depth of field' },
       // REAL PRODUCTS from Catalog PT. AWT Euro (2024). Dims and HS codes are the catalog's;
       // per the catalog, motifs and colours vary piece to piece because each is handcrafted.
-      { id: 'amira', name: 'Amira Tote', cat: 'Bags', motif: "Aso'", src: 'images/bags/amira.jpg', hs: '4202 29 00', matsShort: 'full beadwork, twin handles', materials: 'Glass seed beads, hand-strung; beaded rope handles; zip closure', dims: 'L 32 × W 9 × H 27 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'The largest bag in the line: a full beaded field on both faces with the mirrored hook-and-spiral field pattern, twin beaded rope handles and a zip top.', img: 'Amira beaded tote, front' },
-      { id: 'zania', name: 'Zania Handbag', cat: 'Bags', motif: "Aso'", src: 'images/bags/zania.jpg', hs: '4202 29 00', matsShort: 'full beadwork, arch handle', materials: 'Glass seed beads, hand-strung; beaded arch handle; zip closure', dims: 'L 27 × W 9 × H 18 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'A structured day bag beaded edge to edge in interlocking spiral rows, carried on a single beaded arch handle.', img: 'Zania beaded handbag, front' },
-      { id: 'lisha', name: 'Lisha Crossbody', cat: 'Bags', motif: 'Borders', src: 'images/bags/lisha.jpg', hs: '4202 29 00', matsShort: 'beadwork, 55 cm beaded strap', materials: 'Glass seed beads, hand-strung; beaded shoulder strap (≈ 55 cm drop)', dims: 'L 18 × W 9 × H 21 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'A hands-free crossbody with the dove’s-eye diamond centred in a bordered field; the strap itself is beaded in a matching border pattern.', img: 'Lisha beaded crossbody with beaded strap' },
-      { id: 'ratna', name: 'Ratna Wristlet', cat: 'Bags', motif: 'Borders', src: 'images/bags/ratna.jpg', hs: '4202 29 00', matsShort: 'flat beadwork, wrist loop', materials: 'Glass seed beads, hand-strung; beaded wrist loop; zip closure', dims: 'L 27 × W 3 × H 15 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'A slim zip clutch sized for a phone and cards, beaded in border rows on both faces, with a beaded loop to carry on the wrist.', img: 'Ratna beaded wristlet clutch' },
-      { id: 'gitta', name: 'Gitta Mini Handbag', cat: 'Bags', motif: 'Borders', src: 'images/bags/gitta.jpg', hs: '4202 29 00', matsShort: 'full beadwork, arch handle', materials: 'Glass seed beads, hand-strung; beaded arch handle; zip closure', dims: 'L 17 × W 7 × H 10 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'A palm-sized handbag with mirrored diamond-and-hook motifs and a single beaded handle, the line’s small charmer.', img: 'Gitta mini beaded handbag' },
-      { id: 'defni', name: 'Defni Zip Pouch', cat: 'Bags', motif: 'Borders', src: 'images/bags/defni.jpg', hs: '4202 29 00', matsShort: 'flat beadwork, zip', materials: 'Glass seed beads, hand-strung; zip closure', dims: 'L 17 × W 2 × H 10 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'The largest of the three flat pouches: beaded border patterns on both faces around a central diamond-and-spiral field.', img: 'Defni beaded zip pouches, assorted colourways' },
-      { id: 'viona', name: 'Viona Zip Pouch', cat: 'Bags', motif: 'Borders', src: 'images/bags/viona.jpg', hs: '4202 29 00', matsShort: 'flat beadwork, zip', materials: 'Glass seed beads, hand-strung; zip closure', dims: 'L 14 × W 2 × H 9 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'The mid-size flat pouch for coins, cards and earbuds, beaded in border rows on both faces.', img: 'Viona beaded zip pouch' },
-      { id: 'halda', name: 'Halda Zip Pouch', cat: 'Bags', motif: 'Borders', src: 'images/bags/halda.jpg', hs: '4202 29 00', matsShort: 'flat beadwork, zip', materials: 'Glass seed beads, hand-strung; zip closure', dims: 'L 11 × W 2 × H 8 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'The smallest piece in the bag line: a coin-and-cards pouch, beaded on both faces. The counter-side entry point.', img: 'Halda beaded coin pouch' },
-      { id: 'kanaya', name: 'Kanaya Rattan Crossbody', cat: 'Bags', motif: 'Borders', src: 'images/bags/kanaya.jpg', hs: '4602 12 90', matsShort: 'woven rattan, shoulder strap', materials: 'Hand-woven natural rattan with dark trim; adjustable shoulder strap', dims: 'L 23 × W 10 × H 16 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Wipe dry; keep out of rain', story: 'The one woven piece in the bag line: a structured crossbody with the motif worked directly into the rattan weave in dark strands.', img: 'Kanaya woven rattan crossbody bag' },
+      { id: 'amira', name: 'Amira Tote', cat: 'Bags', motif: "Aso'", src: '/images/bags/amira.jpg', hs: '4202 29 00', matsShort: 'full beadwork, twin handles', materials: 'Glass seed beads, hand-strung; beaded rope handles; zip closure', dims: 'L 32 × W 9 × H 27 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'The largest bag in the line: a full beaded field on both faces with the mirrored hook-and-spiral field pattern, twin beaded rope handles and a zip top.', img: 'Amira beaded tote, front' },
+      { id: 'zania', name: 'Zania Handbag', cat: 'Bags', motif: "Aso'", src: '/images/bags/zania.jpg', hs: '4202 29 00', matsShort: 'full beadwork, arch handle', materials: 'Glass seed beads, hand-strung; beaded arch handle; zip closure', dims: 'L 27 × W 9 × H 18 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'A structured day bag beaded edge to edge in interlocking spiral rows, carried on a single beaded arch handle.', img: 'Zania beaded handbag, front' },
+      { id: 'lisha', name: 'Lisha Crossbody', cat: 'Bags', motif: 'Borders', src: '/images/bags/lisha.jpg', hs: '4202 29 00', matsShort: 'beadwork, 55 cm beaded strap', materials: 'Glass seed beads, hand-strung; beaded shoulder strap (≈ 55 cm drop)', dims: 'L 18 × W 9 × H 21 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'A hands-free crossbody with the dove’s-eye diamond centred in a bordered field; the strap itself is beaded in a matching border pattern.', img: 'Lisha beaded crossbody with beaded strap' },
+      { id: 'ratna', name: 'Ratna Wristlet', cat: 'Bags', motif: 'Borders', src: '/images/bags/ratna.jpg', hs: '4202 29 00', matsShort: 'flat beadwork, wrist loop', materials: 'Glass seed beads, hand-strung; beaded wrist loop; zip closure', dims: 'L 27 × W 3 × H 15 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'A slim zip clutch sized for a phone and cards, beaded in border rows on both faces, with a beaded loop to carry on the wrist.', img: 'Ratna beaded wristlet clutch' },
+      { id: 'gitta', name: 'Gitta Mini Handbag', cat: 'Bags', motif: 'Borders', src: '/images/bags/gitta.jpg', hs: '4202 29 00', matsShort: 'full beadwork, arch handle', materials: 'Glass seed beads, hand-strung; beaded arch handle; zip closure', dims: 'L 17 × W 7 × H 10 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'A palm-sized handbag with mirrored diamond-and-hook motifs and a single beaded handle, the line’s small charmer.', img: 'Gitta mini beaded handbag' },
+      { id: 'defni', name: 'Defni Zip Pouch', cat: 'Bags', motif: 'Borders', src: '/images/bags/defni.jpg', hs: '4202 29 00', matsShort: 'flat beadwork, zip', materials: 'Glass seed beads, hand-strung; zip closure', dims: 'L 17 × W 2 × H 10 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'The largest of the three flat pouches: beaded border patterns on both faces around a central diamond-and-spiral field.', img: 'Defni beaded zip pouches, assorted colourways' },
+      { id: 'viona', name: 'Viona Zip Pouch', cat: 'Bags', motif: 'Borders', src: '/images/bags/viona.jpg', hs: '4202 29 00', matsShort: 'flat beadwork, zip', materials: 'Glass seed beads, hand-strung; zip closure', dims: 'L 14 × W 2 × H 9 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'The mid-size flat pouch for coins, cards and earbuds, beaded in border rows on both faces.', img: 'Viona beaded zip pouch' },
+      { id: 'halda', name: 'Halda Zip Pouch', cat: 'Bags', motif: 'Borders', src: '/images/bags/halda.jpg', hs: '4202 29 00', matsShort: 'flat beadwork, zip', materials: 'Glass seed beads, hand-strung; zip closure', dims: 'L 11 × W 2 × H 8 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'The smallest piece in the bag line: a coin-and-cards pouch, beaded on both faces. The counter-side entry point.', img: 'Halda beaded coin pouch' },
+      { id: 'kanaya', name: 'Kanaya Rattan Crossbody', cat: 'Bags', motif: 'Borders', src: '/images/bags/kanaya.jpg', hs: '4602 12 90', matsShort: 'woven rattan, shoulder strap', materials: 'Hand-woven natural rattan with dark trim; adjustable shoulder strap', dims: 'L 23 × W 10 × H 16 cm', weight: 'In the line sheet', colours: 'Motifs and colours vary, each piece handcrafted', lead: 'Confirmed per order', care: 'Wipe dry; keep out of rain', story: 'The one woven piece in the bag line: a structured crossbody with the motif worked directly into the rattan weave in dark strands.', img: 'Kanaya woven rattan crossbody bag' },
     ].map((p) => ({ ...p, motifLine: M[p.motif], imgId: 'prod-' + p.id, d1: 'prod-' + p.id + '-d1', d2: 'prod-' + p.id + '-d2', ph: '4:5 · ' + p.img, meta: p.motif + ' motif · ' + p.matsShort, hs: p.hs || 'To be added', hasImg: !!p.src, noImg: !p.src, alt: p.src ? p.name + ', hand-beaded Dayak craft by Alana Wina Trudi, Kampung Manik, Samarinda' : '' }));
   }
 
