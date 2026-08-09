@@ -61,12 +61,14 @@ brief in the catalog:
 | `images/products/coasters.jpg` | `coasters` | Assorted border-pattern coasters fanned on stone, glass of tea |
 | `images/products/hanging.jpg` | `hanging` | Cream / cocoa figure column, beside a linen curtain |
 | `images/products/necklace.jpg` | `necklace` | Cocoa / cream / red strands on natural stone, macro |
-| `images/products/cuff.jpg` | `cuff` | Black / multi cuff — **staged on rattan/stone, NOT on a wrist** (no hands rule) |
+| `images/products/cuff.jpg` | `cuff` | Black / multi cuff **worn on a wrist** resting on a rattan chair arm, per the original brief (user-approved exception to the no-people rule) |
 | `images/products/keychains.jpg` | `keychains` | Assorted border tags in a rattan counter tray |
 
-The cuff's original brief ("on a wrist resting on a rattan chair arm") conflicts
-with the no-people rule; restage as still-life. The catalog `img` string for the
-cuff is updated to match. Modal detail slots (`d1`/`d2`) stay as placeholders.
+The cuff keeps its original brief ("on a wrist resting on a rattan chair arm") —
+the user explicitly approved this single exception to the no-people rule. The
+framing stays tight: forearm and wrist only, no face, no second person. Its
+catalog `img` string is unchanged. Modal detail slots (`d1`/`d2`) stay as
+placeholders.
 
 ### D. About page
 
@@ -81,7 +83,11 @@ cuff is updated to match. Modal detail slots (`d1`/`d2`) stay as placeholders.
   one; NO bone, tusk, shell, or carved charms; NO text, logos, or watermarks.
 - Staging: the site's muted world — cream ceramic, undyed linen, rattan, plaster,
   stone; soft directional daylight, one clean shadow.
-- NO people: no faces, no hands, no bodies, no reflections of people.
+- NO people: no faces, no hands, no bodies, no reflections of people. **Single
+  exception, user-approved: the cuff image shows a wrist/forearm wearing the cuff**
+  — framed tight (no face, no second person), and held to an extra skin-realism
+  gate: correct anatomy, natural skin texture with pores and fine lines, no waxy
+  or airbrushed AI skin, believable contact shadow where the cuff meets the wrist.
 
 ## Naturalness gate (user-directed: "senatural mungkin, tidak terlalu terlihat AI")
 
@@ -148,4 +154,5 @@ photos inform prompt language only — they are never uploaded or copied.
    curvilinear, not chevrons; kelunan a readable figure; borders diamond rows).
 4. The six product cards render bleed (edge-to-edge) like the earrings; bags
    unchanged; `node build.mjs` passes; live page verified after push.
-5. The cuff image and its catalog `img` brief contain no wrist/hand.
+5. The cuff image shows the cuff worn on a wrist per its brief, passes the
+   skin-realism gate, and contains no face; every other image contains no person.
