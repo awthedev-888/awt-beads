@@ -51,8 +51,10 @@ sub-project (SP-3).
 ## Sales, production, fulfilment processes (current state)
 
 All of it lives in email + WhatsApp + the founder's head. Products exist as a
-JavaScript array inside `index.html` (30 SKUs); wholesale pricing exists only for
-the 17 earrings, in `line-sheet-earrings.xlsx`. There is no CRM, no order record,
+JavaScript array inside `index.html` (30 SKUs). `line-sheet-earrings.xlsx` gives
+the 17 earrings SKU codes and descriptions, but its price/MOQ/HS columns are an
+unfilled template — **no product in the business has a price yet**; pricing is
+open founder work. There is no CRM, no order record,
 no production tracking, no finance record. Production is by the makers of Kampung
 Manik with per-product lead times of roughly 3–7 weeks where stated.
 

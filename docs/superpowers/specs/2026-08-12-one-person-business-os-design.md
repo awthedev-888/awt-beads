@@ -78,6 +78,12 @@ volume demands.)
 
 D1 `product` is master for commercial fields (prices, MOQ, HS codes, lead times,
 status), seeded from the site's 30-product array plus `line-sheet-earrings.xlsx`.
+**Planning correction (2026-08-12):** the workbook is an unfilled template — its
+price/MOQ/HS columns are blank by design ("yellow cells are yours to fill in").
+Seeds therefore carry the workbook's SKU codes and descriptive fields; every
+price starts NULL, and the Products screen is where the founder prices the line.
+Prices are stored as integer cents (`wholesale_price_cents`, `rrp_cents`) to keep
+later line-sheet totals exact.
 `index.html` remains master for public presentation (names, stories, images). A
 drift-check (script or Claude session) warns when shared fields diverge. SP-1
 therefore carries zero regression risk to the live site.
@@ -124,7 +130,8 @@ request · `order`/`order_item`, `production_order` on first confirmed order ·
 - **Leads:** pipeline board + filterable list; detail = activity timeline,
   follow-up setter, status mover.
 - **Products:** 30 SKUs, commercial fields editable, completeness indicators
-  (13 SKUs lack prices at seed time), drift-check status.
+  (all 30 lack prices at seed time — pricing is founder work this screen
+  enables), drift-check status.
 
 Desktop-first, responsive to phone. Visual language borrowed from the site
 (Young Serif / Archivo, the site's palette) so the OS feels like AWT, not a SaaS
@@ -161,7 +168,9 @@ admin.
 ## Milestones (each independently verifiable)
 
 1. **Schema + seed.** Migrations apply cleanly to a fresh D1; queries return 30
-   products; earring prices match `line-sheet-earrings.xlsx` exactly.
+   products; the 17 earrings carry the workbook's `AWT-EAR-*` SKU codes and
+   matching descriptive fields; all prices are NULL (the workbook is an
+   unfilled template).
 2. **Capture.** A real form submission lands in D1 *and* the founder's inbox; the
    public site is otherwise byte-identical; fallback verified by disabling the
    endpoint.
