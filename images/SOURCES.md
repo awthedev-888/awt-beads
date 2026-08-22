@@ -54,6 +54,16 @@ This file records the external references used for the editorial images in this 
   the photographed keychains, colours, metal hardware and radial formation while
   replacing the original concrete or white surface, dried foliage and uneven
   light with the collection's warm ivory limestone and oat-linen setting.
+- `bracelets-2026/tricolour-braided-bracelet-set.webp`,
+  `bracelets-2026/floral-panel-bracelet-set.webp`,
+  `bracelets-2026/lattice-button-bracelet-set.webp`, and
+  `bracelets-2026/pastel-cord-bracelet-set.webp` are editorial product edits
+  based on four bracelet screenshots supplied by the site owner. The first three
+  preserve the featured bracelet's construction, form and closure while removing
+  cropped surrounding items and carousel controls. The fourth preserves the full
+  five-bracelet arrangement. All four replace the original white, marble or
+  graphic setting, overlaid text and uneven light with the collection's warm
+  ivory limestone and oat-linen setting.
 - `home-decor-2026/central-vessel-ulin-wall-hanging-v2.webp`,
   `home-decor-2026/twin-tiger-ulin-wall-hanging-v2.webp`, and
   `home-decor-2026/red-tree-ulin-wall-hanging-v2.webp` are editorial composites
