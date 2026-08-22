@@ -30,18 +30,18 @@ if (!names.length) throw new Error('build: parsed no routes — check the ROUTES
 
 // Short, factual copy shown only when JavaScript is unavailable.
 const NOSCRIPT = {
-  home: ['Beadwork from the Bead Village.',
-    'Alana Wina Trudi brings to you the hand-beaded Dayak craft of home décor, earrings, necklaces, bracelets, bags and small accessories, beaded one glass bead at a time by the women of Kampung Manik, Samarinda. Wholesale only, shipped worldwide from Indonesia.'],
-  collection: ['Hand-beaded, piece by piece',
-    'Every piece is beaded in Kampung Manik on glass seed beads, cotton and rattan. Wholesale prices are quoted in EUR or USD and live in the line sheet.'],
+  home: ['We believe Borneo beadwork belongs in contemporary life.',
+    'Alana Wina Trudi works with beading groups in Kampung Manik, Samarinda, to make contemporary bags, jewellery, décor, table textiles and small accessories in the visual language of Dayak beadwork. Wholesale only.'],
+  collection: ['Hand-beaded pieces for contemporary retail',
+    'Explore 56 pieces made in Kampung Manik from glass seed beads, cotton, rattan and careful handwork. Request the current line sheet for wholesale pricing and order information.'],
   motifs: ['How to read the beadwork',
-    "Dayak beadwork carries an old cosmology in colour, figure and form: two worlds held in balance, the figures that populate them, colours with meanings, and forms that repeat."],
-  wholesale: ['How buying works',
-    'Request the line sheet, order samples, then place your first order. Samples ship by courier from Samarinda; volume orders go sea LCL out of Balikpapan. Incoterms EXW Samarinda or FOB Balikpapan.'],
+    'Dayak beadwork carries an old cosmology in colour, figure and form: two worlds held in balance, the figures that populate them, colours with meanings, and forms that repeat.'],
+  wholesale: ['Wholesale for retailers who want a line with a point of view',
+    'Request the current line sheet, choose samples, agree the order, and plan shipping and documentation with a human wholesale partner in Samarinda.'],
   about: ['Kampung Manik, the Bead Village',
-    'One neighbourhood in Samarinda, on the Mahakam River, where beadwork is the daily craft of its women. This is where every piece we sell is made.'],
-  contact: ['Reach Samarinda',
-    'Email hello@alwintru.com, or message us on WhatsApp. We reply within two business days, Samarinda time (WITA, UTC+8).'],
+    'One neighbourhood in Samarinda, on the Mahakam River, where beadwork is part of daily life. This is where every piece we sell begins.'],
+  contact: ['Let’s find the right line for your shelves',
+    'Email hello@alwintru.com or message us on WhatsApp for the current wholesale line sheet, product range and order information.'],
 };
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
