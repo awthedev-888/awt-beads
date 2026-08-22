@@ -68,15 +68,17 @@ This file records the external references used for the editorial images in this 
   ivory limestone and oat-linen setting.
 - `table-runners-2026/emerald-mirror-borneo-table-runner-v2.webp`,
   `table-runners-2026/twin-tiger-borneo-table-runner-v2.webp`,
-  `table-runners-2026/four-bird-borneo-table-runner-v2.webp`,
+  `table-runners-2026/four-bird-borneo-table-runner-v3.webp`,
   `table-runners-2026/diamond-scroll-borneo-table-runner-v2.webp`, and
   `table-runners-2026/crimson-mirror-borneo-table-runner-v2.webp` are editorial
   product edits based on five beaded table-runner screenshots supplied by the
   site owner. Each preserves the supplied runner's rectangular form, colourway,
-  bead composition, border and fringed edge. The `-v2` set uses a deliberately
-  matched 90-degree overhead composition: each runner sits at the same scale on
-  a cream-marble tabletop, with a beige-and-white oval woven rug beneath the
-  table and a small vase of soft-coloured flowers above it.
+  bead composition, border and fringed edge. They use a deliberately matched
+  90-degree overhead composition: each runner sits at the same scale on a
+  cream-marble tabletop, with a beige-and-white oval woven rug beneath the
+  table and a small vase of soft-coloured flowers above it. The Four-Bird `-v3`
+  edit additionally corrects its lower fringed edge to a straight horizontal
+  line.
 - `home-decor-2026/central-vessel-ulin-wall-hanging-v2.webp`,
   `home-decor-2026/twin-tiger-ulin-wall-hanging-v2.webp`, and
   `home-decor-2026/red-tree-ulin-wall-hanging-v2.webp` are editorial composites
