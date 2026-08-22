@@ -11,13 +11,13 @@ This file records the external references used for the editorial images in this 
 - `products/tinggang-fringe-necklace.jpg` is an editorial edit based on BORNEO
   BLINK's [Kalung Manik Ethnic Dayak](https://smexpo.pertamina.com/p/1411/kalung-manik-ethnic-dayak)
   listing.
-- `products/mahulu-rattan-cuffs.jpg` is an editorial edit based on BORNEO
+- `products/mahulu-rattan-cuffs-v2.jpg` is an editorial edit based on BORNEO
   BLINK's [Gelang Rotan Mahulu](https://smexpo.pertamina.com/p/1557/gelang-rotan-mahulu)
   listing.
-- `products/kelunan-table-panel.jpg` is an editorial adaptation based on BORNEO
+- `products/kelunan-table-panel-v2.jpg` is an editorial adaptation based on BORNEO
   BLINK's [Taplak Meja Sudut Manik](https://smexpo.pertamina.com/p/1503/taplak-meja-sudut-manik)
   listing.
-- `products/beaded-coasters.jpg` is an illustrative coordinated product image
+- `products/beaded-coasters-v2.jpg` is an illustrative coordinated product image
   generated from the colour and pattern language in the same table-textile
   reference. The corresponding product copy describes the image shown.
 - `motifs/tinggang-detail.jpg`, `motifs/kelunan-detail.jpg`, and
@@ -37,4 +37,5 @@ This file records the external references used for the editorial images in this 
 All AI-assisted edits were created with OpenAI ImageGen in edit mode. They were
 directed to retain the people, craft activity, objects, and visible product
 structure of the supplied first-party references while improving lighting,
-resolution, composition, and background styling.
+resolution, composition, and background styling. The three `-v2` product files
+use the collection's warm ivory limestone, cream plaster and oat-linen setting.
