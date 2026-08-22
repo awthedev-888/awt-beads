@@ -86,6 +86,7 @@
 <style>
 /* Palette: cream #F7F1E5 · oat #EFE6D3 · sand #DACBAE · pastel brown #B79B7C · taupe #6D5B45 · cocoa #34291D · band #2A211A · bead red #8E2321 · ochre (band art only) #C99435 */
 *,*::before,*::after{box-sizing:border-box}
+html,body{scroll-padding-top:80px}
 html{overflow-x:hidden;scroll-behavior:smooth}
 body{margin:0;min-width:320px;overflow-x:hidden;background:#F7F1E5;color:#34291D;font-family:Karla,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 img,iframe{max-width:100%}
@@ -1248,12 +1249,13 @@ class Component extends DCLogic {
         this.setState({ page: p, cat, product, menuOpen: false }, () => {
           document.body.style.overflow = product ? 'hidden' : '';
           this.syncMeta(p, product, cat);
-          this.scrollToAnchor(location.hash.slice(1));
+          const hash = location.hash.slice(1);
+          if (hash) this.scrollToAnchor(hash); else this.scrollToTop();
           this.reveal();
         });
       };
       window.addEventListener('popstate', this._pop);
-      if (location.hash) requestAnimationFrame(() => this.scrollToAnchor(location.hash.slice(1)));
+      if (location.hash) setTimeout(() => this.scrollToAnchor(location.hash.slice(1)), 120);
     }
     this.reveal();
   }
@@ -1338,10 +1340,30 @@ class Component extends DCLogic {
     } catch (e) {}
     this.syncMeta('collection', product || null, cat);
   }
+  scrollContainer() {
+    const body = document.body;
+    const bodyStyle = body ? getComputedStyle(body) : null;
+    const bodyCanScroll = body && bodyStyle && /(auto|scroll)/.test(bodyStyle.overflowY) && body.scrollHeight > body.clientHeight;
+    return bodyCanScroll ? body : (document.scrollingElement || document.documentElement);
+  }
+  scrollPosition() {
+    const container = this.scrollContainer();
+    return Math.max(container.scrollTop || 0, window.scrollY || 0, document.documentElement.scrollTop || 0);
+  }
+  scrollToTop() {
+    const container = this.scrollContainer();
+    if (typeof container.scrollTo === 'function') container.scrollTo({ top: 0, behavior: 'auto' });
+    else window.scrollTo(0, 0);
+  }
   scrollToAnchor(id) {
     if (!id) return;
     const el = document.getElementById(id);
-    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: this.rm() ? 'auto' : 'smooth' });
+    if (!el) return;
+    const container = this.scrollContainer();
+    const top = Math.max(0, el.getBoundingClientRect().top + this.scrollPosition() - 80);
+    const behavior = this.rm() ? 'auto' : 'smooth';
+    if (typeof container.scrollTo === 'function') container.scrollTo({ top, behavior });
+    else window.scrollTo({ top, behavior });
   }
 
   rm() { return window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches; }
@@ -1369,11 +1391,11 @@ class Component extends DCLogic {
       this.pushRoute(page, anchor);
       if (anchor) {
         requestAnimationFrame(() => { this.scrollToAnchor(anchor); this.reveal(); });
-      } else { window.scrollTo(0, 0); this.reveal(); }
+      } else { this.scrollToTop(); this.reveal(); }
     });
   }
   nav(page, anchor) { return (e) => { if (e && e.preventDefault) e.preventDefault(); this.goTo(page, anchor); }; }
-  goFiltered(cat) { return (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ page: 'collection', cat, product: null, menuOpen: false }, () => { document.body.style.overflow = ''; this.pushCollectionRoute(cat, null, false); window.scrollTo(0, 0); this.reveal(); }); }; }
+  goFiltered(cat) { return (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ page: 'collection', cat, product: null, menuOpen: false }, () => { document.body.style.overflow = ''; this.pushCollectionRoute(cat, null, false); this.scrollToTop(); this.reveal(); }); }; }
   openProduct(product, e) {
     if (e && e.preventDefault) e.preventDefault();
     document.body.style.overflow = 'hidden';
