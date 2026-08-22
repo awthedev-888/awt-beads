@@ -46,6 +46,14 @@ This file records the external references used for the editorial images in this 
   independent catalog images. Each retains the referenced form and colourway
   while replacing the original tabletop, uneven light and overlaid text with a
   consistent ivory-ceramic and oat-linen setting.
+- `keychains-2026/floral-loop-keychain-set.webp`,
+  `keychains-2026/geometric-loop-keychain-set.webp`,
+  `keychains-2026/triangular-tassel-keychain-set.webp`, and
+  `keychains-2026/beaded-strand-keychain-set.webp` are editorial product edits
+  based on four keychain-set screenshots supplied by the site owner. Each keeps
+  the photographed keychains, colours, metal hardware and radial formation while
+  replacing the original concrete or white surface, dried foliage and uneven
+  light with the collection's warm ivory limestone and oat-linen setting.
 - `home-decor-2026/central-vessel-ulin-wall-hanging-v2.webp`,
   `home-decor-2026/twin-tiger-ulin-wall-hanging-v2.webp`, and
   `home-decor-2026/red-tree-ulin-wall-hanging-v2.webp` are editorial composites
