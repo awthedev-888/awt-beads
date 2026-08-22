@@ -31,7 +31,7 @@ if (!names.length) throw new Error('build: parsed no routes — check the ROUTES
 // Short, factual copy shown only when JavaScript is unavailable.
 const NOSCRIPT = {
   home: ['Beadwork from the Bead Village.',
-    'Alana Wina Trudi brings to you the hand-beaded Dayak craft of home décor, jewelry, bags and small accessories, beaded one glass bead at a time by the women of Kampung Manik, Samarinda. Wholesale only, shipped worldwide from Indonesia.'],
+    'Alana Wina Trudi brings to you the hand-beaded Dayak craft of home décor, earrings, necklaces, bracelets, bags and small accessories, beaded one glass bead at a time by the women of Kampung Manik, Samarinda. Wholesale only, shipped worldwide from Indonesia.'],
   collection: ['Hand-beaded, piece by piece',
     'Every piece is beaded in Kampung Manik on glass seed beads, cotton and rattan. Wholesale prices are quoted in EUR or USD and live in the line sheet.'],
   motifs: ['How to read the beadwork',
