@@ -24,6 +24,12 @@ This file records the external references used for the editorial images in this 
   three product-reference screenshots supplied by the site owner. It preserves
   the four distinct circular bead patterns and replaces the original surfaces,
   screenshot borders, and overlaid text with the collection's warm neutral set.
+- `products/manik-coaster-turquoise-fringe-v3.jpg`,
+  `products/manik-coaster-white-star-v3.jpg`,
+  `products/manik-coaster-red-fringe-v3.jpg`, and
+  `products/manik-coaster-yellow-fringe-v3.jpg` are matching one-motif edits
+  from the same owner-supplied references, used as four separate product-gallery
+  slots.
 - `motifs/tinggang-detail.jpg`, `motifs/kelunan-detail.jpg`, and
   `motifs/border-detail.jpg` are square crops from the editorial product images
   above.
