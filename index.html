@@ -210,24 +210,24 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:clamp(16px,2vw,28px);margin-top:clamp(28px,3.5vw,44px)">
       <div class="card">
-        <div class="imgwrap" style="aspect-ratio:4/5;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><image-slot id="cat-decor" shape="rect" placeholder="4:5 · Tinggang wall panel on plaster wall above rattan bench"></image-slot></div>
-        <button onClick="{{ toCatDecor }}" style="display:flex;align-items:baseline;gap:8px;width:100%;background:none;border:none;padding:12px 0 0;cursor:pointer;text-align:left" style-hover="color:#8E2321"><span style="font-family:'Young Serif',serif;font-size:17px;color:inherit">Home d&eacute;cor</span><span style="font-family:Archivo,sans-serif;font-size:12px;color:#6D5B45;margin-left:auto">{{ countDecor }} &rarr;</span></button>
+        <a href="/collection/home-decor" onClick="{{ toCatDecor }}" aria-label="Browse Home décor" style="display:block;color:inherit;text-decoration:none"><div class="imgwrap" style="aspect-ratio:4/5;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><image-slot id="cat-decor" shape="rect" placeholder="4:5 · Tinggang wall panel on plaster wall above rattan bench"></image-slot></div></a>
+        <a href="/collection/home-decor" onClick="{{ toCatDecor }}" style="display:flex;align-items:baseline;gap:8px;width:100%;padding:12px 0 0;cursor:pointer;text-align:left;color:inherit;text-decoration:none" style-hover="color:#8E2321"><span style="font-family:'Young Serif',serif;font-size:17px;color:inherit">Home d&eacute;cor</span><span style="font-family:Archivo,sans-serif;font-size:12px;color:#6D5B45;margin-left:auto">{{ countDecor }} &rarr;</span></a>
       </div>
       <div class="card">
-        <div class="imgwrap" style="aspect-ratio:4/5;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><image-slot id="cat-jewelry" shape="rect" placeholder="4:5 · Necklace and cuff on natural stone, hard light"></image-slot></div>
-        <button onClick="{{ toCatJewelry }}" style="display:flex;align-items:baseline;gap:8px;width:100%;background:none;border:none;padding:12px 0 0;cursor:pointer;text-align:left" style-hover="color:#8E2321"><span style="font-family:'Young Serif',serif;font-size:17px;color:inherit">Jewelry</span><span style="font-family:Archivo,sans-serif;font-size:12px;color:#6D5B45;margin-left:auto">{{ countJewelry }} &rarr;</span></button>
+        <a href="/collection/jewelry" onClick="{{ toCatJewelry }}" aria-label="Browse Jewelry" style="display:block;color:inherit;text-decoration:none"><div class="imgwrap" style="aspect-ratio:4/5;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><image-slot id="cat-jewelry" shape="rect" placeholder="4:5 · Necklace and cuff on natural stone, hard light"></image-slot></div></a>
+        <a href="/collection/jewelry" onClick="{{ toCatJewelry }}" style="display:flex;align-items:baseline;gap:8px;width:100%;padding:12px 0 0;cursor:pointer;text-align:left;color:inherit;text-decoration:none" style-hover="color:#8E2321"><span style="font-family:'Young Serif',serif;font-size:17px;color:inherit">Jewelry</span><span style="font-family:Archivo,sans-serif;font-size:12px;color:#6D5B45;margin-left:auto">{{ countJewelry }} &rarr;</span></a>
       </div>
       <div class="card">
-        <div class="imgwrap" style="aspect-ratio:4/5;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><img src="/images/bags/amira-styled.jpg" alt="Amira beaded tote on limestone in soft morning light" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/></div>
-        <button onClick="{{ toCatBags }}" style="display:flex;align-items:baseline;gap:8px;width:100%;background:none;border:none;padding:12px 0 0;cursor:pointer;text-align:left" style-hover="color:#8E2321"><span style="font-family:'Young Serif',serif;font-size:17px;color:inherit">Bags</span><span style="font-family:Archivo,sans-serif;font-size:12px;color:#6D5B45;margin-left:auto">{{ countBags }} &rarr;</span></button>
+        <a href="/collection/bags" onClick="{{ toCatBags }}" aria-label="Browse Bags" style="display:block;color:inherit;text-decoration:none"><div class="imgwrap" style="aspect-ratio:4/5;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><img src="/images/bags/amira-styled.jpg" alt="Amira beaded tote on limestone in soft morning light" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/></div></a>
+        <a href="/collection/bags" onClick="{{ toCatBags }}" style="display:flex;align-items:baseline;gap:8px;width:100%;padding:12px 0 0;cursor:pointer;text-align:left;color:inherit;text-decoration:none" style-hover="color:#8E2321"><span style="font-family:'Young Serif',serif;font-size:17px;color:inherit">Bags</span><span style="font-family:Archivo,sans-serif;font-size:12px;color:#6D5B45;margin-left:auto">{{ countBags }} &rarr;</span></a>
       </div>
       <div class="card">
-        <div class="imgwrap" style="aspect-ratio:4/5;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><img src="/images/categories/keychains.jpg" alt="Beaded keychains in a rattan counter tray" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/></div>
-        <button onClick="{{ toCatKeychains }}" style="display:flex;align-items:baseline;gap:8px;width:100%;background:none;border:none;padding:12px 0 0;cursor:pointer;text-align:left" style-hover="color:#8E2321"><span style="font-family:'Young Serif',serif;font-size:17px;color:inherit">Keychains</span><span style="font-family:Archivo,sans-serif;font-size:12px;color:#6D5B45;margin-left:auto">{{ countKeychains }} &rarr;</span></button>
+        <a href="/collection/keychains" onClick="{{ toCatKeychains }}" aria-label="Browse Keychains" style="display:block;color:inherit;text-decoration:none"><div class="imgwrap" style="aspect-ratio:4/5;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><img src="/images/categories/keychains.jpg" alt="Beaded keychains in a rattan counter tray" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/></div></a>
+        <a href="/collection/keychains" onClick="{{ toCatKeychains }}" style="display:flex;align-items:baseline;gap:8px;width:100%;padding:12px 0 0;cursor:pointer;text-align:left;color:inherit;text-decoration:none" style-hover="color:#8E2321"><span style="font-family:'Young Serif',serif;font-size:17px;color:inherit">Keychains</span><span style="font-family:Archivo,sans-serif;font-size:12px;color:#6D5B45;margin-left:auto">{{ countKeychains }} &rarr;</span></a>
       </div>
       <div class="card">
-        <div class="imgwrap" style="aspect-ratio:4/5;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><image-slot id="cat-table" shape="rect" placeholder="4:5 · Beaded runner set on rustic wood with linen and stoneware"></image-slot></div>
-        <button onClick="{{ toCatTable }}" style="display:flex;align-items:baseline;gap:8px;width:100%;background:none;border:none;padding:12px 0 0;cursor:pointer;text-align:left" style-hover="color:#8E2321"><span style="font-family:'Young Serif',serif;font-size:17px;color:inherit">Table textiles</span><span style="font-family:Archivo,sans-serif;font-size:12px;color:#6D5B45;margin-left:auto">{{ countTable }} &rarr;</span></button>
+        <a href="/collection/table-textiles" onClick="{{ toCatTable }}" aria-label="Browse Table textiles" style="display:block;color:inherit;text-decoration:none"><div class="imgwrap" style="aspect-ratio:4/5;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09)"><image-slot id="cat-table" shape="rect" placeholder="4:5 · Beaded runner set on rustic wood with linen and stoneware"></image-slot></div></a>
+        <a href="/collection/table-textiles" onClick="{{ toCatTable }}" style="display:flex;align-items:baseline;gap:8px;width:100%;padding:12px 0 0;cursor:pointer;text-align:left;color:inherit;text-decoration:none" style-hover="color:#8E2321"><span style="font-family:'Young Serif',serif;font-size:17px;color:inherit">Table textiles</span><span style="font-family:Archivo,sans-serif;font-size:12px;color:#6D5B45;margin-left:auto">{{ countTable }} &rarr;</span></a>
       </div>
     </div>
   </section>
@@ -291,7 +291,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px">
       <span style="font-family:Archivo,sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#6D5B45;min-width:82px">Category</span>
       <sc-for list="{{ catChips }}" as="c" hint-placeholder-count="6">
-        <button onClick="{{ c.apply }}" style="background:{{ c.bg }};color:{{ c.fg }};border:1px solid {{ c.bd }};border-radius:999px;padding:8px 16px;font-family:Archivo,sans-serif;font-size:13px;font-weight:500;cursor:pointer" style-hover="border-color:#8E2321">{{ c.label }}</button>
+        <a href="{{ c.href }}" onClick="{{ c.apply }}" style="display:inline-block;background:{{ c.bg }};color:{{ c.fg }};border:1px solid {{ c.bd }};border-radius:999px;padding:8px 16px;font-family:Archivo,sans-serif;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none" style-hover="border-color:#8E2321">{{ c.label }}</a>
       </sc-for>
       <a href="/motifs" onClick="{{ toMotifs }}" style="font-family:Archivo,sans-serif;font-size:12.5px;color:#8E2321;margin-left:auto">What the motifs mean &rarr;</a>
     </div>
@@ -302,16 +302,18 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:clamp(24px,3vw,40px) clamp(18px,2.5vw,28px);margin-top:22px">
     <sc-for list="{{ shown }}" as="p" hint-placeholder-count="6">
       <div class="card" style="display:flex;flex-direction:column">
-        <div class="imgwrap" onClick="{{ p.open }}" style="aspect-ratio:4/5;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09);cursor:pointer">
-          <sc-if value="{{ p.hasImg }}" hint-placeholder-val="{{ false }}"><img src="{{ p.src }}" alt="{{ p.alt }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#FFFFFF;padding:6%;box-sizing:border-box"/></sc-if>
-          <sc-if value="{{ p.bleedImg }}" hint-placeholder-val="{{ false }}"><img src="{{ p.src }}" alt="{{ p.alt }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/></sc-if>
-          <sc-if value="{{ p.noImg }}" hint-placeholder-val="{{ true }}"><image-slot id="{{ p.imgId }}" shape="rect" placeholder="{{ p.ph }}"></image-slot></sc-if>
-        </div>
-        <button onClick="{{ p.open }}" style="background:none;border:none;padding:14px 0 0;cursor:pointer;text-align:left" style-hover="color:#8E2321">
+        <a href="{{ p.href }}" onClick="{{ p.open }}" aria-label="View {{ p.name }} details" style="display:block;color:inherit;text-decoration:none">
+          <div class="imgwrap" style="aspect-ratio:4/5;position:relative;background:#EFE6D3;box-shadow:inset 0 0 0 1px rgba(52,41,29,.09);cursor:pointer">
+            <sc-if value="{{ p.hasImg }}" hint-placeholder-val="{{ false }}"><img src="{{ p.src }}" alt="{{ p.alt }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#FFFFFF;padding:6%;box-sizing:border-box"/></sc-if>
+            <sc-if value="{{ p.bleedImg }}" hint-placeholder-val="{{ false }}"><img src="{{ p.src }}" alt="{{ p.alt }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/></sc-if>
+            <sc-if value="{{ p.noImg }}" hint-placeholder-val="{{ true }}"><image-slot id="{{ p.imgId }}" shape="rect" placeholder="{{ p.ph }}"></image-slot></sc-if>
+          </div>
+        </a>
+        <a href="{{ p.href }}" onClick="{{ p.open }}" style="display:block;padding:14px 0 0;cursor:pointer;text-align:left;color:inherit;text-decoration:none" style-hover="color:#8E2321">
           <span style="display:block;font-family:'Young Serif',serif;font-size:18.5px;line-height:1.25;color:inherit">{{ p.name }}</span>
-        </button>
+        </a>
         <span style="font-family:Archivo,sans-serif;font-size:12.5px;line-height:1.5;color:#6D5B45;margin-top:6px">{{ p.meta }}</span>
-        <button onClick="{{ p.open }}" style="align-self:start;background:none;border:none;padding:10px 0 0;cursor:pointer;font-family:Archivo,sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8E2321" style-hover="color:#601614">View details &rarr;</button>
+        <a href="{{ p.href }}" onClick="{{ p.open }}" style="align-self:start;padding:10px 0 0;cursor:pointer;font-family:Archivo,sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8E2321;text-decoration:none" style-hover="color:#601614">View details &rarr;</a>
       </div>
     </sc-for>
   </div>
@@ -1185,13 +1187,21 @@ class Component extends DCLogic {
     window.addEventListener('keydown', this._kd);
     if (this.routingOn()) {
       const page = this.pageFromPath(location.pathname);
-      if (page !== this.state.page) this.setState({ page }, () => this.reveal());
-      this.syncMeta(page);
+      const collection = page === 'collection' ? this.collectionStateFromPath(location.pathname) : null;
+      const next = { page, cat: collection ? collection.cat : 'All', product: collection ? collection.product : null };
+      this.setState(next, () => {
+        document.body.style.overflow = next.product ? 'hidden' : '';
+        this.syncMeta(page, next.product, next.cat);
+        this.reveal();
+      });
       this._pop = () => {
         const p = this.pageFromPath(location.pathname);
-        this.setState({ page: p, product: null, menuOpen: false }, () => {
-          document.body.style.overflow = '';
-          this.syncMeta(p);
+        const collectionState = p === 'collection' ? this.collectionStateFromPath(location.pathname) : null;
+        const product = collectionState ? collectionState.product : null;
+        const cat = collectionState ? collectionState.cat : 'All';
+        this.setState({ page: p, cat, product, menuOpen: false }, () => {
+          document.body.style.overflow = product ? 'hidden' : '';
+          this.syncMeta(p, product, cat);
           this.scrollToAnchor(location.hash.slice(1));
           this.reveal();
         });
@@ -1227,19 +1237,38 @@ class Component extends DCLogic {
   routingOn() { return typeof history !== 'undefined' && !!history.pushState && location.protocol !== 'file:'; }
   pageFromPath(path) {
     const r = this.ROUTES(), p = (path || '/').replace(/\/+$/, '') || '/';
+    if (p === '/collection' || p.indexOf('/collection/') === 0) return 'collection';
     for (const k in r) if (r[k].path === p) return k;
     return 'home';
   }
-  syncMeta(page) {
+  slugify(value) {
+    return (value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/&/g, ' and ').replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-+|-+$/g, '').toLowerCase();
+  }
+  categoryPath(cat) { return cat === 'All' ? '/collection' : '/collection/' + this.slugify(cat); }
+  collectionStateFromPath(path) {
+    const p = (path || '/').replace(/\/+$/, '') || '/';
+    if (p === '/collection') return { cat: 'All', product: null };
+    const parts = p.replace(/^\/collection\//, '').split('/').filter(Boolean);
+    const all = this.products();
+    const cat = all.map((item) => item.cat).find((name) => this.slugify(name) === parts[0]);
+    if (!cat) return { cat: 'All', product: null };
+    const product = parts[1] ? all.find((item) => item.cat === cat && item.slug === parts[1]) || null : null;
+    return { cat, product };
+  }
+  syncMeta(page, product, cat) {
     const r = this.ROUTES()[page]; if (!r) return;
-    document.title = r.title;
-    const url = 'https://beads.alwintru.com' + r.path;
+    const category = page === 'collection' && cat && cat !== 'All' ? cat : '';
+    const title = product ? product.name + ' | Alana Wina Trudi' : category ? category + ' Collection | Alana Wina Trudi' : r.title;
+    const desc = product ? product.story : r.desc;
+    const path = product ? product.href : category ? this.categoryPath(category) : r.path;
+    document.title = title;
+    const url = 'https://beads.alwintru.com' + path;
     const set = (sel, attr, val) => { const el = document.head.querySelector(sel); if (el) el.setAttribute(attr, val); };
-    set('meta[name="description"]', 'content', r.desc);
-    set('meta[property="og:title"]', 'content', r.title);
-    set('meta[property="og:description"]', 'content', r.desc);
-    set('meta[name="twitter:title"]', 'content', r.title);
-    set('meta[name="twitter:description"]', 'content', r.desc);
+    set('meta[name="description"]', 'content', desc);
+    set('meta[property="og:title"]', 'content', title);
+    set('meta[property="og:description"]', 'content', desc);
+    set('meta[name="twitter:title"]', 'content', title);
+    set('meta[name="twitter:description"]', 'content', desc);
     set('link[rel="canonical"]', 'href', url);
     set('meta[property="og:url"]', 'content', url);
   }
@@ -1248,7 +1277,15 @@ class Component extends DCLogic {
     const r = this.ROUTES()[page]; if (!r) return;
     const url = r.path + (anchor ? '#' + anchor : '');
     try { if (location.pathname + location.hash !== url) history.pushState({ page: page }, '', url); } catch (e) {}
-    this.syncMeta(page);
+    this.syncMeta(page, null, page === 'collection' ? 'All' : '');
+  }
+  pushCollectionRoute(cat, product, replace) {
+    if (!this.routingOn()) return;
+    const url = product ? product.href : this.categoryPath(cat);
+    try {
+      if (location.pathname !== url) history[replace ? 'replaceState' : 'pushState']({ page: 'collection', cat, product: product ? product.slug : null }, '', url);
+    } catch (e) {}
+    this.syncMeta('collection', product || null, cat);
   }
   scrollToAnchor(id) {
     if (!id) return;
@@ -1275,7 +1312,8 @@ class Component extends DCLogic {
   }
 
   goTo(page, anchor) {
-    this.setState({ page, product: null, menuOpen: false }, () => {
+    const cat = page === 'collection' ? 'All' : this.state.cat;
+    this.setState({ page, cat, product: null, menuOpen: false }, () => {
       document.body.style.overflow = '';
       this.pushRoute(page, anchor);
       if (anchor) {
@@ -1284,9 +1322,18 @@ class Component extends DCLogic {
     });
   }
   nav(page, anchor) { return (e) => { if (e && e.preventDefault) e.preventDefault(); this.goTo(page, anchor); }; }
-  goFiltered(cat) { return (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ page: 'collection', cat, product: null, menuOpen: false }, () => { document.body.style.overflow = ''; this.pushRoute('collection'); window.scrollTo(0, 0); this.reveal(); }); }; }
+  goFiltered(cat) { return (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ page: 'collection', cat, product: null, menuOpen: false }, () => { document.body.style.overflow = ''; this.pushCollectionRoute(cat, null, false); window.scrollTo(0, 0); this.reveal(); }); }; }
+  openProduct(product, e) {
+    if (e && e.preventDefault) e.preventDefault();
+    document.body.style.overflow = 'hidden';
+    this.setState({ page: 'collection', product, menuOpen: false }, () => this.pushCollectionRoute(this.state.cat, product, false));
+  }
 
-  closeModal() { document.body.style.overflow = ''; this.setState({ product: null }); }
+  closeModal() {
+    document.body.style.overflow = '';
+    const cat = this.state.cat;
+    this.setState({ product: null }, () => this.pushCollectionRoute(cat, null, true));
+  }
 
   submit(e) {
     e.preventDefault();
@@ -1350,14 +1397,17 @@ class Component extends DCLogic {
       { id: 'viona', name: 'Viona Zip Pouch', cat: 'Bags', motif: 'Borders', src: '/images/bags/viona-styled.jpg', bleed: true, hs: '4202 29 00', matsShort: 'flat beadwork, zip', materials: 'Glass seed beads, hand-strung; zip closure', dims: 'L 14 × W 2 × H 9 cm', weight: 'In the line sheet', colours: 'Nine assorted multicolour designs shown; each assortment varies', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'Nine mid-size pouches show how the same diamond-and-scroll structure changes with each beader’s palette. The flat zip shape is sized for coins, cards and earbuds.', img: 'Nine Viona beaded zip pouches in an editorial grid' },
       { id: 'halda', name: 'Halda Zip Pouch', cat: 'Bags', motif: 'Borders', src: '/images/bags/halda-styled.jpg', bleed: true, hs: '4202 29 00', matsShort: 'flat beadwork, zip', materials: 'Glass seed beads, hand-strung; zip closure and small beaded loop', dims: 'L 11 × W 2 × H 8 cm', weight: 'In the line sheet', colours: 'Eight assorted multicolour designs shown; each assortment varies', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'The smallest pouch in the bag line is shown as an eight-piece assortment of scroll-and-diamond patterns. Each compact zip pouch carries coins and cards and finishes with a small beaded loop.', img: 'Eight Halda beaded coin pouches on a woven natural-fibre mat' },
       { id: 'kanaya', name: 'Kanaya Rattan Crossbody', cat: 'Bags', motif: 'Borders', src: '/images/bags/kanaya-styled-v2.jpg', bleed: true, hs: '4602 12 90', matsShort: 'woven rattan, shoulder strap', materials: 'Hand-woven natural rattan with black trim; adjustable shoulder strap; metal hardware', dims: 'L 23 × W 10 × H 16 cm', weight: 'In the line sheet', colours: 'Natural rattan / black', lead: 'Confirmed per order', care: 'Wipe dry; keep out of rain', story: 'The woven piece in the line: a structured trapezoid crossbody with central diamonds and stepped borders worked directly into the natural-and-black rattan face, finished with black trim and a long adjustable strap.', img: 'Kanaya woven rattan crossbody hanging naturally from a light-teak peg' },
-    ].map((p) => ({ ...p, hasMotif: !!p.motif, motifLine: p.motif ? M[p.motif] : '', catLine: p.motif ? p.cat + ' · ' + p.motif + ' motif' : p.cat, imgId: 'prod-' + p.id, d1: 'prod-' + p.id + '-d1', d2: 'prod-' + p.id + '-d2', ph: '4:5 · ' + p.img, meta: p.motif ? p.motif + ' motif · ' + p.matsShort : p.matsShort, hs: p.hs || 'To be added', hasImg: !!p.src && !p.bleed, bleedImg: !!p.src && !!p.bleed, noImg: !p.src, alt: p.src ? p.name + ', hand-beaded Dayak craft by Alana Wina Trudi, Kampung Manik, Samarinda' : '' }));
+    ].map((p) => {
+      const slug = p.slug || this.slugify(p.name);
+      return { ...p, slug, href: this.categoryPath(p.cat) + '/' + slug, hasMotif: !!p.motif, motifLine: p.motif ? M[p.motif] : '', catLine: p.motif ? p.cat + ' · ' + p.motif + ' motif' : p.cat, imgId: 'prod-' + p.id, d1: 'prod-' + p.id + '-d1', d2: 'prod-' + p.id + '-d2', ph: '4:5 · ' + p.img, meta: p.motif ? p.motif + ' motif · ' + p.matsShort : p.matsShort, hs: p.hs || 'To be added', hasImg: !!p.src && !p.bleed, bleedImg: !!p.src && !!p.bleed, noImg: !p.src, alt: p.src ? p.name + ', hand-beaded Dayak craft by Alana Wina Trudi, Kampung Manik, Samarinda' : '' };
+    });
   }
 
   renderVals() {
     const s = this.state, all = this.products();
     const shown = all.filter((p) => (s.cat === 'All' || p.cat === s.cat))
-      .map((p) => ({ ...p, open: (e) => { if (e && e.preventDefault) e.preventDefault(); document.body.style.overflow = 'hidden'; this.setState({ product: p }); } }));
-    const chip = (label, active, apply) => ({ label, apply, bg: active ? '#34291D' : 'transparent', fg: active ? '#F7F1E5' : '#5C4B36', bd: active ? '#34291D' : '#C9B694' });
+      .map((p) => ({ ...p, open: (e) => this.openProduct(p, e) }));
+    const chip = (cat, label, active, apply) => ({ label, href: this.categoryPath(cat), apply, bg: active ? '#34291D' : 'transparent', fg: active ? '#F7F1E5' : '#5C4B36', bd: active ? '#34291D' : '#C9B694' });
     const cats = ['All', 'Home décor', 'Jewelry', 'Bags', 'Keychains', 'Table textiles'];
         const count = (c) => all.filter((p) => p.cat === c).length;
     return {
@@ -1376,7 +1426,7 @@ class Component extends DCLogic {
       countDecor: count('Home décor'), countJewelry: count('Jewelry'), countBags: count('Bags'),
       countKeychains: count('Keychains'), countTable: count('Table textiles'),
       totalCount: all.length, shownCount: shown.length, shown,
-      catChips: cats.map((c) => chip(c === 'All' ? 'All categories' : c, s.cat === c, (e) => { if (e) e.preventDefault(); this.setState({ cat: c }); })),
+      catChips: cats.map((c) => chip(c, c === 'All' ? 'All categories' : c, s.cat === c, this.goFiltered(c))),
       product: s.product, closeModal: () => this.closeModal(), stopModal: (e) => e.stopPropagation(),
       modalToForm: (e) => { if (e) e.preventDefault(); this.goTo('wholesale', 'linesheet-form'); },
       modalToMotifs: (e) => { if (e) e.preventDefault(); this.goTo('motifs'); },
