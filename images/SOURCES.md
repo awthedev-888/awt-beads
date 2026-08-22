@@ -64,6 +64,16 @@ This file records the external references used for the editorial images in this 
   five-bracelet arrangement. All four replace the original white, marble or
   graphic setting, overlaid text and uneven light with the collection's warm
   ivory limestone and oat-linen setting.
+- `table-runners-2026/emerald-mirror-borneo-table-runner.webp`,
+  `table-runners-2026/twin-tiger-borneo-table-runner.webp`,
+  `table-runners-2026/four-bird-borneo-table-runner.webp`,
+  `table-runners-2026/diamond-scroll-borneo-table-runner.webp`, and
+  `table-runners-2026/crimson-mirror-borneo-table-runner.webp` are editorial
+  product edits based on five beaded table-runner screenshots supplied by the
+  site owner. Each preserves the supplied runner's rectangular form, colourway,
+  bead composition, border and fringed edge while replacing the circular woven
+  rug, tiled floor, flower pot, screenshot framing and uneven light with a true
+  overhead view on a long warm-ivory limestone dining table.
 - `home-decor-2026/central-vessel-ulin-wall-hanging-v2.webp`,
   `home-decor-2026/twin-tiger-ulin-wall-hanging-v2.webp`, and
   `home-decor-2026/red-tree-ulin-wall-hanging-v2.webp` are editorial composites
