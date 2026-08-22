@@ -46,6 +46,13 @@ This file records the external references used for the editorial images in this 
   independent catalog images. Each retains the referenced form and colourway
   while replacing the original tabletop, uneven light and overlaid text with a
   consistent ivory-ceramic and oat-linen setting.
+- `home-decor-2026/central-vessel-ulin-wall-hanging.webp`,
+  `home-decor-2026/twin-tiger-ulin-wall-hanging.webp`, and
+  `home-decor-2026/red-tree-ulin-wall-hanging.webp` are editorial composites
+  based on three beaded-panel screenshots supplied by the site owner. Each keeps
+  the supplied bead composition and colourway, then adds matching hand-carved
+  ulin wood rails above and below, a hanging cord, and the collection's warm
+  cream-plaster product setting.
 - `motifs/tinggang-detail.jpg`, `motifs/kelunan-detail.jpg`, and
   `motifs/border-detail.jpg` are square crops from the editorial product images
   above.
