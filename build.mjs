@@ -88,6 +88,11 @@ function render(key) {
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
 
+// Sites deploys static projects through a Cloudflare Worker-compatible entrypoint.
+// The worker delegates requests to the generated static asset bundle.
+mkdirSync(join(OUT, 'server'), { recursive: true });
+writeFileSync(join(OUT, 'server', 'index.js'), `export default {\n  async fetch(request, env) {\n    return env.ASSETS.fetch(request);\n  }\n};\n`);
+
 // Each route becomes a FLAT <path>.html. Cloudflare Pages serves /collection
 // straight from collection.html with a 200. Using collection/index.html instead
 // makes Pages 308-redirect /collection to /collection/, which would contradict
