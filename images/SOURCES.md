@@ -30,6 +30,16 @@ This file records the external references used for the editorial images in this 
   `products/manik-coaster-yellow-fringe-v3.jpg` are matching one-motif edits
   from the same owner-supplied references, used as four separate product-gallery
   slots.
+- `necklaces/ketupat-emas-styled.jpg`, `necklaces/ketupat-putih-styled.jpg`,
+  `necklaces/ketupat-kuning-styled.jpg`, `necklaces/ketupat-mawar-styled.jpg`,
+  `necklaces/ketupat-monokrom-styled.jpg`, `necklaces/bunga-merah-styled.jpg`,
+  `necklaces/bunga-biru-styled.jpg`, `necklaces/bunga-putih-styled.jpg`,
+  `necklaces/bunga-merah-pelangi-styled.jpg`, and
+  `necklaces/bunga-putih-pelangi-styled.jpg` are individual editorial edits from
+  ten product-reference screenshots supplied by the site owner. Each retains
+  the pictured necklace, colourway and black mannequin while replacing the shop
+  setting, screenshot borders, uneven lighting and overlaid text with the
+  collection's warm cream studio setting.
 - `motifs/tinggang-detail.jpg`, `motifs/kelunan-detail.jpg`, and
   `motifs/border-detail.jpg` are square crops from the editorial product images
   above.
