@@ -1,0 +1,40 @@
+# Image provenance
+
+This file records the external references used for the editorial images in this site.
+
+## First-party Alana Wina Trudi references
+
+- `editorial/beading-hands.jpg`, `editorial/makers-at-work.jpg`,
+  `editorial/beading-group.jpg`, and `editorial/bead-sorting.jpg` are polished
+  editorial edits based on frames from PT. Alana Wina Trudi's official film,
+  [The Making of Beaded Products](https://www.youtube.com/watch?v=WNEcb6La0Nk).
+- `products/tinggang-fringe-necklace.jpg` is an editorial edit based on BORNEO
+  BLINK's [Kalung Manik Ethnic Dayak](https://smexpo.pertamina.com/p/1411/kalung-manik-ethnic-dayak)
+  listing.
+- `products/mahulu-rattan-cuffs.jpg` is an editorial edit based on BORNEO
+  BLINK's [Gelang Rotan Mahulu](https://smexpo.pertamina.com/p/1557/gelang-rotan-mahulu)
+  listing.
+- `products/kelunan-table-panel.jpg` is an editorial adaptation based on BORNEO
+  BLINK's [Taplak Meja Sudut Manik](https://smexpo.pertamina.com/p/1503/taplak-meja-sudut-manik)
+  listing.
+- `products/beaded-coasters.jpg` is an illustrative coordinated product image
+  generated from the colour and pattern language in the same table-textile
+  reference. The corresponding product copy describes the image shown.
+- `motifs/tinggang-detail.jpg`, `motifs/kelunan-detail.jpg`, and
+  `motifs/border-detail.jpg` are square crops from the editorial product images
+  above.
+
+## Other sources
+
+- `editorial/mahakam-river.jpg` is a resized copy of
+  [Mahakam river Samarinda](https://commons.wikimedia.org/wiki/File:Mahakam_river_Samarinda.jpg)
+  by ShaaShaRS, licensed under CC BY-SA 4.0. The on-page caption contains the
+  required credit and license link.
+- `editorial/samarinda-lane.jpg` is an AI-generated, non-specific illustrative
+  view of a residential lane in Samarinda. The on-page caption explicitly labels
+  it as an illustration and does not claim that it depicts Kampung Manik.
+
+All AI-assisted edits were created with OpenAI ImageGen in edit mode. They were
+directed to retain the people, craft activity, objects, and visible product
+structure of the supplied first-party references while improving lighting,
+resolution, composition, and background styling.
