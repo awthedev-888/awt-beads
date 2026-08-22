@@ -20,6 +20,10 @@ This file records the external references used for the editorial images in this 
 - `products/beaded-coasters-v2.jpg` is an illustrative coordinated product image
   generated from the colour and pattern language in the same table-textile
   reference. The corresponding product copy describes the image shown.
+- `products/manik-coaster-four-motifs-v3.jpg` is an editorial composite based on
+  three product-reference screenshots supplied by the site owner. It preserves
+  the four distinct circular bead patterns and replaces the original surfaces,
+  screenshot borders, and overlaid text with the collection's warm neutral set.
 - `motifs/tinggang-detail.jpg`, `motifs/kelunan-detail.jpg`, and
   `motifs/border-detail.jpg` are square crops from the editorial product images
   above.
@@ -38,4 +42,5 @@ All AI-assisted edits were created with OpenAI ImageGen in edit mode. They were
 directed to retain the people, craft activity, objects, and visible product
 structure of the supplied first-party references while improving lighting,
 resolution, composition, and background styling. The three `-v2` product files
-use the collection's warm ivory limestone, cream plaster and oat-linen setting.
+and the four-motif coaster composite use the collection's warm ivory limestone,
+cream plaster and oat-linen setting.
