@@ -48,12 +48,14 @@ This file records the external references used for the editorial images in this 
   consistent ivory-ceramic and oat-linen setting.
 - `keychains-2026/floral-loop-keychain-set.webp`,
   `keychains-2026/geometric-loop-keychain-set.webp`,
-  `keychains-2026/triangular-tassel-keychain-set.webp`, and
+  `keychains-2026/triangular-tassel-keychain-set-v2.webp`, and
   `keychains-2026/beaded-strand-keychain-set.webp` are editorial product edits
   based on four keychain-set screenshots supplied by the site owner. Each keeps
   the photographed keychains, colours, metal hardware and radial formation while
   replacing the original concrete or white surface, dried foliage and uneven
-  light with the collection's warm ivory limestone and oat-linen setting.
+  light with the collection's warm ivory limestone and oat-linen setting. The
+  triangular-tassel `-v2` edit adds a generous portrait safety margin so every
+  keychain, tassel tip and ring remains visible in the collection's 4:5 cards.
 - `bracelets-2026/tricolour-braided-bracelet-set.webp`,
   `bracelets-2026/floral-panel-bracelet-set.webp`,
   `bracelets-2026/lattice-button-bracelet-set.webp`, and
