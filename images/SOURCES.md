@@ -40,6 +40,12 @@ This file records the external references used for the editorial images in this 
   the pictured necklace, colourway and black mannequin while replacing the shop
   setting, screenshot borders, uneven lighting and overlaid text with the
   collection's warm cream studio setting.
+- The 16 files in `earrings-2026/` are individual editorial product edits based
+  on nine product-reference screenshots supplied by the site owner. Six hoop
+  pairs, five small flower pairs and five loop-fringe pairs were separated into
+  independent catalog images. Each retains the referenced form and colourway
+  while replacing the original tabletop, uneven light and overlaid text with a
+  consistent ivory-ceramic and oat-linen setting.
 - `motifs/tinggang-detail.jpg`, `motifs/kelunan-detail.jpg`, and
   `motifs/border-detail.jpg` are square crops from the editorial product images
   above.
