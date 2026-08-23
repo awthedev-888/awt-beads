@@ -31,7 +31,7 @@ if (!names.length) throw new Error('build: parsed no routes — check the ROUTES
 // Short, factual copy shown only when JavaScript is unavailable.
 const NOSCRIPT = {
   home: ['We believe Borneo beadwork belongs in contemporary life.',
-    'Alana Wina Trudi works with beading groups in Kampung Manik, Samarinda, to make contemporary bags, jewellery, décor, table textiles and small accessories in the visual language of Dayak beadwork. Wholesale only.'],
+    'Alana Wina Trudi works with beading groups in Kampung Manik, Samarinda, to make contemporary bags, jewellery, décor, beaded table runners and small accessories in the visual language of Dayak beadwork. Wholesale only.'],
   collection: ['Hand-beaded pieces for contemporary retail',
     'Explore 56 pieces made in Kampung Manik from glass seed beads, cotton, rattan and careful handwork. Request the current line sheet for wholesale pricing and order information.'],
   motifs: ['How to read the beadwork',
