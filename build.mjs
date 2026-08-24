@@ -41,7 +41,7 @@ const NOSCRIPT = {
   about: ['Kampung Manik, the Bead Village',
     'One neighbourhood in Samarinda, on the Mahakam River, where beadwork is part of daily life. This is where every piece we sell begins.'],
   contact: ['Let’s find the right line for your shelves',
-    'Email hello@alwintru.com or message us on WhatsApp for the current wholesale line sheet, product range and order information.'],
+    'Email beads@alwintru.com or message us on WhatsApp for the current wholesale line sheet, product range and order information.'],
 };
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -76,7 +76,7 @@ function render(key) {
   const noscript = `<noscript><div style="max-width:44rem;margin:0 auto;padding:2rem 1.5rem;font-family:Karla,sans-serif;color:#34291D">`
     + `<h1 style="font-family:'Young Serif',serif;font-weight:400">${esc(heading)}</h1>`
     + `<p style="line-height:1.65">${esc(intro)}</p>`
-    + `<p style="line-height:1.65">Wholesale only. Email <a href="mailto:hello@alwintru.com">hello@alwintru.com</a>.</p>`
+    + `<p style="line-height:1.65">Wholesale only. Email <a href="mailto:beads@alwintru.com">beads@alwintru.com</a>.</p>`
     + `<ul>${nav}</ul></div></noscript>`;
   html = html.replace('<x-dc>', `${noscript}\n<x-dc>`);
 
