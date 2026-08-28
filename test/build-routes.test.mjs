@@ -155,6 +155,24 @@ test('fallback HTML uses route headings, descriptions, product facts, and active
   assert.match(productHtml, /href="\/wholesale#wholesale-enquiry"/);
 });
 
+test('all generated structured data and fallback fragments avoid legacy line-sheet copy', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  const manifest = await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const offenders = [];
+
+  for (const route of manifest.routes) {
+    const html = await readFile(route.output, 'utf8');
+    const structuredData = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+    const fallback = html.match(/<noscript>([\s\S]*?)<\/noscript>/);
+    assert.ok(structuredData, `${route.path}: structured data`);
+    assert.ok(fallback, `${route.path}: fallback`);
+    if (/\bline[ -]?sheet\b/i.test(`${structuredData[1]}\n${fallback[1]}`)) offenders.push(route.path);
+  }
+
+  assert.deepEqual(offenders, []);
+});
+
 test('generated sitemap redirects legacy routes before the SPA fallback', async t => {
   const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
   t.after(() => rm(outDir, { recursive: true, force: true }));

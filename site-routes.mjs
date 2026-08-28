@@ -31,7 +31,7 @@ export const PRIMARY_ROUTES = Object.freeze([
     path: '/wholesale',
     heading: 'Wholesale for retailers who want a line with a point of view',
     title: 'Wholesale Borneo Beadwork | Alana Wina Trudi',
-    description: 'Explore the wholesale process for hand-beaded Borneo craft: line sheet, samples, order terms, landed cost, shipping and export documentation.',
+    description: 'Send a wholesale enquiry about hand-beaded Borneo craft, samples, ordering, shipping and export documentation.',
     ogImage: '/og-1200x630.jpg',
     kind: 'primary'
   },
@@ -49,7 +49,7 @@ export const PRIMARY_ROUTES = Object.freeze([
     path: '/contact',
     heading: 'Let’s find the right line for your shelves',
     title: 'Contact | Alana Wina Trudi Wholesale',
-    description: 'Contact Alana Wina Trudi in Samarinda for the current wholesale line sheet, product range and order information.',
+    description: 'Contact Alana Wina Trudi in Samarinda with a wholesale enquiry about the current product range and order information.',
     ogImage: '/og-1200x630.jpg',
     kind: 'primary'
   },
