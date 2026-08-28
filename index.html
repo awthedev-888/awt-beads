@@ -74,6 +74,7 @@
 </script>
 <script type="application/json" id="awt-catalogue"></script>
 <script type="application/json" id="awt-route-data"></script>
+<script src="/enquiry.js"></script>
 <script src="/support.js"></script>
 </head>
 <body>
@@ -192,9 +193,9 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       <a href="/wholesale" onClick="{{ toWholesale }}" style="font-family:Archivo,sans-serif;font-size:13.5px;font-weight:500;letter-spacing:.03em;color:#34291D;text-decoration:none;padding:6px 0" style-hover="color:#8E2321">Wholesale<span style="display:block;height:2px;margin-top:3px;background:{{ barWholesale }}"></span></a>
       <a href="/our-makers" onClick="{{ toAbout }}" style="font-family:Archivo,sans-serif;font-size:13.5px;font-weight:500;letter-spacing:.03em;color:#34291D;text-decoration:none;padding:6px 0" style-hover="color:#8E2321">Our Makers<span style="display:block;height:2px;margin-top:3px;background:{{ barAbout }}"></span></a>
       <a href="/contact" onClick="{{ toContact }}" style="font-family:Archivo,sans-serif;font-size:13.5px;font-weight:500;letter-spacing:.03em;color:#34291D;text-decoration:none;padding:6px 0" style-hover="color:#8E2321">Contact<span style="display:block;height:2px;margin-top:3px;background:{{ barContact }}"></span></a>
-      <a class="mobile-menu-cta" href="/wholesale#linesheet-form" onClick="{{ toForm }}">Request the line sheet</a>
+      <a class="mobile-menu-cta" href="/wholesale#wholesale-enquiry" onClick="{{ toForm }}">Wholesale enquiry</a>
     </nav>
-    <button class="header-cta" onClick="{{ toForm }}" style="display:inline-flex;align-items:center;background:#8E2321;color:#F7F1E5;border:none;padding:12px 20px;border-radius:3px;font-family:Archivo,sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#701A19">Request the line sheet</button>
+    <button class="header-cta" onClick="{{ toForm }}" style="display:inline-flex;align-items:center;background:#8E2321;color:#F7F1E5;border:none;padding:12px 20px;border-radius:3px;font-family:Archivo,sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#701A19">Wholesale enquiry</button>
     <button class="menu-btn" onClick="{{ toggleMenu }}" aria-expanded="{{ menuIsOpen }}" aria-controls="main-nav" style="display:none;align-items:center;justify-content:center;background:none;border:1.5px solid #B79B7C;border-radius:3px;min-width:44px;height:44px;padding:0 12px;cursor:pointer;font-family:Archivo,sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#34291D" style-hover="border-color:#8E2321;color:#8E2321">{{ menuLabel }}</button>
   </div>
 </header>
@@ -212,7 +213,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       <h1 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(40px,5.4vw,64px);line-height:1.04;letter-spacing:-.01em;margin:26px 0 0;color:#34291D;text-wrap:balance">We believe Borneo beadwork belongs in contemporary life.</h1>
       <p class="cmb" style="font-size:clamp(17px,1.5vw,19px);line-height:1.6;color:#4A3B2A;max-width:56ch;margin:22px 0 0">Alana Wina Trudi works with beading groups in Kampung Manik, Samarinda, to make contemporary bags, jewellery, décor, beaded table runners and small accessories in the visual language of Dayak beadwork. Every piece begins with glass beads, cotton, and patient handwork. Wholesale only.</p>
       <div class="btn-row" style="display:flex;flex-wrap:wrap;gap:14px;margin-top:34px">
-        <button onClick="{{ toForm }}" style="display:inline-flex;align-items:center;background:#8E2321;color:#F7F1E5;border:none;padding:16px 28px;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#701A19">Request the line sheet</button>
+        <button onClick="{{ toForm }}" style="display:inline-flex;align-items:center;background:#8E2321;color:#F7F1E5;border:none;padding:16px 28px;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#701A19">Wholesale enquiry</button>
         <button onClick="{{ toCollection }}" style="display:inline-flex;align-items:center;background:transparent;color:#34291D;border:1.5px solid #B79B7C;padding:15px 26px;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="border-color:#8E2321;color:#8E2321">Explore the collection</button>
       </div>
     </div>
@@ -236,7 +237,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       <span style="width:4px;height:4px;border-radius:50%;background:#8E2321;flex:none" aria-hidden="true"></span>
       <span style="font-family:Archivo,sans-serif;font-size:13px;letter-spacing:.02em;color:#5C4B36">Wholesale from Indonesia</span>
       <span style="width:4px;height:4px;border-radius:50%;background:#8E2321;flex:none" aria-hidden="true"></span>
-      <span style="font-family:Archivo,sans-serif;font-size:13px;letter-spacing:.02em;color:#5C4B36">A line sheet for retail buyers</span>
+      <span style="font-family:Archivo,sans-serif;font-size:13px;letter-spacing:.02em;color:#5C4B36">A wholesale enquiry for retail buyers</span>
     </div>
   </section>
   <div style="height:42px;background:#2A211A url('/bead-band.svg') center/auto 42px repeat-x" aria-hidden="true"></div>
@@ -339,10 +340,10 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       <div style="flex:1 1 420px">
         <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Wholesale</p>
         <h2 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(28px,3.4vw,40px);line-height:1.12;margin:14px 0 0;text-wrap:balance">A clear line. A human wholesale process.</h2>
-        <p style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:56ch;margin:16px 0 0">Request the current line sheet for products, wholesale pricing, colourways and order information. Then choose samples, discuss your market, and place an order confirmed around your requirements.</p>
+        <p style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:56ch;margin:16px 0 0">Tell us what you are considering, then discuss samples, your market, and an order shaped around your requirements.</p>
       </div>
       <div class="btn-row" style="flex:0 1 auto;display:flex;flex-wrap:wrap;gap:14px;align-items:center">
-        <button onClick="{{ toForm }}" style="display:inline-flex;align-items:center;background:#8E2321;color:#F7F1E5;border:none;padding:16px 28px;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#701A19">Request the line sheet</button>
+        <button onClick="{{ toForm }}" style="display:inline-flex;align-items:center;background:#8E2321;color:#F7F1E5;border:none;padding:16px 28px;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#701A19">Wholesale enquiry</button>
       </div>
     </div>
   </section>
@@ -354,7 +355,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 <div data-screen-label="Collection" style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(24px,3.5vw,44px) clamp(64px,8vw,110px)">
   <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Collection</p>
   <h1 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.06;margin:14px 0 0">Hand-beaded pieces for contemporary retail</h1>
-  <p class="cmb" style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:62ch;margin:16px 0 0">Every piece is made in Kampung Manik from glass seed beads, cotton, rattan and careful handwork. Explore the line by category, then <a href="/wholesale#linesheet-form" onClick="{{ toForm }}" style="color:#8E2321">request the line sheet</a> for current wholesale pricing, colourways and order information.</p>
+  <p class="cmb" style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:62ch;margin:16px 0 0">Every piece is made in Kampung Manik from glass seed beads, cotton, rattan and careful handwork. Explore the line by category, then <a href="/wholesale#wholesale-enquiry" onClick="{{ toForm }}" style="color:#8E2321">send a wholesale enquiry</a> for current wholesale pricing, colourways and order information.</p>
 
   <div class="collection-filter-row" style="display:flex;flex-direction:column;gap:12px;border-top:1px solid #DACBAE;border-bottom:1px solid #DACBAE;padding:18px 0;margin-top:clamp(28px,4vw,44px)">
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px">
@@ -366,7 +367,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
     </div>
   </div>
 
-  <p class="cm" style="font-family:Archivo,sans-serif;font-size:13px;color:#6D5B45;margin:18px 0 0">{{ shownCount }} of {{ totalCount }} pieces &middot; current wholesale pricing and order information are in the line sheet</p>
+  <p class="cm" style="font-family:Archivo,sans-serif;font-size:13px;color:#6D5B45;margin:18px 0 0">{{ shownCount }} of {{ totalCount }} pieces &middot; current wholesale pricing and order information are confirmed when you enquire</p>
 
   <div class="collection-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:clamp(24px,3vw,40px) clamp(18px,2.5vw,28px);margin-top:22px">
     <sc-for list="{{ shown }}" as="p" hint-placeholder-count="6">
@@ -551,14 +552,14 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
   <div style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(24px,3.5vw,44px) 0">
     <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Wholesale</p>
     <h1 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.06;margin:14px 0 0;max-width:22ch;text-wrap:balance">Wholesale for retailers who want a line with a point of view</h1>
-    <p class="cmb" style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:64ch;margin:16px 0 0">The line sheet gives you current products, wholesale prices, colourways and order information. We keep the public site price-free so we can quote the right details for your market and order. Request it at the bottom of the page.</p>
+    <p class="cmb" style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:64ch;margin:16px 0 0">Send a wholesale enquiry for current products, wholesale prices, colourways and order information. We keep the public site price-free so we can quote the right details for your market and order.</p>
     <nav class="wholesale-nav" aria-label="On this page" style="display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid #DACBAE;border-bottom:1px solid #DACBAE;padding:14px 0;margin-top:clamp(24px,3vw,40px)">
       <a href="/wholesale#ws-how" onClick="{{ toHow }}" style="font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5C4B36;text-decoration:none" style-hover="color:#8E2321">How it works</a>
       <a href="/wholesale#ws-terms" onClick="{{ toTerms }}" style="font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5C4B36;text-decoration:none" style-hover="color:#8E2321">Terms</a>
       <a href="/wholesale#ws-pricing" onClick="{{ toPricing }}" style="font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5C4B36;text-decoration:none" style-hover="color:#8E2321">Landed cost</a>
       <a href="/wholesale#ws-shipping" onClick="{{ toShipping }}" style="font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5C4B36;text-decoration:none" style-hover="color:#8E2321">Shipping</a>
       <a href="/wholesale#ws-docs" onClick="{{ toDocs }}" style="font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5C4B36;text-decoration:none" style-hover="color:#8E2321">Documentation</a>
-      <a href="/wholesale#linesheet-form" onClick="{{ toForm }}" style="font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8E2321;text-decoration:none;margin-left:auto" style-hover="color:#601614">Request the line sheet &darr;</a>
+      <a href="/wholesale#wholesale-enquiry" onClick="{{ toForm }}" style="font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8E2321;text-decoration:none;margin-left:auto" style-hover="color:#601614">Wholesale enquiry &darr;</a>
     </nav>
 
     <section id="ws-how" style="padding:clamp(44px,6vw,72px) 0 0" data-reveal="">
@@ -566,8 +567,8 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(20px,3vw,36px);margin-top:clamp(24px,3vw,36px)">
         <div style="border-top:2px solid #34291D;padding-top:16px">
           <p style="margin:0;font-family:'Young Serif',serif;font-size:15px;color:#8E2321">01</p>
-          <h3 style="font-family:'Young Serif',serif;font-weight:400;font-size:19px;margin:8px 0 0">Request the line sheet</h3>
-          <p style="font-size:15px;line-height:1.65;color:#4A3B2A;margin:10px 0 0">Tell us about your business and the categories you are considering. We reply with the current line sheet and the next practical step.</p>
+          <h3 style="font-family:'Young Serif',serif;font-weight:400;font-size:19px;margin:8px 0 0">Wholesale enquiry</h3>
+          <p style="font-size:15px;line-height:1.65;color:#4A3B2A;margin:10px 0 0">Tell us about your business and the categories you are considering. We reply with the current range and pricing and the next practical step.</p>
         </div>
         <div style="border-top:2px solid #34291D;padding-top:16px">
           <p style="margin:0;font-family:'Young Serif',serif;font-size:15px;color:#8E2321">02</p>
@@ -611,11 +612,11 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
         </div>
         <div style="border-top:1px solid #DACBAE;padding:16px 0 18px">
           <dt style="font-family:Archivo,sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6D5B45">Order quantities</dt>
-          <dd style="margin:8px 0 0;font-size:15.5px;line-height:1.6;color:#34291D">Order quantities are set out in the current line sheet and confirmed in conversation. We work with independent shops as well as larger buyers.</dd>
+          <dd style="margin:8px 0 0;font-size:15.5px;line-height:1.6;color:#34291D">Order quantities are confirmed in conversation. We work with independent shops as well as larger buyers.</dd>
         </div>
         <div style="border-top:1px solid #DACBAE;padding:16px 0 18px">
           <dt style="font-family:Archivo,sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6D5B45">Currency</dt>
-          <dd style="margin:8px 0 0;font-size:15.5px;line-height:1.6;color:#34291D">The current line sheet states the price basis and currency for your order. Ask if you need a quote in a particular currency.</dd>
+          <dd style="margin:8px 0 0;font-size:15.5px;line-height:1.6;color:#34291D">We confirm the price basis and currency for your order. Ask if you need a quote in a particular currency.</dd>
         </div>
       </dl>
     </section>
@@ -624,7 +625,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 18px">
         <h2 style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(24px,2.8vw,32px);margin:0">Plan your landed cost</h2>
       </div>
-      <p style="font-size:15.5px;line-height:1.65;color:#4A3B2A;max-width:66ch;margin:14px 0 0">Public prices are intentionally omitted until they are confirmed for your order. Your line sheet will state the current price basis; your final landed cost also depends on freight, duty, VAT and your forwarder&rsquo;s quote. We can help you map those inputs before you commit.</p>
+      <p style="font-size:15.5px;line-height:1.65;color:#4A3B2A;max-width:66ch;margin:14px 0 0">Public prices are intentionally omitted until they are confirmed for your order. Your current quote will state the current price basis; your final landed cost also depends on freight, duty, VAT and your forwarder&rsquo;s quote. We can help you map those inputs before you commit.</p>
     </section>
 
     <section id="ws-shipping" style="padding:clamp(44px,6vw,72px) 0 0" data-reveal="">
@@ -659,324 +660,25 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
   </div>
 
   <div style="height:42px;background:#2A211A url('/bead-band.svg') center/auto 42px repeat-x" aria-hidden="true"></div>
-  <section id="linesheet-form" style="background:#EFE6D3;border-bottom:1px solid #DACBAE">
+  <section id="wholesale-enquiry" style="background:#EFE6D3;border-bottom:1px solid #DACBAE">
     <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,6vw,88px) clamp(24px,3.5vw,44px)">
       <div style="max-width:880px">
-        <h2 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(28px,3.4vw,40px);margin:0">Request the current line sheet</h2>
-        <p style="font-size:16px;line-height:1.65;color:#4A3B2A;margin:14px 0 0">Tell us what you are looking for and we&rsquo;ll send the current wholesale range, prices, colourways and order information.</p>
-
-        <sc-if value="{{ formNotDone }}" hint-placeholder-val="{{ true }}">
-        <!-- LINE SHEET REQUEST FORM. Submit handler is Component.submit() in the logic; point it at a real form service via the formEndpoint tweak/prop -->
-        <form onSubmit="{{ submit }}" style="margin-top:clamp(24px,3vw,36px)">
-          <div class="form-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px 24px">
-            <label style="display:block">
-              <span style="display:block;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5C4B36;margin-bottom:8px">Company / organisation *</span>
-              <input name="company" required="{{ true }}" style="width:100%;box-sizing:border-box;background:#FDFAF2;border:1px solid #C9B694;border-radius:3px;padding:12px 14px;font-family:Karla,sans-serif;font-size:16px;color:#34291D"/>
-            </label>
-            <label style="display:block">
-              <span style="display:block;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5C4B36;margin-bottom:8px">Your name *</span>
-              <input name="name" required="{{ true }}" style="width:100%;box-sizing:border-box;background:#FDFAF2;border:1px solid #C9B694;border-radius:3px;padding:12px 14px;font-family:Karla,sans-serif;font-size:16px;color:#34291D"/>
-            </label>
-            <label style="display:block">
-              <span style="display:block;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5C4B36;margin-bottom:8px">Email *</span>
-              <input name="email" type="email" required="{{ true }}" style="width:100%;box-sizing:border-box;background:#FDFAF2;border:1px solid #C9B694;border-radius:3px;padding:12px 14px;font-family:Karla,sans-serif;font-size:16px;color:#34291D"/>
-            </label>
-            <label style="display:block">
-              <span style="display:block;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5C4B36;margin-bottom:8px">Country *</span>
-              <select name="country" required="{{ true }}" style="width:100%;box-sizing:border-box;background:#FDFAF2;border:1px solid #C9B694;border-radius:3px;padding:12px 14px;font-family:Karla,sans-serif;font-size:16px;color:#34291D">
-                <option value="">Select&hellip;</option>
-                <option>Afghanistan</option>
-                <option>Åland Islands</option>
-                <option>Albania</option>
-                <option>Algeria</option>
-                <option>American Samoa</option>
-                <option>Andorra</option>
-                <option>Angola</option>
-                <option>Anguilla</option>
-                <option>Antigua and Barbuda</option>
-                <option>Argentina</option>
-                <option>Armenia</option>
-                <option>Aruba</option>
-                <option>Australia</option>
-                <option>Austria</option>
-                <option>Azerbaijan</option>
-                <option>Bahamas</option>
-                <option>Bahrain</option>
-                <option>Bangladesh</option>
-                <option>Barbados</option>
-                <option>Belarus</option>
-                <option>Belgium</option>
-                <option>Belize</option>
-                <option>Benin</option>
-                <option>Bermuda</option>
-                <option>Bhutan</option>
-                <option>Bolivia</option>
-                <option>Bonaire, Sint Eustatius and Saba</option>
-                <option>Bosnia and Herzegovina</option>
-                <option>Botswana</option>
-                <option>Brazil</option>
-                <option>British Indian Ocean Territory</option>
-                <option>British Virgin Islands</option>
-                <option>Brunei</option>
-                <option>Bulgaria</option>
-                <option>Burkina Faso</option>
-                <option>Burundi</option>
-                <option>Cabo Verde</option>
-                <option>Cambodia</option>
-                <option>Cameroon</option>
-                <option>Canada</option>
-                <option>Cayman Islands</option>
-                <option>Central African Republic</option>
-                <option>Chad</option>
-                <option>Chile</option>
-                <option>China</option>
-                <option>Christmas Island</option>
-                <option>Cocos Islands</option>
-                <option>Colombia</option>
-                <option>Comoros</option>
-                <option>Congo</option>
-                <option>Congo (DRC)</option>
-                <option>Cook Islands</option>
-                <option>Costa Rica</option>
-                <option>Côte d'Ivoire</option>
-                <option>Croatia</option>
-                <option>Cuba</option>
-                <option>Curaçao</option>
-                <option>Cyprus</option>
-                <option>Czechia</option>
-                <option>Denmark</option>
-                <option>Djibouti</option>
-                <option>Dominica</option>
-                <option>Dominican Republic</option>
-                <option>Ecuador</option>
-                <option>Egypt</option>
-                <option>El Salvador</option>
-                <option>Equatorial Guinea</option>
-                <option>Eritrea</option>
-                <option>Estonia</option>
-                <option>Eswatini</option>
-                <option>Ethiopia</option>
-                <option>Falkland Islands</option>
-                <option>Faroe Islands</option>
-                <option>Fiji</option>
-                <option>Finland</option>
-                <option>France</option>
-                <option>French Guiana</option>
-                <option>French Polynesia</option>
-                <option>Gabon</option>
-                <option>Gambia</option>
-                <option>Georgia</option>
-                <option>Germany</option>
-                <option>Ghana</option>
-                <option>Gibraltar</option>
-                <option>Greece</option>
-                <option>Greenland</option>
-                <option>Grenada</option>
-                <option>Guadeloupe</option>
-                <option>Guam</option>
-                <option>Guatemala</option>
-                <option>Guernsey</option>
-                <option>Guinea</option>
-                <option>Guinea-Bissau</option>
-                <option>Guyana</option>
-                <option>Haiti</option>
-                <option>Honduras</option>
-                <option>Hong Kong</option>
-                <option>Hungary</option>
-                <option>Iceland</option>
-                <option>India</option>
-                <option>Indonesia</option>
-                <option>Iran</option>
-                <option>Iraq</option>
-                <option>Ireland</option>
-                <option>Isle of Man</option>
-                <option>Italy</option>
-                <option>Jamaica</option>
-                <option>Japan</option>
-                <option>Jersey</option>
-                <option>Jordan</option>
-                <option>Kazakhstan</option>
-                <option>Kenya</option>
-                <option>Kiribati</option>
-                <option>Kuwait</option>
-                <option>Kyrgyzstan</option>
-                <option>Laos</option>
-                <option>Latvia</option>
-                <option>Lebanon</option>
-                <option>Lesotho</option>
-                <option>Liberia</option>
-                <option>Libya</option>
-                <option>Liechtenstein</option>
-                <option>Lithuania</option>
-                <option>Luxembourg</option>
-                <option>Macau</option>
-                <option>Madagascar</option>
-                <option>Malawi</option>
-                <option>Malaysia</option>
-                <option>Maldives</option>
-                <option>Mali</option>
-                <option>Malta</option>
-                <option>Marshall Islands</option>
-                <option>Martinique</option>
-                <option>Mauritania</option>
-                <option>Mauritius</option>
-                <option>Mayotte</option>
-                <option>Mexico</option>
-                <option>Micronesia</option>
-                <option>Moldova</option>
-                <option>Monaco</option>
-                <option>Mongolia</option>
-                <option>Montenegro</option>
-                <option>Montserrat</option>
-                <option>Morocco</option>
-                <option>Mozambique</option>
-                <option>Myanmar</option>
-                <option>Namibia</option>
-                <option>Nauru</option>
-                <option>Nepal</option>
-                <option>Netherlands</option>
-                <option>New Caledonia</option>
-                <option>New Zealand</option>
-                <option>Nicaragua</option>
-                <option>Niger</option>
-                <option>Nigeria</option>
-                <option>Niue</option>
-                <option>Norfolk Island</option>
-                <option>North Korea</option>
-                <option>North Macedonia</option>
-                <option>Northern Mariana Islands</option>
-                <option>Norway</option>
-                <option>Oman</option>
-                <option>Pakistan</option>
-                <option>Palau</option>
-                <option>Palestine</option>
-                <option>Panama</option>
-                <option>Paraguay</option>
-                <option>Peru</option>
-                <option>Philippines</option>
-                <option>Pitcairn</option>
-                <option>Poland</option>
-                <option>Portugal</option>
-                <option>Puerto Rico</option>
-                <option>Qatar</option>
-                <option>Réunion</option>
-                <option>Romania</option>
-                <option>Russia</option>
-                <option>Rwanda</option>
-                <option>Saint Barthélemy</option>
-                <option>Saint Helena, Ascension and Tristan da Cunha</option>
-                <option>Saint Kitts and Nevis</option>
-                <option>Saint Lucia</option>
-                <option>Saint Martin</option>
-                <option>Saint Pierre and Miquelon</option>
-                <option>Saint Vincent and the Grenadines</option>
-                <option>Samoa</option>
-                <option>San Marino</option>
-                <option>Sao Tome and Principe</option>
-                <option>Saudi Arabia</option>
-                <option>Senegal</option>
-                <option>Serbia</option>
-                <option>Seychelles</option>
-                <option>Sierra Leone</option>
-                <option>Singapore</option>
-                <option>Sint Maarten</option>
-                <option>Slovakia</option>
-                <option>Slovenia</option>
-                <option>Solomon Islands</option>
-                <option>Somalia</option>
-                <option>South Africa</option>
-                <option>South Korea</option>
-                <option>South Sudan</option>
-                <option>Spain</option>
-                <option>Sri Lanka</option>
-                <option>Sudan</option>
-                <option>Suriname</option>
-                <option>Svalbard and Jan Mayen</option>
-                <option>Sweden</option>
-                <option>Switzerland</option>
-                <option>Syria</option>
-                <option>Taiwan</option>
-                <option>Tajikistan</option>
-                <option>Tanzania</option>
-                <option>Thailand</option>
-                <option>Timor-Leste</option>
-                <option>Togo</option>
-                <option>Tokelau</option>
-                <option>Tonga</option>
-                <option>Trinidad and Tobago</option>
-                <option>Tunisia</option>
-                <option>Türkiye</option>
-                <option>Turkmenistan</option>
-                <option>Turks and Caicos Islands</option>
-                <option>Tuvalu</option>
-                <option>U.S. Virgin Islands</option>
-                <option>Uganda</option>
-                <option>Ukraine</option>
-                <option>United Arab Emirates</option>
-                <option>United Kingdom of Great Britain and Northern Ireland</option>
-                <option>United States of America</option>
-                <option>Uruguay</option>
-                <option>Uzbekistan</option>
-                <option>Vanuatu</option>
-                <option>Vatican City</option>
-                <option>Venezuela</option>
-                <option>Vietnam</option>
-                <option>Wallis and Futuna</option>
-                <option>Western Sahara</option>
-                <option>Yemen</option>
-                <option>Zambia</option>
-                <option>Zimbabwe</option>
-              </select>
-            </label>
-            <label style="display:block">
-              <span style="display:block;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5C4B36;margin-bottom:8px">Business type *</span>
-              <select name="businessType" required="{{ true }}" style="width:100%;box-sizing:border-box;background:#FDFAF2;border:1px solid #C9B694;border-radius:3px;padding:12px 14px;font-family:Karla,sans-serif;font-size:16px;color:#34291D">
-                <option value="">Select&hellip;</option>
-                <option>Fair-trade importer / wholesaler</option><option>Retailer</option><option>Museum shop</option><option>Distributor</option><option>Other</option>
-              </select>
-            </label>
-            <label style="display:block">
-              <span style="display:block;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5C4B36;margin-bottom:8px">Website (optional)</span>
-              <input name="website" type="url" placeholder="https://" style="width:100%;box-sizing:border-box;background:#FDFAF2;border:1px solid #C9B694;border-radius:3px;padding:12px 14px;font-family:Karla,sans-serif;font-size:16px;color:#34291D"/>
-            </label>
-            <div style="grid-column:1/-1">
-              <span style="display:block;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5C4B36;margin-bottom:10px">What are you looking for?</span>
-              <div class="category-checks" style="display:flex;flex-wrap:wrap;gap:10px 22px">
-                <label style="display:inline-flex;align-items:center;gap:8px;font-size:15px;color:#34291D"><input type="checkbox" name="categories" value="Home décor" style="accent-color:#8E2321;width:16px;height:16px"/>Home d&eacute;cor</label>
-                <label style="display:inline-flex;align-items:center;gap:8px;font-size:15px;color:#34291D"><input type="checkbox" name="categories" value="Earrings" style="accent-color:#8E2321;width:16px;height:16px"/>Earrings</label>
-                <label style="display:inline-flex;align-items:center;gap:8px;font-size:15px;color:#34291D"><input type="checkbox" name="categories" value="Necklaces" style="accent-color:#8E2321;width:16px;height:16px"/>Necklaces</label>
-                <label style="display:inline-flex;align-items:center;gap:8px;font-size:15px;color:#34291D"><input type="checkbox" name="categories" value="Bracelets" style="accent-color:#8E2321;width:16px;height:16px"/>Bracelets</label>
-                <label style="display:inline-flex;align-items:center;gap:8px;font-size:15px;color:#34291D"><input type="checkbox" name="categories" value="Bags" style="accent-color:#8E2321;width:16px;height:16px"/>Bags</label>
-                <label style="display:inline-flex;align-items:center;gap:8px;font-size:15px;color:#34291D"><input type="checkbox" name="categories" value="Keychains" style="accent-color:#8E2321;width:16px;height:16px"/>Keychains</label>
-                <label style="display:inline-flex;align-items:center;gap:8px;font-size:15px;color:#34291D"><input type="checkbox" name="categories" value="Coasters" style="accent-color:#8E2321;width:16px;height:16px"/>Coasters</label>
-                <label style="display:inline-flex;align-items:center;gap:8px;font-size:15px;color:#34291D"><input type="checkbox" name="categories" value="Table textiles" style="accent-color:#8E2321;width:16px;height:16px"/>Beaded Table Runners</label>
-              </div>
-            </div>
-            <label style="display:block">
-              <span style="display:block;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5C4B36;margin-bottom:8px">First order (optional)</span>
-              <select name="orderSize" style="width:100%;box-sizing:border-box;background:#FDFAF2;border:1px solid #C9B694;border-radius:3px;padding:12px 14px;font-family:Karla,sans-serif;font-size:16px;color:#34291D">
-                <option value="">Select&hellip;</option>
-                <option>Samples first</option><option>Small opening order</option><option>Larger opening order</option><option>Not sure yet</option>
-              </select>
-            </label>
-            <label style="display:block;grid-column:1/-1">
-              <span style="display:block;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5C4B36;margin-bottom:8px">Tell us a little more (optional)</span>
-              <textarea name="message" rows="4" placeholder="The kind of shop, market, timing or categories you are considering&hellip;" style="width:100%;box-sizing:border-box;background:#FDFAF2;border:1px solid #C9B694;border-radius:3px;padding:12px 14px;font-family:Karla,sans-serif;font-size:16px;color:#34291D;resize:vertical"></textarea>
-            </label>
-          </div>
-          <div class="form-submit-row" style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:26px">
-            <button type="submit" style="display:inline-flex;align-items:center;background:#8E2321;color:#F7F1E5;border:none;padding:16px 30px;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#701A19">{{ submitLabel }}</button>
-            <span style="font-family:Archivo,sans-serif;font-size:13px;color:#6D5B45">We answer every request personally from Samarinda.</span>
-          </div>
-        </form>
-        </sc-if>
-        <sc-if value="{{ formDone }}" hint-placeholder-val="{{ false }}">
-          <div style="border:1px solid #B79B7C;background:#F7F1E5;padding:clamp(24px,3.5vw,44px);margin-top:clamp(24px,3vw,36px)">
-            <div style="width:168px;height:28px;background:#2A211A url('/bead-band.svg') left center/auto 28px repeat-x" aria-hidden="true"></div>
-            <h3 style="font-family:'Young Serif',serif;font-weight:400;font-size:24px;margin:18px 0 0">Request received.</h3>
-            <p style="font-size:16px;line-height:1.7;color:#4A3B2A;max-width:56ch;margin:12px 0 0">Thank you. We&rsquo;ll review your range and reply with the current line sheet or a question that helps us quote it properly. If you need to discuss samples, write to <a href="mailto:beads@alwintru.com">beads@alwintru.com</a>.</p>
-          </div>
-        </sc-if>
+        <h2 id="enquiry-heading" tabindex="-1" class="cmb" style="font-family:serif;font-weight:400;font-size:clamp(28px,3.4vw,40px);margin:0">Wholesale enquiry</h2>
+        <p style="font-size:16px;line-height:1.65;color:#4A3B2A;margin:14px 0 0">Tell us about your shop, the pieces you are considering, and your timing. We will reply with the practical next step.</p>
+        <sc-if value="{{ selectedAny }}" hint-placeholder-val="{{ false }}"><section aria-labelledby="enquiry-shortlist-heading" style="margin-top:24px;padding:18px;border:1px solid #B79B7C;background:#F7F1E5"><h3 id="enquiry-shortlist-heading" tabindex="-1" style="font-family:serif;font-weight:400;font-size:21px;margin:0">Pieces in your enquiry</h3><div role="list" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px"><sc-for list="{{ selectedProducts }}" as="selection" hint-placeholder-count="1"><div role="listitem" style="display:flex;align-items:center;gap:8px;border:1px solid #C9B694;border-radius:999px;padding:7px 10px 7px 12px;background:#FDFAF2"><span>{{ selection.name }}</span><button type="button" onClick="{{ selection.remove }}" aria-label="Remove {{ selection.name }} from enquiry" style="border:0;background:transparent;color:#8E2321;font-size:18px;line-height:1;cursor:pointer">&times;</button></div></sc-for></div></section></sc-if>
+        <p id="enquiry-sending" aria-live="polite" style="min-height:1.5em;margin:20px 0 0;color:#4A3B2A">{{ sendingMessage }}</p>
+        <sc-if value="{{ formSuccess }}" hint-placeholder-val="{{ false }}"><div id="enquiry-success" tabindex="-1" aria-live="polite" style="border:1px solid #B79B7C;background:#F7F1E5;padding:18px;margin-top:20px"><strong>Thank you — your wholesale enquiry has been sent.</strong><p style="margin:8px 0 0">We will reply from Samarinda with the next practical step.</p></div></sc-if>
+        <sc-if value="{{ formErrorVisible }}" hint-placeholder-val="{{ false }}"><div id="enquiry-error" tabindex="-1" aria-live="assertive" style="border:1px solid #8E2321;background:#F7F1E5;padding:18px;margin-top:20px"><strong>We could not send your enquiry.</strong><p style="margin:8px 0 0">{{ formError }} You can try again, or email <a href="mailto:beads@alwintru.com">beads@alwintru.com</a>.</p></div></sc-if>
+        <form onSubmit="{{ submit }}" style="margin-top:clamp(24px,3vw,36px)"><div class="form-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px 24px">
+          <div><label for="enquiry-name">Your name *</label><input id="enquiry-name" name="name" required="{{ true }}" aria-describedby="enquiry-name-error" aria-invalid="{{ nameInvalid }}" autocomplete="name"/><span id="enquiry-name-error">{{ nameError }}</span></div>
+          <div><label for="enquiry-company">Company / organisation *</label><input id="enquiry-company" name="company" required="{{ true }}" aria-describedby="enquiry-company-error" aria-invalid="{{ companyInvalid }}" autocomplete="organization"/><span id="enquiry-company-error">{{ companyError }}</span></div>
+          <div><label for="enquiry-email">Email *</label><input id="enquiry-email" name="email" type="email" required="{{ true }}" aria-describedby="enquiry-email-error" aria-invalid="{{ emailInvalid }}" autocomplete="email"/><span id="enquiry-email-error">{{ emailError }}</span></div>
+          <div><label for="enquiry-country">Country *</label><input id="enquiry-country" name="country" required="{{ true }}" aria-describedby="enquiry-country-error" aria-invalid="{{ countryInvalid }}" autocomplete="country-name"/><span id="enquiry-country-error">{{ countryError }}</span></div>
+          <div><label for="enquiry-website">Website or Instagram (optional)</label><input id="enquiry-website" name="website" type="text" aria-describedby="enquiry-website-error" aria-invalid="{{ websiteInvalid }}" autocomplete="url" placeholder="Website or @handle"/><span id="enquiry-website-error">{{ websiteError }}</span></div>
+          <div style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden"><label for="enquiry-fax">Fax</label><input id="enquiry-fax" name="fax" tabindex="-1" autocomplete="off"/></div>
+          <div style="grid-column:1/-1"><p>Categories of interest (optional)</p><div class="category-checks"><input id="enquiry-category-decor" type="checkbox" name="categories" value="Home décor"/><label for="enquiry-category-decor">Home décor</label><input id="enquiry-category-earrings" type="checkbox" name="categories" value="Earrings"/><label for="enquiry-category-earrings">Earrings</label><input id="enquiry-category-necklaces" type="checkbox" name="categories" value="Necklaces"/><label for="enquiry-category-necklaces">Necklaces</label><input id="enquiry-category-bracelets" type="checkbox" name="categories" value="Bracelets"/><label for="enquiry-category-bracelets">Bracelets</label><input id="enquiry-category-bags" type="checkbox" name="categories" value="Bags"/><label for="enquiry-category-bags">Bags</label><input id="enquiry-category-keychains" type="checkbox" name="categories" value="Keychains"/><label for="enquiry-category-keychains">Keychains</label><input id="enquiry-category-coasters" type="checkbox" name="categories" value="Coasters"/><label for="enquiry-category-coasters">Coasters</label><input id="enquiry-category-runners" type="checkbox" name="categories" value="Beaded Table Runners"/><label for="enquiry-category-runners">Beaded Table Runners</label></div></div>
+          <div style="grid-column:1/-1"><label for="enquiry-message">What are you looking for? *</label><textarea id="enquiry-message" name="message" rows="5" required="{{ true }}" aria-describedby="enquiry-message-error" aria-invalid="{{ messageInvalid }}" placeholder="The pieces, shop, market or timing you are considering"></textarea><span id="enquiry-message-error">{{ messageError }}</span></div>
+        </div><p>We use your details only to respond to this enquiry. <a href="/privacy" onClick="{{ toPrivacy }}">Read our privacy notice</a>.</p><div class="form-submit-row"><button type="submit" disabled="{{ sending }}">{{ submitLabel }}</button><span>We answer every enquiry personally from Samarinda.</span></div></form>
       </div>
     </div>
   </section>
@@ -1047,7 +749,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Materials &amp; sourcing</p>
       <p style="font-size:16px;line-height:1.7;color:#4A3B2A;margin:14px 0 0">The line is built from glass seed beads, cotton thread, textile backing and natural rattan, with metal fittings where a piece needs them. Material and care information is confirmed with the order documentation.</p>
       <div class="btn-row" style="display:flex;flex-wrap:wrap;gap:14px;margin-top:26px">
-        <button onClick="{{ toForm }}" style="display:inline-flex;align-items:center;background:#8E2321;color:#F7F1E5;border:none;padding:15px 26px;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#701A19">Request the line sheet</button>
+        <button onClick="{{ toForm }}" style="display:inline-flex;align-items:center;background:#8E2321;color:#F7F1E5;border:none;padding:15px 26px;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#701A19">Wholesale enquiry</button>
         <button onClick="{{ toCollection }}" style="display:inline-flex;align-items:center;background:transparent;color:#34291D;border:1.5px solid #B79B7C;padding:14px 24px;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="border-color:#8E2321;color:#8E2321">Explore the collection</button>
       </div>
     </section>
@@ -1060,7 +762,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 <div data-screen-label="Contact" style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(24px,3.5vw,44px) clamp(64px,8vw,110px)">
   <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Contact</p>
   <h1 class="cmb" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.06;margin:14px 0 0">Let&rsquo;s find the right line for your shelves</h1>
-  <p class="cmb" style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:62ch;margin:16px 0 0">For wholesale enquiries, request the current line sheet or write to us directly. We are based in Samarinda and answer with the practical next step for your shop.</p>
+  <p class="cmb" style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:62ch;margin:16px 0 0">For wholesale enquiries, send an enquiry or write to us directly. We are based in Samarinda and answer with the practical next step for your shop.</p>
   <div class="mobile-stack" style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px);margin-top:clamp(28px,4vw,48px)">
     <div style="flex:1 1 400px;min-width:0">
       <dl style="margin:0">
@@ -1094,8 +796,8 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
     <div style="flex:1 1 320px;min-width:min(100%,280px);max-width:480px">
       <div style="border:1px solid #B79B7C;padding:clamp(22px,3vw,36px)">
         <h2 style="font-family:'Young Serif',serif;font-weight:400;font-size:22px;margin:0">Looking for wholesale?</h2>
-        <p style="font-size:15.5px;line-height:1.65;color:#4A3B2A;margin:12px 0 0">The fastest route is the line-sheet request. Tell us what your shop is looking for and we&rsquo;ll send the current range, pricing and order information.</p>
-        <button onClick="{{ toForm }}" style="display:inline-flex;align-items:center;background:#8E2321;color:#F7F1E5;border:none;padding:15px 26px;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;margin-top:20px" style-hover="background:#701A19">Request the line sheet</button>
+        <p style="font-size:15.5px;line-height:1.65;color:#4A3B2A;margin:12px 0 0">The fastest route is the wholesale enquiry. Tell us what your shop is looking for and we&rsquo;ll send the current range, pricing and order information.</p>
+        <button onClick="{{ toForm }}" style="display:inline-flex;align-items:center;background:#8E2321;color:#F7F1E5;border:none;padding:15px 26px;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;margin-top:20px" style-hover="background:#701A19">Wholesale enquiry</button>
       </div>
     </div>
   </div>
@@ -1116,9 +818,9 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 
 <!-- ================= PRODUCT DETAIL MODAL ================= -->
 <sc-if value="{{ product }}" hint-placeholder-val="{{ false }}">
-<div class="product-modal-overlay" onClick="{{ closeModal }}" role="dialog" aria-modal="true" aria-label="Product details" style="position:fixed;inset:0;z-index:200;background:rgba(42,33,26,.6);display:flex;align-items:center;justify-content:center;padding:clamp(8px,2vw,32px)">
+<div id="product-dialog" class="product-modal-overlay" onClick="{{ closeModal }}" onKeyDown="{{ trapProductDialogFocus }}" role="dialog" aria-modal="true" aria-labelledby="product-dialog-title" style="position:fixed;inset:0;z-index:200;background:rgba(42,33,26,.6);display:flex;align-items:center;justify-content:center;padding:clamp(8px,2vw,32px)">
   <div class="product-modal-panel" onClick="{{ stopModal }}" style="background:#F7F1E5;max-width:1120px;width:100%;max-height:92vh;overflow:auto;position:relative;border-radius:4px">
-    <button class="product-modal-close" onClick="{{ closeModal }}" aria-label="Close details" style="position:sticky;top:14px;margin-left:calc(100% - 58px);z-index:5;width:44px;height:44px;border-radius:50%;border:1px solid #C9B694;background:#F7F1E5;color:#34291D;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="border-color:#8E2321;color:#34291D">&times;</button>
+    <button id="product-dialog-close" class="product-modal-close" onClick="{{ closeModal }}" aria-label="Close details" style="position:sticky;top:14px;margin-left:calc(100% - 58px);z-index:5;width:44px;height:44px;border-radius:50%;border:1px solid #C9B694;background:#F7F1E5;color:#34291D;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="border-color:#8E2321;color:#34291D">&times;</button>
     <div class="product-modal-content" style="display:flex;flex-wrap:wrap;gap:clamp(24px,3vw,44px);padding:0 clamp(20px,3.5vw,44px) clamp(28px,4vw,48px);margin-top:-30px">
       <div class="product-modal-gallery" style="flex:1.15 1 430px;min-width:min(100%,300px)">
         <sc-if value="{{ product.hasGallery }}" hint-placeholder-val="{{ false }}">
@@ -1143,12 +845,12 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       </div>
       <div class="product-modal-copy" style="flex:1 1 380px;min-width:0">
         <p style="margin:0;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#6D5B45">{{ product.catLine }}</p>
-        <h2 style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(26px,3vw,34px);line-height:1.1;margin:10px 0 0">{{ product.name }}</h2>
+        <h2 id="product-dialog-title" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(26px,3vw,34px);line-height:1.1;margin:10px 0 0">{{ product.name }}</h2>
         <p style="font-size:15.5px;line-height:1.7;color:#4A3B2A;margin:14px 0 0">{{ product.story }}</p>
         <sc-if value="{{ product.hasMotif }}" hint-placeholder-val="{{ true }}"><p style="font-family:Karla,sans-serif;font-style:italic;font-size:14.5px;line-height:1.6;color:#6D5B45;margin:12px 0 0">Motif: {{ product.motifLine }}. <a href="/motifs" onClick="{{ modalToMotifs }}" style="color:#8E2321">More on the Motifs page</a></p></sc-if>
         <div style="border:1px solid #B79B7C;background:#EFE6D3;padding:16px 18px;margin:18px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px">
-          <span style="font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#34291D">Wholesale pricing in the line sheet</span>
-          <a href="/wholesale#linesheet-form" onClick="{{ modalToForm }}" style="font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#8E2321;margin-left:auto">Request it &rarr;</a>
+          <span style="font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#34291D">Ask us about this piece</span>
+          <button type="button" onClick="{{ addProductToEnquiry }}" style="font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#8E2321;margin-left:auto;border:0;background:transparent;cursor:pointer">Enquire about this piece &rarr;</button>
         </div>
         <dl style="margin:20px 0 0">
           <div style="display:flex;gap:16px;border-top:1px solid #DACBAE;padding:11px 0"><dt style="flex:0 0 118px;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6D5B45;padding-top:2px">Materials</dt><dd style="margin:0;font-size:15px;line-height:1.55">{{ product.materials }}</dd></div>
@@ -1158,10 +860,10 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
           <div style="display:flex;gap:16px;border-top:1px solid #DACBAE;padding:11px 0"><dt style="flex:0 0 118px;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6D5B45;padding-top:2px">Lead time</dt><dd style="margin:0;font-size:15px;line-height:1.55">{{ product.lead }}</dd></div>
           <div style="display:flex;gap:16px;border-top:1px solid #DACBAE;border-bottom:1px solid #DACBAE;padding:11px 0"><dt style="flex:0 0 118px;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6D5B45;padding-top:2px">Care</dt><dd style="margin:0;font-size:15px;line-height:1.55">{{ product.care }}</dd></div>
         </dl>
-        <!-- Commercial fields that vary by order remain in the current line sheet. -->
+        <!-- Commercial fields that vary by order are confirmed directly. -->
         <div style="border:1px dashed #C9B694;padding:14px 18px;margin:18px 0 0">
           <p style="margin:0;font-family:Archivo,sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#B79B7C">Order &amp; export details</p>
-          <div style="display:flex;gap:16px;padding:9px 0 0"><span style="flex:0 0 118px;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6D5B45">Order quantity</span><span style="font-size:14.5px;color:#6D5B45">Included in the line sheet</span></div>
+          <div style="display:flex;gap:16px;padding:9px 0 0"><span style="flex:0 0 118px;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6D5B45">Order quantity</span><span style="font-size:14.5px;color:#6D5B45">Confirmed with your enquiry</span></div>
           <div style="display:flex;gap:16px;padding:7px 0 0"><span style="flex:0 0 118px;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6D5B45">HS code</span><span style="font-size:14.5px;color:#6D5B45">{{ product.hs }}</span></div>
         </div>
       </div>
@@ -1200,7 +902,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       <div>
         <p style="margin:0;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#B7A98C">Wholesale</p>
         <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px">
-          <a href="/wholesale#linesheet-form" onClick="{{ toForm }}" style="color:#EAE0CC;text-decoration:none;font-size:15px" style-hover="color:#C99435">Request the current line sheet</a>
+          <a href="/wholesale#wholesale-enquiry" onClick="{{ toForm }}" style="color:#EAE0CC;text-decoration:none;font-size:15px" style-hover="color:#C99435">Wholesale enquiry</a>
           <a href="/wholesale#ws-shipping" onClick="{{ toShipping }}" style="color:#EAE0CC;text-decoration:none;font-size:15px" style-hover="color:#C99435">Shipping &amp; order details</a>
           <a href="/wholesale#ws-docs" onClick="{{ toDocs }}" style="color:#EAE0CC;text-decoration:none;font-size:15px" style-hover="color:#C99435">Documentation</a>
           <a href="/wholesale#ws-terms" onClick="{{ toTerms }}" style="color:#EAE0CC;text-decoration:none;font-size:15px" style-hover="color:#C99435">Terms</a>
@@ -1236,10 +938,10 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 <script type="text/x-dc" data-dc-script data-props="{
   &quot;remotePosters&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Privacy: video posters from YouTube's cookie-free image CDN; off = zero third-party requests before play&quot;},
   &quot;showIllustrativeFlags&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Content&quot;},
-  &quot;formEndpoint&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;https://formspree.io/f/xjybkzgj&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Form: POST target for the line sheet request (Formspree: AWT line sheet requests); empty = demo mode&quot;}
+  &quot;formEndpoint&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;https://formspree.io/f/xjybkzgj&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Form: endpoint for wholesale enquiries&quot;}
 }">
 class Component extends DCLogic {
-  state = { page: 'home', cat: 'All', product: null, vidFull: false, vidShort: false, formDone: false, sending: false, menuOpen: false };
+  state = { page: 'home', cat: 'All', product: null, vidFull: false, vidShort: false, formStatus: 'idle', formError: '', selectedProducts: [], sending: false, invalidFields: {}, menuOpen: false };
 
   componentDidMount() {
     // Generated builds embed these records. Serving index.html directly skips
@@ -1427,13 +1129,18 @@ class Component extends DCLogic {
     }, 60);
   }
 
-  goTo(page, anchor) {
+  goTo(page, anchor, focusId) {
     const cat = page === 'collection' ? 'All' : this.state.cat;
     this.setState({ page, cat, product: null, menuOpen: false }, () => {
       document.body.style.overflow = '';
       this.pushRoute(page, anchor);
       if (anchor) {
-        requestAnimationFrame(() => { this.scrollToAnchor(anchor); this.reveal(); });
+        requestAnimationFrame(() => {
+          this.scrollToAnchor(anchor);
+          const focusTarget = focusId && document.getElementById(focusId);
+          if (focusTarget && typeof focusTarget.focus === 'function') focusTarget.focus();
+          this.reveal();
+        });
       } else { this.scrollToTop(); this.reveal(); }
     });
   }
@@ -1441,30 +1148,90 @@ class Component extends DCLogic {
   goFiltered(cat) { return (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ page: 'collection', cat, product: null, menuOpen: false }, () => { document.body.style.overflow = ''; this.pushCollectionRoute(cat, null, false); this.scrollToTop(); this.reveal(); }); }; }
   openProduct(product, e) {
     if (e && e.preventDefault) e.preventDefault();
+    this._modalOpener = (e && e.currentTarget) || document.activeElement;
     document.body.style.overflow = 'hidden';
-    this.setState({ page: 'collection', product, menuOpen: false }, () => this.pushCollectionRoute(this.state.cat, product, false));
+    this.setState({ page: 'collection', product, menuOpen: false }, () => {
+      this.pushCollectionRoute(this.state.cat, product, false);
+      requestAnimationFrame(() => {
+        const close = document.getElementById('product-dialog-close');
+        if (close && typeof close.focus === 'function') close.focus();
+      });
+    });
   }
 
   closeModal() {
     document.body.style.overflow = '';
     const cat = this.state.cat;
-    this.setState({ product: null }, () => this.pushCollectionRoute(cat, null, true));
+    const opener = this._modalOpener;
+    this.setState({ product: null }, () => {
+      this.pushCollectionRoute(cat, null, true);
+      if (opener && typeof opener.focus === 'function') opener.focus();
+    });
   }
 
-  submit(e) {
-    e.preventDefault();
-    const fd = new FormData(e.target); const data = {};
-    fd.forEach((v, k) => { data[k] = data[k] === undefined ? v : [].concat(data[k], v); });
-    // LINE SHEET REQUEST SUBMIT. Point this at your form service (Formspree, Basin, Netlify Forms…)
-    // via the `formEndpoint` prop/tweak; with no endpoint set it runs in demo mode.
-    const url = this.props.formEndpoint ?? '';
-    if (url) {
-      this.setState({ sending: true });
-      fetch(url, { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
-        .catch(() => {}).finally(() => this.setState({ sending: false, formDone: true }));
-    } else {
-      console.log('Line sheet request (demo mode, no formEndpoint set):', data);
-      this.setState({ formDone: true });
+  trapProductDialogFocus(e) {
+    if (!e || e.key !== 'Tab') return;
+    const dialog = document.getElementById('product-dialog');
+    const focusable = dialog && dialog.querySelectorAll ? Array.from(dialog.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')) : [];
+    if (!focusable.length) return;
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if ((e.shiftKey && document.activeElement === first) || (!e.shiftKey && document.activeElement === last)) {
+      e.preventDefault();
+      (e.shiftKey ? last : first).focus();
+    }
+  }
+
+  addProductToEnquiry(product, e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const selected = product || this.state.product;
+    if (!selected) return;
+    const api = window.AWTEnquiry;
+    const next = (api && api.uniqueSelections ? api.uniqueSelections([...(this.state.selectedProducts || []), { id: selected.id, name: selected.name }]) : []);
+    document.body.style.overflow = '';
+    this.setState({ selectedProducts: next, product: null, menuOpen: false }, () => this.goTo('wholesale', 'wholesale-enquiry', 'enquiry-heading'));
+  }
+
+  removeProductFromEnquiry(id) {
+    this.setState((state) => ({ selectedProducts: (state.selectedProducts || []).filter((product) => product.id !== id) }));
+  }
+
+  validationErrors(form) {
+    const invalid = {};
+    const fields = form && form.querySelectorAll ? form.querySelectorAll('[required]') : [];
+    Array.from(fields).forEach((field) => { if (field && field.name && field.validity && !field.validity.valid) invalid[field.name] = 'Please complete this field.'; });
+    return invalid;
+  }
+
+  focusEnquiryStatus(id) {
+    requestAnimationFrame(() => {
+      const target = document.getElementById(id);
+      if (target && typeof target.focus === 'function') target.focus();
+    });
+  }
+
+  async submit(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (this.state.sending) return;
+    const form = e && e.target;
+    if (!form || (typeof form.reportValidity === 'function' && !form.reportValidity())) {
+      this.setState({ invalidFields: this.validationErrors(form), formStatus: 'idle', formError: '' });
+      return;
+    }
+    const api = window.AWTEnquiry;
+    if (!api || typeof api.buildPayload !== 'function' || typeof api.submitEnquiry !== 'function') {
+      this.setState({ formStatus: 'error', formError: 'The enquiry service is unavailable.', sending: false }, () => this.focusEnquiryStatus('enquiry-error'));
+      return;
+    }
+    const payload = api.buildPayload(new FormData(form), this.state.selectedProducts);
+    this.setState({ formStatus: 'sending', formError: '', sending: true, invalidFields: {} });
+    try {
+      await api.submitEnquiry({ endpoint: this.props.formEndpoint || '', payload });
+      this.setState({ formStatus: 'success', formError: '', sending: false, selectedProducts: [], invalidFields: {} }, () => {
+        if (typeof form.reset === 'function') form.reset();
+        this.focusEnquiryStatus('enquiry-success');
+      });
+    } catch (error) {
+      this.setState({ formStatus: 'error', formError: error && error.message ? error.message : 'Please try again.', sending: false }, () => this.focusEnquiryStatus('enquiry-error'));
     }
   }
 
@@ -1541,74 +1308,74 @@ class Component extends DCLogic {
       { id: 'table-runner-four-bird', name: 'Four-Bird Borneo Beaded Table Runner', cat: 'Table textiles', src: '/images/table-runners-2026/four-bird-borneo-table-runner-v3.webp', bleed: true, alt: 'Four-bird Borneo beaded table runner with mirrored red, white and yellow bird forms', matsShort: 'glass beads, 90 × 50 cm table runner', materials: 'Glass seed beads, cotton thread and textile backing', dims: '90 × 50 cm', weight: '2 kg', colours: 'Black / red / yellow / white / green', lead: 'Confirmed per order', care: 'Dust gently; spot-clean; dry flat', story: 'Red and white bird forms turn around a green diamond spine, balanced by mirrored yellow figures at the centre. A red floral border and fine green-and-white fringe frame the composition.', img: 'Four-Bird Borneo Beaded Table Runner overhead on cream marble above an oval woven rug' },
       { id: 'table-runner-diamond-scroll', name: 'Diamond Scroll Borneo Beaded Table Runner', cat: 'Table textiles', src: '/images/table-runners-2026/diamond-scroll-borneo-table-runner-v2.webp', bleed: true, alt: 'Diamond Scroll Borneo beaded table runner with red central diamonds and multicolour curled forms', matsShort: 'glass beads, 90 × 50 cm table runner', materials: 'Glass seed beads, cotton thread and textile backing', dims: '90 × 50 cm', weight: '2 kg', colours: 'Black / red / yellow / white / green / turquoise', lead: 'Confirmed per order', care: 'Dust gently; spot-clean; dry flat', story: 'Large red diamond forms lead the centre line, surrounded by mirrored curls in yellow, white, green and turquoise. A multicolour geometric border and red-and-white fringe finish the runner.', img: 'Diamond Scroll Borneo Beaded Table Runner overhead on cream marble above an oval woven rug' },
       { id: 'table-runner-crimson-mirror', name: 'Crimson Mirror Borneo Beaded Table Runner', cat: 'Table textiles', src: '/images/table-runners-2026/crimson-mirror-borneo-table-runner-v2.webp', bleed: true, alt: 'Crimson Mirror Borneo beaded table runner with red mirrored scrolls and white curled forms', matsShort: 'glass beads, 90 × 50 cm table runner', materials: 'Glass seed beads, cotton thread and textile backing', dims: '90 × 50 cm', weight: '2 kg', colours: 'Black / red / white / yellow / green', lead: 'Confirmed per order', care: 'Dust gently; spot-clean; dry flat', story: 'A crimson mirrored centre is surrounded by white curled forms and red branching scrolls on black. Narrow yellow, red and white lines frame the composition before the beaded fringe.', img: 'Crimson Mirror Borneo Beaded Table Runner overhead on cream marble above an oval woven rug' },
-      { id: 'coaster-turquoise-fringe', name: 'Manik Turquoise Fringe Coaster', cat: 'Coasters', motif: 'Borders', src: '/images/products/manik-coaster-turquoise-fringe-v3.jpg', bleed: true, alt: 'Round beaded coaster with turquoise fringe, red field, black outlines and yellow petals on warm ivory limestone', matsShort: 'glass beads, turquoise-fringed floral star', materials: 'Glass seed beads, cotton thread, protective backing', dims: 'Round coaster; dimensions in the line sheet', weight: 'Confirmed in the line sheet', colours: 'Turquoise / red / yellow / black', lead: 'Confirmed per order', care: 'Wipe clean; dry flat', story: 'A circular coaster built around an open centre, with yellow petals outlined in black across a red field and a bright turquoise fringe around the edge.', img: 'Turquoise-fringed round beaded coaster on warm ivory limestone' },
-      { id: 'coaster-white-star', name: 'Manik White Star Coaster', cat: 'Coasters', motif: 'Borders', src: '/images/products/manik-coaster-white-star-v3.jpg', bleed: true, alt: 'Round beaded coaster with white petals, red centre, yellow accents and black-and-red fringe on warm ivory limestone', matsShort: 'glass beads, white floral star', materials: 'Glass seed beads, cotton thread, protective backing', dims: 'Round coaster; dimensions in the line sheet', weight: 'Confirmed in the line sheet', colours: 'White / red / yellow / black', lead: 'Confirmed per order', care: 'Wipe clean; dry flat', story: 'White petals radiate from an open red centre, picked out with yellow accents and finished by a graphic black-and-red fringe.', img: 'White-star round beaded coaster on warm ivory limestone' },
-      { id: 'coaster-red-fringe', name: 'Manik Red Fringe Coaster', cat: 'Coasters', motif: 'Borders', src: '/images/products/manik-coaster-red-fringe-v3.jpg', bleed: true, alt: 'Round beaded coaster with red fringe, black field and green-outlined yellow petals on warm ivory limestone', matsShort: 'glass beads, red-fringed floral star', materials: 'Glass seed beads, cotton thread, protective backing', dims: 'Round coaster; dimensions in the line sheet', weight: 'Confirmed in the line sheet', colours: 'Red / black / green / yellow', lead: 'Confirmed per order', care: 'Wipe clean; dry flat', story: 'Green-outlined yellow petals sit on a dark field around the open centre, with a strong red fringe defining the circular edge.', img: 'Red-fringed round beaded coaster on warm ivory limestone' },
-      { id: 'coaster-yellow-fringe', name: 'Manik Yellow Fringe Coaster', cat: 'Coasters', motif: 'Borders', src: '/images/products/manik-coaster-yellow-fringe-v3.jpg', bleed: true, alt: 'Round beaded coaster with yellow fringe, red field and green-outlined yellow petals on warm ivory limestone', matsShort: 'glass beads, yellow-fringed floral star', materials: 'Glass seed beads, cotton thread, protective backing', dims: 'Round coaster; dimensions in the line sheet', weight: 'Confirmed in the line sheet', colours: 'Yellow / red / green / black', lead: 'Confirmed per order', care: 'Wipe clean; dry flat', story: 'Yellow petals outlined in green turn around the open centre on a red field, then repeat as a bright fringe around the outside edge.', img: 'Yellow-fringed round beaded coaster on warm ivory limestone' },
-      { id: 'hanging', name: 'Ulin-framed Dayak Wall Hanging', cat: 'Home décor', src: '/images/home-decor/ulin-dayak-bead-wall-hanging.jpg', bleed: true, matsShort: 'glass seed beads, carved ulin wood', materials: 'Glass seed beads, cotton thread, carved ulin wood rails', dims: 'Available in the line sheet', weight: 'Available in the line sheet', colours: 'Black / white / turquoise / red / yellow · Natural ulin wood', lead: 'Confirmed per order', care: 'Dust gently; keep dry and out of direct sunlight', story: 'A mirrored field of Dayak figures and curling forms, hand-strung from small glass seed beads and held between richly carved ulin wood rails. The black ground brings the white, turquoise, red and yellow pattern forward from across a room; up close, every bead and line of wood carving shows the handwork.', img: 'Ulin-framed Dayak bead wall hanging in soft morning light' },
+      { id: 'coaster-turquoise-fringe', name: 'Manik Turquoise Fringe Coaster', cat: 'Coasters', motif: 'Borders', src: '/images/products/manik-coaster-turquoise-fringe-v3.jpg', bleed: true, alt: 'Round beaded coaster with turquoise fringe, red field, black outlines and yellow petals on warm ivory limestone', matsShort: 'glass beads, turquoise-fringed floral star', materials: 'Glass seed beads, cotton thread, protective backing', dims: 'Round coaster; dimensions with your enquiry', weight: 'Confirmed with your enquiry', colours: 'Turquoise / red / yellow / black', lead: 'Confirmed per order', care: 'Wipe clean; dry flat', story: 'A circular coaster built around an open centre, with yellow petals outlined in black across a red field and a bright turquoise fringe around the edge.', img: 'Turquoise-fringed round beaded coaster on warm ivory limestone' },
+      { id: 'coaster-white-star', name: 'Manik White Star Coaster', cat: 'Coasters', motif: 'Borders', src: '/images/products/manik-coaster-white-star-v3.jpg', bleed: true, alt: 'Round beaded coaster with white petals, red centre, yellow accents and black-and-red fringe on warm ivory limestone', matsShort: 'glass beads, white floral star', materials: 'Glass seed beads, cotton thread, protective backing', dims: 'Round coaster; dimensions with your enquiry', weight: 'Confirmed with your enquiry', colours: 'White / red / yellow / black', lead: 'Confirmed per order', care: 'Wipe clean; dry flat', story: 'White petals radiate from an open red centre, picked out with yellow accents and finished by a graphic black-and-red fringe.', img: 'White-star round beaded coaster on warm ivory limestone' },
+      { id: 'coaster-red-fringe', name: 'Manik Red Fringe Coaster', cat: 'Coasters', motif: 'Borders', src: '/images/products/manik-coaster-red-fringe-v3.jpg', bleed: true, alt: 'Round beaded coaster with red fringe, black field and green-outlined yellow petals on warm ivory limestone', matsShort: 'glass beads, red-fringed floral star', materials: 'Glass seed beads, cotton thread, protective backing', dims: 'Round coaster; dimensions with your enquiry', weight: 'Confirmed with your enquiry', colours: 'Red / black / green / yellow', lead: 'Confirmed per order', care: 'Wipe clean; dry flat', story: 'Green-outlined yellow petals sit on a dark field around the open centre, with a strong red fringe defining the circular edge.', img: 'Red-fringed round beaded coaster on warm ivory limestone' },
+      { id: 'coaster-yellow-fringe', name: 'Manik Yellow Fringe Coaster', cat: 'Coasters', motif: 'Borders', src: '/images/products/manik-coaster-yellow-fringe-v3.jpg', bleed: true, alt: 'Round beaded coaster with yellow fringe, red field and green-outlined yellow petals on warm ivory limestone', matsShort: 'glass beads, yellow-fringed floral star', materials: 'Glass seed beads, cotton thread, protective backing', dims: 'Round coaster; dimensions with your enquiry', weight: 'Confirmed with your enquiry', colours: 'Yellow / red / green / black', lead: 'Confirmed per order', care: 'Wipe clean; dry flat', story: 'Yellow petals outlined in green turn around the open centre on a red field, then repeat as a bright fringe around the outside edge.', img: 'Yellow-fringed round beaded coaster on warm ivory limestone' },
+      { id: 'hanging', name: 'Ulin-framed Dayak Wall Hanging', cat: 'Home décor', src: '/images/home-decor/ulin-dayak-bead-wall-hanging.jpg', bleed: true, matsShort: 'glass seed beads, carved ulin wood', materials: 'Glass seed beads, cotton thread, carved ulin wood rails', dims: 'Available with your enquiry', weight: 'Available with your enquiry', colours: 'Black / white / turquoise / red / yellow · Natural ulin wood', lead: 'Confirmed per order', care: 'Dust gently; keep dry and out of direct sunlight', story: 'A mirrored field of Dayak figures and curling forms, hand-strung from small glass seed beads and held between richly carved ulin wood rails. The black ground brings the white, turquoise, red and yellow pattern forward from across a room; up close, every bead and line of wood carving shows the handwork.', img: 'Ulin-framed Dayak bead wall hanging in soft morning light' },
       // Three owner-supplied bead panels, finished with carved ulin wood rails.
       // Names describe the visible compositions without assigning unconfirmed motif meanings.
-      { id: 'hanging-central-vessel', name: 'Central Vessel Ulin Wall Hanging', cat: 'Home décor', src: '/images/home-decor-2026/central-vessel-ulin-wall-hanging-v2.webp', bleed: true, alt: 'Carved ulin wood wall hanging with a colourful beaded panel centred on a yellow vessel form', matsShort: 'glass seed beads, carved ulin wood', materials: 'Glass seed beads, cotton thread, carved ulin wood rails', dims: '70 cm wide × 80 cm high', weight: 'Available in the line sheet', colours: 'Black / white / yellow / orange / turquoise / green · Natural ulin wood', lead: 'Confirmed per order', care: 'Dust gently; keep dry and out of direct sunlight', story: 'A yellow vessel-shaped centre anchors mirrored white, yellow and orange curled forms on a black bead ground. A multicolour circular border and clean turquoise edge finish the panel between hand-carved dark ulin wood rails.', img: 'Central Vessel Ulin Wall Hanging on a warm cream plaster wall' },
-      { id: 'hanging-twin-tiger', name: 'Twin Tiger Ulin Wall Hanging', cat: 'Home décor', src: '/images/home-decor-2026/twin-tiger-ulin-wall-hanging-v2.webp', bleed: true, alt: 'Carved ulin wood wall hanging with two mirrored yellow tigers in a beaded panel', matsShort: 'glass seed beads, carved ulin wood', materials: 'Glass seed beads, cotton thread, carved ulin wood rails', dims: '70 cm wide × 80 cm high', weight: 'Available in the line sheet', colours: 'Black / yellow / white / orange / green · Natural ulin wood', lead: 'Confirmed per order', care: 'Dust gently; keep dry and out of direct sunlight', story: 'Two mirrored yellow tigers face a branching white centre, surrounded by orange curls and green corner details. Clean orange-and-yellow edging frames the panel beneath the carved ulin rails.', img: 'Twin Tiger Ulin Wall Hanging on a warm cream plaster wall' },
-      { id: 'hanging-red-branch', name: 'Red Branch Ulin Wall Hanging', cat: 'Home décor', src: '/images/home-decor-2026/red-tree-ulin-wall-hanging-v2.webp', bleed: true, alt: 'Carved ulin wood wall hanging with white curled figures around a red branching beaded centre', matsShort: 'glass seed beads, carved ulin wood', materials: 'Glass seed beads, cotton thread, carved ulin wood rails', dims: '70 cm wide × 80 cm high', weight: 'Available in the line sheet', colours: 'Black / white / red / green / yellow · Natural ulin wood', lead: 'Confirmed per order', care: 'Dust gently; keep dry and out of direct sunlight', story: 'Four white curled figures turn around a bold red branching centre on black, with green forms above and below. Clean black, white and red edge lines finish the bead field between the dark carved ulin rails.', img: 'Red Branch Ulin Wall Hanging on a warm cream plaster wall' },
+      { id: 'hanging-central-vessel', name: 'Central Vessel Ulin Wall Hanging', cat: 'Home décor', src: '/images/home-decor-2026/central-vessel-ulin-wall-hanging-v2.webp', bleed: true, alt: 'Carved ulin wood wall hanging with a colourful beaded panel centred on a yellow vessel form', matsShort: 'glass seed beads, carved ulin wood', materials: 'Glass seed beads, cotton thread, carved ulin wood rails', dims: '70 cm wide × 80 cm high', weight: 'Available with your enquiry', colours: 'Black / white / yellow / orange / turquoise / green · Natural ulin wood', lead: 'Confirmed per order', care: 'Dust gently; keep dry and out of direct sunlight', story: 'A yellow vessel-shaped centre anchors mirrored white, yellow and orange curled forms on a black bead ground. A multicolour circular border and clean turquoise edge finish the panel between hand-carved dark ulin wood rails.', img: 'Central Vessel Ulin Wall Hanging on a warm cream plaster wall' },
+      { id: 'hanging-twin-tiger', name: 'Twin Tiger Ulin Wall Hanging', cat: 'Home décor', src: '/images/home-decor-2026/twin-tiger-ulin-wall-hanging-v2.webp', bleed: true, alt: 'Carved ulin wood wall hanging with two mirrored yellow tigers in a beaded panel', matsShort: 'glass seed beads, carved ulin wood', materials: 'Glass seed beads, cotton thread, carved ulin wood rails', dims: '70 cm wide × 80 cm high', weight: 'Available with your enquiry', colours: 'Black / yellow / white / orange / green · Natural ulin wood', lead: 'Confirmed per order', care: 'Dust gently; keep dry and out of direct sunlight', story: 'Two mirrored yellow tigers face a branching white centre, surrounded by orange curls and green corner details. Clean orange-and-yellow edging frames the panel beneath the carved ulin rails.', img: 'Twin Tiger Ulin Wall Hanging on a warm cream plaster wall' },
+      { id: 'hanging-red-branch', name: 'Red Branch Ulin Wall Hanging', cat: 'Home décor', src: '/images/home-decor-2026/red-tree-ulin-wall-hanging-v2.webp', bleed: true, alt: 'Carved ulin wood wall hanging with white curled figures around a red branching beaded centre', matsShort: 'glass seed beads, carved ulin wood', materials: 'Glass seed beads, cotton thread, carved ulin wood rails', dims: '70 cm wide × 80 cm high', weight: 'Available with your enquiry', colours: 'Black / white / red / green / yellow · Natural ulin wood', lead: 'Confirmed per order', care: 'Dust gently; keep dry and out of direct sunlight', story: 'Four white curled figures turn around a bold red branching centre on black, with green forms above and below. Clean black, white and red edge lines finish the bead field between the dark carved ulin rails.', img: 'Red Branch Ulin Wall Hanging on a warm cream plaster wall' },
       // Ten owner-supplied necklace variants, named by form and visible colourway.
       // Exact cultural motif meanings are not assigned without maker confirmation.
-      { id: 'necklace-ketupat-emas', slug: 'kalung-manik-ketupat-emas', name: 'Gold Diamond Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/ketupat-emas-styled.jpg', bleed: true, alt: 'Long black, gold and red Ketupat beaded necklace on a black mannequin in a warm cream studio', matsShort: 'glass seed beads, long multi-strand necklace', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed in the line sheet', colours: 'Black / gold / red / cream', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'Black bead strands frame cream-gold panels and three nested diamond ornaments edged in red. The large central diamond ends in a long cream-gold fringe tipped with red beads.', img: 'Gold and red Ketupat beaded necklace on a black mannequin against warm cream plaster' },
-      { id: 'necklace-ketupat-putih', slug: 'kalung-manik-ketupat-putih', name: 'White Diamond Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/ketupat-putih-styled.jpg', bleed: true, alt: 'Long black, white and red Ketupat beaded necklace on a black mannequin in a warm cream studio', matsShort: 'glass seed beads, long multi-strand necklace', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed in the line sheet', colours: 'Black / white / red', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'White bead panels brighten the black multi-strand neckpiece, while red-and-black diamond details repeat from the shoulders to the centre. A tapered white fringe completes the large central diamond.', img: 'White, red and black Ketupat beaded necklace on a black mannequin against warm cream plaster' },
-      { id: 'necklace-ketupat-kuning', slug: 'kalung-manik-ketupat-kuning', name: 'Yellow Diamond Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/ketupat-kuning-styled.jpg', bleed: true, alt: 'Long black necklace with yellow, red and white Ketupat diamonds on a black mannequin', matsShort: 'glass seed beads, long multi-strand necklace', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed in the line sheet', colours: 'Black / yellow / red / white', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'Five small yellow-red-white diamonds punctuate fine black strands before meeting a larger nested diamond. Pointed black fringe, marked with red and white, gives the necklace a strong tapered finish.', img: 'Yellow, red, white and black Ketupat beaded necklace on a black mannequin against warm cream plaster' },
-      { id: 'necklace-ketupat-mawar', slug: 'kalung-manik-ketupat-mawar', name: 'Pink Diamond Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/ketupat-mawar-styled.jpg', bleed: true, alt: 'Long black, pink, turquoise and white Ketupat beaded necklace on a black mannequin', matsShort: 'glass seed beads, long multi-strand necklace', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed in the line sheet', colours: 'Black / pink / turquoise / white', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'Soft pink bead panels and turquoise outlines sit against fine black strands. White and black centres sharpen the repeated diamonds, and a long pink fringe falls from the central pendant.', img: 'Pink, turquoise, white and black Ketupat beaded necklace on a black mannequin against warm cream plaster' },
-      { id: 'necklace-ketupat-monokrom', slug: 'kalung-manik-ketupat-monokrom', name: 'Monochrome Diamond Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/ketupat-monokrom-styled.jpg', bleed: true, alt: 'Long monochrome black and white Ketupat beaded necklace on a black mannequin', matsShort: 'glass seed beads, long multi-strand necklace', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed in the line sheet', colours: 'Black / white', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'A crisp black-and-white palette brings focus to the nested diamond construction. White panels bridge the black neck strands, while the central diamond falls into a neatly tapered white fringe.', img: 'Black and white Ketupat beaded necklace on a black mannequin against warm cream plaster' },
-      { id: 'necklace-bunga-merah', slug: 'kalung-manik-bunga-merah', name: 'Red Flower Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/bunga-merah-styled.jpg', bleed: true, alt: 'Long red flower beaded necklace with black, white and yellow fringe on a black mannequin', matsShort: 'glass seed beads, floral pendant and fringe', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed in the line sheet', colours: 'Red / white / yellow / black', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'Two small red-and-white flowers lead to a sculptural red flower pendant with a white centre. Tiered red, white, yellow and black fringe follows the pendant in a pointed silhouette.', img: 'Red floral beaded necklace on a black mannequin against warm cream plaster' },
-      { id: 'necklace-bunga-biru', slug: 'kalung-manik-bunga-biru', name: 'Turquoise Flower Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/bunga-biru-styled.jpg', bleed: true, alt: 'Long turquoise flower beaded necklace with red, yellow and black fringe on a black mannequin', matsShort: 'glass seed beads, floral pendant and fringe', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed in the line sheet', colours: 'Turquoise / red / yellow / black / white', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'A large turquoise flower with a red centre is echoed by two smaller flowers along the neckpiece. Layered turquoise, red, yellow, white and black fringe creates a bright pointed finish.', img: 'Turquoise floral beaded necklace on a black mannequin against warm cream plaster' },
-      { id: 'necklace-bunga-putih', slug: 'kalung-manik-bunga-putih', name: 'White Flower Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/bunga-putih-styled.jpg', bleed: true, alt: 'Long white flower beaded necklace with red, yellow and black fringe on a black mannequin', matsShort: 'glass seed beads, floral pendant and fringe', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed in the line sheet', colours: 'White / red / yellow / black', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'A white six-petal flower with a red centre anchors the necklace, paired with two smaller white-and-red flowers above. Red, white, yellow and black fringe hangs in separated, pointed strands.', img: 'White floral beaded necklace on a black mannequin against warm cream plaster' },
-      { id: 'necklace-bunga-merah-pelangi', slug: 'kalung-manik-bunga-merah-pelangi', name: 'Red Multicolour Flower Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/bunga-merah-pelangi-styled.jpg', bleed: true, alt: 'Long red flower beaded necklace with turquoise, yellow and red fringe on a black mannequin', matsShort: 'glass seed beads, floral pendant and fringe', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed in the line sheet', colours: 'Red / white / turquoise / yellow / black', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'Two round red flowers with white centres connect to a layered red floral pendant. Turquoise, yellow and red fringe adds a multicolour drop beneath the strong red centre.', img: 'Red floral necklace with multicolour bead fringe on a black mannequin against warm cream plaster' },
-      { id: 'necklace-bunga-putih-pelangi', slug: 'kalung-manik-bunga-putih-pelangi', name: 'White Multicolour Flower Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/bunga-putih-pelangi-styled.jpg', bleed: true, alt: 'Long white flower beaded necklace with turquoise, yellow and red fringe on a black mannequin', matsShort: 'glass seed beads, floral pendant and fringe', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed in the line sheet', colours: 'White / red / yellow / turquoise / black', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'White flowers carry small red, yellow and black centres from the shoulders to the pendant. The large layered flower finishes in turquoise, yellow and red fringe tipped in black.', img: 'White floral necklace with multicolour bead fringe on a black mannequin against warm cream plaster' },
+      { id: 'necklace-ketupat-emas', slug: 'kalung-manik-ketupat-emas', name: 'Gold Diamond Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/ketupat-emas-styled.jpg', bleed: true, alt: 'Long black, gold and red Ketupat beaded necklace on a black mannequin in a warm cream studio', matsShort: 'glass seed beads, long multi-strand necklace', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed with your enquiry', colours: 'Black / gold / red / cream', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'Black bead strands frame cream-gold panels and three nested diamond ornaments edged in red. The large central diamond ends in a long cream-gold fringe tipped with red beads.', img: 'Gold and red Ketupat beaded necklace on a black mannequin against warm cream plaster' },
+      { id: 'necklace-ketupat-putih', slug: 'kalung-manik-ketupat-putih', name: 'White Diamond Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/ketupat-putih-styled.jpg', bleed: true, alt: 'Long black, white and red Ketupat beaded necklace on a black mannequin in a warm cream studio', matsShort: 'glass seed beads, long multi-strand necklace', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed with your enquiry', colours: 'Black / white / red', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'White bead panels brighten the black multi-strand neckpiece, while red-and-black diamond details repeat from the shoulders to the centre. A tapered white fringe completes the large central diamond.', img: 'White, red and black Ketupat beaded necklace on a black mannequin against warm cream plaster' },
+      { id: 'necklace-ketupat-kuning', slug: 'kalung-manik-ketupat-kuning', name: 'Yellow Diamond Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/ketupat-kuning-styled.jpg', bleed: true, alt: 'Long black necklace with yellow, red and white Ketupat diamonds on a black mannequin', matsShort: 'glass seed beads, long multi-strand necklace', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed with your enquiry', colours: 'Black / yellow / red / white', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'Five small yellow-red-white diamonds punctuate fine black strands before meeting a larger nested diamond. Pointed black fringe, marked with red and white, gives the necklace a strong tapered finish.', img: 'Yellow, red, white and black Ketupat beaded necklace on a black mannequin against warm cream plaster' },
+      { id: 'necklace-ketupat-mawar', slug: 'kalung-manik-ketupat-mawar', name: 'Pink Diamond Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/ketupat-mawar-styled.jpg', bleed: true, alt: 'Long black, pink, turquoise and white Ketupat beaded necklace on a black mannequin', matsShort: 'glass seed beads, long multi-strand necklace', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed with your enquiry', colours: 'Black / pink / turquoise / white', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'Soft pink bead panels and turquoise outlines sit against fine black strands. White and black centres sharpen the repeated diamonds, and a long pink fringe falls from the central pendant.', img: 'Pink, turquoise, white and black Ketupat beaded necklace on a black mannequin against warm cream plaster' },
+      { id: 'necklace-ketupat-monokrom', slug: 'kalung-manik-ketupat-monokrom', name: 'Monochrome Diamond Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/ketupat-monokrom-styled.jpg', bleed: true, alt: 'Long monochrome black and white Ketupat beaded necklace on a black mannequin', matsShort: 'glass seed beads, long multi-strand necklace', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed with your enquiry', colours: 'Black / white', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'A crisp black-and-white palette brings focus to the nested diamond construction. White panels bridge the black neck strands, while the central diamond falls into a neatly tapered white fringe.', img: 'Black and white Ketupat beaded necklace on a black mannequin against warm cream plaster' },
+      { id: 'necklace-bunga-merah', slug: 'kalung-manik-bunga-merah', name: 'Red Flower Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/bunga-merah-styled.jpg', bleed: true, alt: 'Long red flower beaded necklace with black, white and yellow fringe on a black mannequin', matsShort: 'glass seed beads, floral pendant and fringe', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed with your enquiry', colours: 'Red / white / yellow / black', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'Two small red-and-white flowers lead to a sculptural red flower pendant with a white centre. Tiered red, white, yellow and black fringe follows the pendant in a pointed silhouette.', img: 'Red floral beaded necklace on a black mannequin against warm cream plaster' },
+      { id: 'necklace-bunga-biru', slug: 'kalung-manik-bunga-biru', name: 'Turquoise Flower Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/bunga-biru-styled.jpg', bleed: true, alt: 'Long turquoise flower beaded necklace with red, yellow and black fringe on a black mannequin', matsShort: 'glass seed beads, floral pendant and fringe', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed with your enquiry', colours: 'Turquoise / red / yellow / black / white', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'A large turquoise flower with a red centre is echoed by two smaller flowers along the neckpiece. Layered turquoise, red, yellow, white and black fringe creates a bright pointed finish.', img: 'Turquoise floral beaded necklace on a black mannequin against warm cream plaster' },
+      { id: 'necklace-bunga-putih', slug: 'kalung-manik-bunga-putih', name: 'White Flower Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/bunga-putih-styled.jpg', bleed: true, alt: 'Long white flower beaded necklace with red, yellow and black fringe on a black mannequin', matsShort: 'glass seed beads, floral pendant and fringe', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed with your enquiry', colours: 'White / red / yellow / black', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'A white six-petal flower with a red centre anchors the necklace, paired with two smaller white-and-red flowers above. Red, white, yellow and black fringe hangs in separated, pointed strands.', img: 'White floral beaded necklace on a black mannequin against warm cream plaster' },
+      { id: 'necklace-bunga-merah-pelangi', slug: 'kalung-manik-bunga-merah-pelangi', name: 'Red Multicolour Flower Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/bunga-merah-pelangi-styled.jpg', bleed: true, alt: 'Long red flower beaded necklace with turquoise, yellow and red fringe on a black mannequin', matsShort: 'glass seed beads, floral pendant and fringe', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed with your enquiry', colours: 'Red / white / turquoise / yellow / black', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'Two round red flowers with white centres connect to a layered red floral pendant. Turquoise, yellow and red fringe adds a multicolour drop beneath the strong red centre.', img: 'Red floral necklace with multicolour bead fringe on a black mannequin against warm cream plaster' },
+      { id: 'necklace-bunga-putih-pelangi', slug: 'kalung-manik-bunga-putih-pelangi', name: 'White Multicolour Flower Beaded Necklace', cat: 'Necklaces', src: '/images/necklaces/bunga-putih-pelangi-styled.jpg', bleed: true, alt: 'Long white flower beaded necklace with turquoise, yellow and red fringe on a black mannequin', matsShort: 'glass seed beads, floral pendant and fringe', materials: 'Glass seed beads and cotton thread', dims: 'Approx. 70–75 cm length', weight: 'Confirmed with your enquiry', colours: 'White / red / yellow / turquoise / black', lead: 'Confirmed per order', care: 'Keep dry; store flat or hung', story: 'White flowers carry small red, yellow and black centres from the shoulders to the pendant. The large layered flower finishes in turquoise, yellow and red fringe tipped in black.', img: 'White floral necklace with multicolour bead fringe on a black mannequin against warm cream plaster' },
       // Sixteen owner-supplied floral earring pairs, each presented as its own product.
       // Motif attribution is left off until a maker confirms the cultural reading.
-      { id: 'earrings-golden-sun-hoop', name: 'Golden Sun Hoop Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/golden-sun-hoop.webp', alt: 'Yellow hoop earrings with yellow and red beaded flowers on an ivory ceramic dish', matsShort: 'glass beads, floral rosette in a yellow ring', materials: 'Glass seed beads, cotton thread, moulded ring, steel ear wires', dims: 'Dimensions in the line sheet', weight: 'In the line sheet', colours: 'Yellow / red / black', lead: 'Confirmed per order', care: 'Keep dry', story: 'A warm yellow flower with a red centre floats inside each smooth yellow ring, finished with tiny black accents and a red bead beneath the hook.', img: 'Golden Sun Hoop Earrings on an ivory ceramic dish and oat linen' },
-      { id: 'earrings-blush-gold-hoop', name: 'Blush Gold Hoop Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/blush-gold-hoop.webp', alt: 'Yellow hoop earrings with pink and gold beaded flowers on an ivory ceramic dish', matsShort: 'glass beads, floral rosette in a yellow ring', materials: 'Glass seed beads, cotton thread, moulded ring, steel ear wires', dims: 'Dimensions in the line sheet', weight: 'In the line sheet', colours: 'Pink / gold / yellow / black / red', lead: 'Confirmed per order', care: 'Keep dry', story: 'Blush-pink petals surround warm gold beadwork inside a yellow ring, picked out with fine black details and a red bead at the top.', img: 'Blush Gold Hoop Earrings on an ivory ceramic dish and oat linen' },
-      { id: 'earrings-ruby-white-hoop', name: 'Ruby White Hoop Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/ruby-white-hoop.webp', alt: 'Yellow hoop earrings with red, white and black beaded flowers on an ivory ceramic dish', matsShort: 'glass beads, floral rosette in a yellow ring', materials: 'Glass seed beads, cotton thread, moulded ring, steel ear wires', dims: 'Dimensions in the line sheet', weight: 'In the line sheet', colours: 'Red / white / black / yellow', lead: 'Confirmed per order', care: 'Keep dry', story: 'A red flower crossed by white petal bands and small black accents sits within a yellow ring, with a white bead beneath each hook.', img: 'Ruby White Hoop Earrings on an ivory ceramic dish and oat linen' },
-      { id: 'earrings-scarlet-sun-hoop', name: 'Scarlet Sun Hoop Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/scarlet-sun-hoop.webp', alt: 'Yellow hoop earrings with red and yellow beaded flowers outlined in black', matsShort: 'glass beads, floral rosette in a yellow ring', materials: 'Glass seed beads, cotton thread, moulded ring, steel ear wires', dims: 'Dimensions in the line sheet', weight: 'In the line sheet', colours: 'Red / yellow / black', lead: 'Confirmed per order', care: 'Keep dry', story: 'Red inner petals meet a yellow outer flower edged in black, held inside a yellow ring and topped by a polished red bead.', img: 'Scarlet Sun Hoop Earrings on an ivory ceramic dish and oat linen' },
-      { id: 'earrings-sky-blossom-hoop', name: 'Sky Blossom Hoop Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/sky-blossom-hoop.webp', alt: 'Yellow hoop earrings with blue and pink beaded flowers on an ivory ceramic dish', matsShort: 'glass beads, floral rosette in a yellow ring', materials: 'Glass seed beads, cotton thread, moulded ring, steel ear wires', dims: 'Dimensions in the line sheet', weight: 'In the line sheet', colours: 'Blue / pink / black / yellow / white', lead: 'Confirmed per order', care: 'Keep dry', story: 'Blue and pink petals radiate from a dark centre inside a yellow ring, finished with pale blue edging and a white bead beneath each hook.', img: 'Sky Blossom Hoop Earrings on an ivory ceramic dish and oat linen' },
-      { id: 'earrings-ember-bloom-hoop', name: 'Ember Bloom Hoop Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/ember-bloom-hoop.webp', alt: 'Yellow hoop earrings with red and yellow floral beadwork on an ivory ceramic dish', matsShort: 'glass beads, floral rosette in a yellow ring', materials: 'Glass seed beads, cotton thread, moulded ring, steel ear wires', dims: 'Dimensions in the line sheet', weight: 'In the line sheet', colours: 'Red / yellow / black', lead: 'Confirmed per order', care: 'Keep dry', story: 'A saturated red flower surrounds a smaller yellow star inside the yellow ring, anchored by a dark centre and a red bead at the hook.', img: 'Ember Bloom Hoop Earrings on an ivory ceramic dish and oat linen' },
-      { id: 'earrings-ruby-white-flower', name: 'Ruby White Flower Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/ruby-white-flower.webp', alt: 'Small red flower earrings outlined in white on an ivory ceramic dish', matsShort: 'glass beads, five-petal flower', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions in the line sheet', weight: 'In the line sheet', colours: 'Red / white', lead: 'Confirmed per order', care: 'Keep dry', story: 'Five rounded red petals are traced bead by bead in white around an open centre, creating a light floral pair with no fringe.', img: 'Ruby White Flower Earrings on an ivory ceramic dish and oat linen' },
-      { id: 'earrings-golden-black-flower', name: 'Golden Black Flower Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/golden-black-flower.webp', alt: 'Small yellow flower earrings outlined in black on an ivory ceramic dish', matsShort: 'glass beads, five-petal flower', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions in the line sheet', weight: 'In the line sheet', colours: 'Yellow / black', lead: 'Confirmed per order', care: 'Keep dry', story: 'Five bright yellow petals are outlined in black around an open dark centre, giving this compact pair a strong graphic edge.', img: 'Golden Black Flower Earrings on an ivory ceramic dish and oat linen' },
-      { id: 'earrings-green-white-flower', name: 'Green White Flower Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/green-white-flower.webp', alt: 'Green flower earrings outlined in white on an ivory ceramic dish', matsShort: 'glass beads, five-petal flower', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions in the line sheet', weight: 'In the line sheet', colours: 'Green / white', lead: 'Confirmed per order', care: 'Keep dry', story: 'Fresh green petals are held within a crisp white bead outline and gathered around an open white centre.', img: 'Green White Flower Earrings on an ivory ceramic dish and oat linen' },
-      { id: 'earrings-scarlet-gold-flower', name: 'Scarlet Gold Flower Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/scarlet-gold-flower.webp', alt: 'Red flower earrings outlined in yellow on an ivory ceramic dish', matsShort: 'glass beads, five-petal flower', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions in the line sheet', weight: 'In the line sheet', colours: 'Red / yellow', lead: 'Confirmed per order', care: 'Keep dry', story: 'Red petals are outlined in yellow around a bright yellow centre, creating a warm two-colour flower with a clean silhouette.', img: 'Scarlet Gold Flower Earrings on an ivory ceramic dish and oat linen' },
-      { id: 'earrings-pink-white-flower', name: 'Pink White Flower Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/pink-white-flower.webp', alt: 'Pink flower earrings outlined in white on an ivory ceramic dish', matsShort: 'glass beads, six-petal flower', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions in the line sheet', weight: 'In the line sheet', colours: 'Pink / white', lead: 'Confirmed per order', care: 'Keep dry', story: 'Six pink petals with white outlines turn around an open white centre, making this the softest floral colourway in the line.', img: 'Pink White Flower Earrings on an ivory ceramic dish and oat linen' },
-      { id: 'earrings-golden-loop-fringe', name: 'Golden Loop Fringe Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/golden-loop-fringe.webp', alt: 'Large yellow, black and red floral earrings with looped bead fringe', matsShort: 'glass beads, layered flower and loop fringe', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions in the line sheet', weight: 'In the line sheet', colours: 'Yellow / black / red', lead: 'Confirmed per order', care: 'Keep dry', story: 'A layered yellow-and-black flower carries red accents into five long open loops, giving the pair movement without a loose strand fringe.', img: 'Golden Loop Fringe Earrings on an ivory ceramic dish and oat linen' },
-      { id: 'earrings-scarlet-loop-fringe', name: 'Scarlet Loop Fringe Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/scarlet-loop-fringe.webp', alt: 'Large red, black and yellow floral earrings with looped bead fringe', matsShort: 'glass beads, layered flower and loop fringe', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions in the line sheet', weight: 'In the line sheet', colours: 'Red / black / yellow', lead: 'Confirmed per order', care: 'Keep dry', story: 'Red petals with small yellow centres radiate from an open dark centre, then fall into long red-and-black loops tipped in yellow.', img: 'Scarlet Loop Fringe Earrings on an ivory ceramic dish and oat linen' },
-      { id: 'earrings-midnight-gold-loop-fringe', name: 'Midnight Gold Loop Fringe Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/midnight-gold-loop-fringe.webp', alt: 'Large black, yellow and red floral earrings with looped bead fringe', matsShort: 'glass beads, layered flower and loop fringe', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions in the line sheet', weight: 'In the line sheet', colours: 'Black / yellow / red', lead: 'Confirmed per order', care: 'Keep dry', story: 'Black petals carry small yellow centres and red structural accents, above five long black-and-yellow loops finished in red.', img: 'Midnight Gold Loop Fringe Earrings on an ivory ceramic dish and oat linen' },
-      { id: 'earrings-ivory-scarlet-loop-fringe', name: 'Ivory Scarlet Loop Fringe Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/ivory-scarlet-loop-fringe.webp', alt: 'Large white, red and black floral earrings with looped bead fringe', matsShort: 'glass beads, layered flower and loop fringe', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions in the line sheet', weight: 'In the line sheet', colours: 'White / red / black', lead: 'Confirmed per order', care: 'Keep dry', story: 'White-outlined petals carry small red centres around a dark core, followed by five open loops banded in red, black and white.', img: 'Ivory Scarlet Loop Fringe Earrings on an ivory ceramic dish and oat linen' },
-      { id: 'earrings-ivory-sun-loop-fringe', name: 'Ivory Sun Loop Fringe Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/ivory-sun-loop-fringe.webp', alt: 'Large black, yellow, white and red floral earrings with looped bead fringe', matsShort: 'glass beads, layered flower and loop fringe', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions in the line sheet', weight: 'In the line sheet', colours: 'Black / yellow / white / red', lead: 'Confirmed per order', care: 'Keep dry', story: 'Yellow details brighten black petals around a white centre, while five long white-and-red loops finish with black tips.', img: 'Ivory Sun Loop Fringe Earrings on an ivory ceramic dish and oat linen' },
-      { id: 'cuff', archived: true, name: 'Mahulu Woven Rattan Cuff Set', cat: 'Bracelets', motif: 'Borders', src: '/images/products/mahulu-rattan-cuffs-v2.jpg', bleed: true, alt: 'Five woven rattan cuffs in natural straw, black and magenta arranged on warm ivory limestone', matsShort: 'finely woven rattan, five cuffs', materials: 'Natural and dyed rattan with internal support', dims: 'Five cuffs; dimensions in the line sheet', weight: 'Confirmed in the line sheet', colours: 'Natural rattan / black / magenta', lead: 'Confirmed per order', care: 'Keep dry; wipe gently with a soft cloth', story: 'Five broad rattan cuffs show tight geometric weaving in natural straw, black and one magenta accent. The open circular forms are light, structured and designed to be worn singly or stacked.', img: 'Five woven rattan cuffs resting on warm ivory limestone and oat linen' },
+      { id: 'earrings-golden-sun-hoop', name: 'Golden Sun Hoop Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/golden-sun-hoop.webp', alt: 'Yellow hoop earrings with yellow and red beaded flowers on an ivory ceramic dish', matsShort: 'glass beads, floral rosette in a yellow ring', materials: 'Glass seed beads, cotton thread, moulded ring, steel ear wires', dims: 'Dimensions with your enquiry', weight: 'In the wholesale enquiry', colours: 'Yellow / red / black', lead: 'Confirmed per order', care: 'Keep dry', story: 'A warm yellow flower with a red centre floats inside each smooth yellow ring, finished with tiny black accents and a red bead beneath the hook.', img: 'Golden Sun Hoop Earrings on an ivory ceramic dish and oat linen' },
+      { id: 'earrings-blush-gold-hoop', name: 'Blush Gold Hoop Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/blush-gold-hoop.webp', alt: 'Yellow hoop earrings with pink and gold beaded flowers on an ivory ceramic dish', matsShort: 'glass beads, floral rosette in a yellow ring', materials: 'Glass seed beads, cotton thread, moulded ring, steel ear wires', dims: 'Dimensions with your enquiry', weight: 'In the wholesale enquiry', colours: 'Pink / gold / yellow / black / red', lead: 'Confirmed per order', care: 'Keep dry', story: 'Blush-pink petals surround warm gold beadwork inside a yellow ring, picked out with fine black details and a red bead at the top.', img: 'Blush Gold Hoop Earrings on an ivory ceramic dish and oat linen' },
+      { id: 'earrings-ruby-white-hoop', name: 'Ruby White Hoop Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/ruby-white-hoop.webp', alt: 'Yellow hoop earrings with red, white and black beaded flowers on an ivory ceramic dish', matsShort: 'glass beads, floral rosette in a yellow ring', materials: 'Glass seed beads, cotton thread, moulded ring, steel ear wires', dims: 'Dimensions with your enquiry', weight: 'In the wholesale enquiry', colours: 'Red / white / black / yellow', lead: 'Confirmed per order', care: 'Keep dry', story: 'A red flower crossed by white petal bands and small black accents sits within a yellow ring, with a white bead beneath each hook.', img: 'Ruby White Hoop Earrings on an ivory ceramic dish and oat linen' },
+      { id: 'earrings-scarlet-sun-hoop', name: 'Scarlet Sun Hoop Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/scarlet-sun-hoop.webp', alt: 'Yellow hoop earrings with red and yellow beaded flowers outlined in black', matsShort: 'glass beads, floral rosette in a yellow ring', materials: 'Glass seed beads, cotton thread, moulded ring, steel ear wires', dims: 'Dimensions with your enquiry', weight: 'In the wholesale enquiry', colours: 'Red / yellow / black', lead: 'Confirmed per order', care: 'Keep dry', story: 'Red inner petals meet a yellow outer flower edged in black, held inside a yellow ring and topped by a polished red bead.', img: 'Scarlet Sun Hoop Earrings on an ivory ceramic dish and oat linen' },
+      { id: 'earrings-sky-blossom-hoop', name: 'Sky Blossom Hoop Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/sky-blossom-hoop.webp', alt: 'Yellow hoop earrings with blue and pink beaded flowers on an ivory ceramic dish', matsShort: 'glass beads, floral rosette in a yellow ring', materials: 'Glass seed beads, cotton thread, moulded ring, steel ear wires', dims: 'Dimensions with your enquiry', weight: 'In the wholesale enquiry', colours: 'Blue / pink / black / yellow / white', lead: 'Confirmed per order', care: 'Keep dry', story: 'Blue and pink petals radiate from a dark centre inside a yellow ring, finished with pale blue edging and a white bead beneath each hook.', img: 'Sky Blossom Hoop Earrings on an ivory ceramic dish and oat linen' },
+      { id: 'earrings-ember-bloom-hoop', name: 'Ember Bloom Hoop Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/ember-bloom-hoop.webp', alt: 'Yellow hoop earrings with red and yellow floral beadwork on an ivory ceramic dish', matsShort: 'glass beads, floral rosette in a yellow ring', materials: 'Glass seed beads, cotton thread, moulded ring, steel ear wires', dims: 'Dimensions with your enquiry', weight: 'In the wholesale enquiry', colours: 'Red / yellow / black', lead: 'Confirmed per order', care: 'Keep dry', story: 'A saturated red flower surrounds a smaller yellow star inside the yellow ring, anchored by a dark centre and a red bead at the hook.', img: 'Ember Bloom Hoop Earrings on an ivory ceramic dish and oat linen' },
+      { id: 'earrings-ruby-white-flower', name: 'Ruby White Flower Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/ruby-white-flower.webp', alt: 'Small red flower earrings outlined in white on an ivory ceramic dish', matsShort: 'glass beads, five-petal flower', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions with your enquiry', weight: 'In the wholesale enquiry', colours: 'Red / white', lead: 'Confirmed per order', care: 'Keep dry', story: 'Five rounded red petals are traced bead by bead in white around an open centre, creating a light floral pair with no fringe.', img: 'Ruby White Flower Earrings on an ivory ceramic dish and oat linen' },
+      { id: 'earrings-golden-black-flower', name: 'Golden Black Flower Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/golden-black-flower.webp', alt: 'Small yellow flower earrings outlined in black on an ivory ceramic dish', matsShort: 'glass beads, five-petal flower', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions with your enquiry', weight: 'In the wholesale enquiry', colours: 'Yellow / black', lead: 'Confirmed per order', care: 'Keep dry', story: 'Five bright yellow petals are outlined in black around an open dark centre, giving this compact pair a strong graphic edge.', img: 'Golden Black Flower Earrings on an ivory ceramic dish and oat linen' },
+      { id: 'earrings-green-white-flower', name: 'Green White Flower Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/green-white-flower.webp', alt: 'Green flower earrings outlined in white on an ivory ceramic dish', matsShort: 'glass beads, five-petal flower', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions with your enquiry', weight: 'In the wholesale enquiry', colours: 'Green / white', lead: 'Confirmed per order', care: 'Keep dry', story: 'Fresh green petals are held within a crisp white bead outline and gathered around an open white centre.', img: 'Green White Flower Earrings on an ivory ceramic dish and oat linen' },
+      { id: 'earrings-scarlet-gold-flower', name: 'Scarlet Gold Flower Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/scarlet-gold-flower.webp', alt: 'Red flower earrings outlined in yellow on an ivory ceramic dish', matsShort: 'glass beads, five-petal flower', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions with your enquiry', weight: 'In the wholesale enquiry', colours: 'Red / yellow', lead: 'Confirmed per order', care: 'Keep dry', story: 'Red petals are outlined in yellow around a bright yellow centre, creating a warm two-colour flower with a clean silhouette.', img: 'Scarlet Gold Flower Earrings on an ivory ceramic dish and oat linen' },
+      { id: 'earrings-pink-white-flower', name: 'Pink White Flower Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/pink-white-flower.webp', alt: 'Pink flower earrings outlined in white on an ivory ceramic dish', matsShort: 'glass beads, six-petal flower', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions with your enquiry', weight: 'In the wholesale enquiry', colours: 'Pink / white', lead: 'Confirmed per order', care: 'Keep dry', story: 'Six pink petals with white outlines turn around an open white centre, making this the softest floral colourway in the line.', img: 'Pink White Flower Earrings on an ivory ceramic dish and oat linen' },
+      { id: 'earrings-golden-loop-fringe', name: 'Golden Loop Fringe Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/golden-loop-fringe.webp', alt: 'Large yellow, black and red floral earrings with looped bead fringe', matsShort: 'glass beads, layered flower and loop fringe', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions with your enquiry', weight: 'In the wholesale enquiry', colours: 'Yellow / black / red', lead: 'Confirmed per order', care: 'Keep dry', story: 'A layered yellow-and-black flower carries red accents into five long open loops, giving the pair movement without a loose strand fringe.', img: 'Golden Loop Fringe Earrings on an ivory ceramic dish and oat linen' },
+      { id: 'earrings-scarlet-loop-fringe', name: 'Scarlet Loop Fringe Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/scarlet-loop-fringe.webp', alt: 'Large red, black and yellow floral earrings with looped bead fringe', matsShort: 'glass beads, layered flower and loop fringe', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions with your enquiry', weight: 'In the wholesale enquiry', colours: 'Red / black / yellow', lead: 'Confirmed per order', care: 'Keep dry', story: 'Red petals with small yellow centres radiate from an open dark centre, then fall into long red-and-black loops tipped in yellow.', img: 'Scarlet Loop Fringe Earrings on an ivory ceramic dish and oat linen' },
+      { id: 'earrings-midnight-gold-loop-fringe', name: 'Midnight Gold Loop Fringe Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/midnight-gold-loop-fringe.webp', alt: 'Large black, yellow and red floral earrings with looped bead fringe', matsShort: 'glass beads, layered flower and loop fringe', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions with your enquiry', weight: 'In the wholesale enquiry', colours: 'Black / yellow / red', lead: 'Confirmed per order', care: 'Keep dry', story: 'Black petals carry small yellow centres and red structural accents, above five long black-and-yellow loops finished in red.', img: 'Midnight Gold Loop Fringe Earrings on an ivory ceramic dish and oat linen' },
+      { id: 'earrings-ivory-scarlet-loop-fringe', name: 'Ivory Scarlet Loop Fringe Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/ivory-scarlet-loop-fringe.webp', alt: 'Large white, red and black floral earrings with looped bead fringe', matsShort: 'glass beads, layered flower and loop fringe', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions with your enquiry', weight: 'In the wholesale enquiry', colours: 'White / red / black', lead: 'Confirmed per order', care: 'Keep dry', story: 'White-outlined petals carry small red centres around a dark core, followed by five open loops banded in red, black and white.', img: 'Ivory Scarlet Loop Fringe Earrings on an ivory ceramic dish and oat linen' },
+      { id: 'earrings-ivory-sun-loop-fringe', name: 'Ivory Sun Loop Fringe Earrings', cat: 'Earrings', bleed: true, src: '/images/earrings-2026/ivory-sun-loop-fringe.webp', alt: 'Large black, yellow, white and red floral earrings with looped bead fringe', matsShort: 'glass beads, layered flower and loop fringe', materials: 'Glass seed beads, cotton thread, steel ear wires', dims: 'Dimensions with your enquiry', weight: 'In the wholesale enquiry', colours: 'Black / yellow / white / red', lead: 'Confirmed per order', care: 'Keep dry', story: 'Yellow details brighten black petals around a white centre, while five long white-and-red loops finish with black tips.', img: 'Ivory Sun Loop Fringe Earrings on an ivory ceramic dish and oat linen' },
+      { id: 'cuff', archived: true, name: 'Mahulu Woven Rattan Cuff Set', cat: 'Bracelets', motif: 'Borders', src: '/images/products/mahulu-rattan-cuffs-v2.jpg', bleed: true, alt: 'Five woven rattan cuffs in natural straw, black and magenta arranged on warm ivory limestone', matsShort: 'finely woven rattan, five cuffs', materials: 'Natural and dyed rattan with internal support', dims: 'Five cuffs; dimensions with your enquiry', weight: 'Confirmed with your enquiry', colours: 'Natural rattan / black / magenta', lead: 'Confirmed per order', care: 'Keep dry; wipe gently with a soft cloth', story: 'Five broad rattan cuffs show tight geometric weaving in natural straw, black and one magenta accent. The open circular forms are light, structured and designed to be worn singly or stacked.', img: 'Five woven rattan cuffs resting on warm ivory limestone and oat linen' },
       // Four owner-supplied bracelet references, each sold as a random wholesale set.
       // The photographs are representative; exact motifs and colours vary per set.
-      { id: 'bracelet-set-tricolour-braided', name: 'Tricolour Braided Bracelet Set', cat: 'Bracelets', src: '/images/bracelets-2026/tricolour-braided-bracelet-set.webp', bleed: true, alt: 'Representative red, yellow and black braided bead bracelet with an adjustable black cord', matsShort: 'set of 3 · random motifs & colours', materials: 'Glass seed beads, cotton thread and knotted adjustable cord', dims: '1 set = 3 pieces; individual dimensions in the line sheet', weight: 'Set weight in the line sheet', colours: 'Random assorted motifs and colours', lead: 'Confirmed per order', care: 'Keep dry; wipe gently', story: 'Intertwined red, yellow and black bead strands form a soft circular braid with a black knotted sliding closure. Each wholesale set contains 3 pieces. Motifs and colours are packed at random, so the photographed bracelet is representative rather than a guaranteed combination.', img: 'Tricolour Braided Bracelet Set on warm ivory limestone and oat linen' },
-      { id: 'bracelet-set-floral-panel', name: 'Floral Panel Bracelet Set', cat: 'Bracelets', src: '/images/bracelets-2026/floral-panel-bracelet-set.webp', bleed: true, alt: 'Representative red, yellow, black and white floral panel bead bracelet with adjustable black cords', matsShort: 'set of 3 · random motifs & colours', materials: 'Glass seed beads, cotton thread and adjustable cord', dims: '1 set = 3 pieces; individual dimensions in the line sheet', weight: 'Set weight in the line sheet', colours: 'Random assorted motifs and colours', lead: 'Confirmed per order', care: 'Keep dry; wipe gently', story: 'Two rows of black-outlined flowers with white centres sit within red and yellow beadwork, finished with long black adjustable cords. Each wholesale set contains 3 pieces. Motifs and colours are packed at random, so the photographed bracelet is representative rather than a guaranteed combination.', img: 'Floral Panel Bracelet Set on warm ivory limestone and oat linen' },
-      { id: 'bracelet-set-lattice-button', name: 'Lattice Button Bracelet Set', cat: 'Bracelets', src: '/images/bracelets-2026/lattice-button-bracelet-set.webp', bleed: true, alt: 'Representative red, yellow and black lattice bead bracelet with a round black button closure', matsShort: 'set of 3 · random motifs & colours', materials: 'Glass seed beads, cotton thread and button-and-loop closure', dims: '1 set = 3 pieces; individual dimensions in the line sheet', weight: 'Set weight in the line sheet', colours: 'Random assorted motifs and colours', lead: 'Confirmed per order', care: 'Keep dry; wipe gently', story: 'Red diamond centres repeat through a yellow-and-black lattice, finished with twin end straps and a round black button. Each wholesale set contains 3 pieces. Motifs and colours are packed at random, so the photographed bracelet is representative rather than a guaranteed combination.', img: 'Lattice Button Bracelet Set on warm ivory limestone and oat linen' },
-      { id: 'bracelet-set-pastel-cord', name: 'Pastel Cord Bracelet Set', cat: 'Bracelets', src: '/images/bracelets-2026/pastel-cord-bracelet-set.webp', bleed: true, alt: 'Representative assortment of five slim pastel cord bracelets with rectangular beaded panels', matsShort: 'set of 3 · random motifs & colours', materials: 'Glass seed beads, waxed cord, gold-tone metal accents and adjustable knots', dims: '1 set = 3 pieces; individual dimensions in the line sheet', weight: 'Set weight in the line sheet', colours: 'Random assorted motifs and colours', lead: 'Confirmed per order', care: 'Keep dry; wipe gently', story: 'Slim navy, purple, turquoise, tan and fuchsia cords frame pastel rectangular bead panels with small gold-tone accents. Each wholesale set contains 3 pieces. Motifs and colours are packed at random, so the photographed arrangement is representative rather than a guaranteed combination.', img: 'Pastel Cord Bracelet Set arranged on warm ivory limestone and oat linen' },
+      { id: 'bracelet-set-tricolour-braided', name: 'Tricolour Braided Bracelet Set', cat: 'Bracelets', src: '/images/bracelets-2026/tricolour-braided-bracelet-set.webp', bleed: true, alt: 'Representative red, yellow and black braided bead bracelet with an adjustable black cord', matsShort: 'set of 3 · random motifs & colours', materials: 'Glass seed beads, cotton thread and knotted adjustable cord', dims: '1 set = 3 pieces; individual dimensions with your enquiry', weight: 'Set weight with your enquiry', colours: 'Random assorted motifs and colours', lead: 'Confirmed per order', care: 'Keep dry; wipe gently', story: 'Intertwined red, yellow and black bead strands form a soft circular braid with a black knotted sliding closure. Each wholesale set contains 3 pieces. Motifs and colours are packed at random, so the photographed bracelet is representative rather than a guaranteed combination.', img: 'Tricolour Braided Bracelet Set on warm ivory limestone and oat linen' },
+      { id: 'bracelet-set-floral-panel', name: 'Floral Panel Bracelet Set', cat: 'Bracelets', src: '/images/bracelets-2026/floral-panel-bracelet-set.webp', bleed: true, alt: 'Representative red, yellow, black and white floral panel bead bracelet with adjustable black cords', matsShort: 'set of 3 · random motifs & colours', materials: 'Glass seed beads, cotton thread and adjustable cord', dims: '1 set = 3 pieces; individual dimensions with your enquiry', weight: 'Set weight with your enquiry', colours: 'Random assorted motifs and colours', lead: 'Confirmed per order', care: 'Keep dry; wipe gently', story: 'Two rows of black-outlined flowers with white centres sit within red and yellow beadwork, finished with long black adjustable cords. Each wholesale set contains 3 pieces. Motifs and colours are packed at random, so the photographed bracelet is representative rather than a guaranteed combination.', img: 'Floral Panel Bracelet Set on warm ivory limestone and oat linen' },
+      { id: 'bracelet-set-lattice-button', name: 'Lattice Button Bracelet Set', cat: 'Bracelets', src: '/images/bracelets-2026/lattice-button-bracelet-set.webp', bleed: true, alt: 'Representative red, yellow and black lattice bead bracelet with a round black button closure', matsShort: 'set of 3 · random motifs & colours', materials: 'Glass seed beads, cotton thread and button-and-loop closure', dims: '1 set = 3 pieces; individual dimensions with your enquiry', weight: 'Set weight with your enquiry', colours: 'Random assorted motifs and colours', lead: 'Confirmed per order', care: 'Keep dry; wipe gently', story: 'Red diamond centres repeat through a yellow-and-black lattice, finished with twin end straps and a round black button. Each wholesale set contains 3 pieces. Motifs and colours are packed at random, so the photographed bracelet is representative rather than a guaranteed combination.', img: 'Lattice Button Bracelet Set on warm ivory limestone and oat linen' },
+      { id: 'bracelet-set-pastel-cord', name: 'Pastel Cord Bracelet Set', cat: 'Bracelets', src: '/images/bracelets-2026/pastel-cord-bracelet-set.webp', bleed: true, alt: 'Representative assortment of five slim pastel cord bracelets with rectangular beaded panels', matsShort: 'set of 3 · random motifs & colours', materials: 'Glass seed beads, waxed cord, gold-tone metal accents and adjustable knots', dims: '1 set = 3 pieces; individual dimensions with your enquiry', weight: 'Set weight with your enquiry', colours: 'Random assorted motifs and colours', lead: 'Confirmed per order', care: 'Keep dry; wipe gently', story: 'Slim navy, purple, turquoise, tan and fuchsia cords frame pastel rectangular bead panels with small gold-tone accents. Each wholesale set contains 3 pieces. Motifs and colours are packed at random, so the photographed arrangement is representative rather than a guaranteed combination.', img: 'Pastel Cord Bracelet Set arranged on warm ivory limestone and oat linen' },
       // Four owner-supplied keychain arrangements, each sold as a random wholesale set.
       // Exact cultural motif meanings are not assigned without maker confirmation.
-      { id: 'keychain-set-floral-loop', name: 'Floral Loop Keychain Set', cat: 'Keychains', src: '/images/keychains-2026/floral-loop-keychain-set.webp', bleed: true, alt: 'Representative radial assortment of colourful flower-shaped loop beaded keychains on warm ivory stone', matsShort: 'set of 10 · random motifs & colours', materials: 'Glass seed beads, cotton thread, silver-tone metal chains and split rings', dims: '1 set = 10 pieces; individual dimensions in the line sheet', weight: 'Set weight in the line sheet', colours: 'Random assorted motifs and colours', lead: 'Confirmed per order', care: 'Keep dry; wipe gently', story: 'Flower-shaped centres open into playful looped beadwork around each metal key ring. Each wholesale set contains 10 pieces. Motifs and colours are packed at random, so the photographed arrangement is representative rather than a guaranteed combination.', img: 'Floral Loop Keychain Set in a radial flat lay on warm ivory limestone and oat linen' },
-      { id: 'keychain-set-geometric-loop', name: 'Geometric Loop Keychain Set', cat: 'Keychains', src: '/images/keychains-2026/geometric-loop-keychain-set.webp', bleed: true, alt: 'Representative radial assortment of colourful geometric loop beaded keychains on warm ivory stone', matsShort: 'set of 10 · random motifs & colours', materials: 'Glass seed beads, cotton thread, silver-tone metal chains and split rings', dims: '1 set = 10 pieces; individual dimensions in the line sheet', weight: 'Set weight in the line sheet', colours: 'Random assorted motifs and colours', lead: 'Confirmed per order', care: 'Keep dry; wipe gently', story: 'Square, diamond and rounded bead centres are finished with long looped edges in bright contrasting colours. Each wholesale set contains 10 pieces. Motifs and colours are packed at random, so the photographed arrangement is representative rather than a guaranteed combination.', img: 'Geometric Loop Keychain Set in a radial flat lay on warm ivory limestone and oat linen' },
-      { id: 'keychain-set-triangular-tassel', name: 'Triangular Tassel Keychain Set', cat: 'Keychains', src: '/images/keychains-2026/triangular-tassel-keychain-set-v2.webp', bleed: true, alt: 'Representative radial assortment of colourful triangular tassel beaded keychains on warm ivory stone', matsShort: 'set of 10 · random motifs & colours', materials: 'Glass seed beads, cotton thread, silver-tone metal chains and split rings', dims: '1 set = 10 pieces; individual dimensions in the line sheet', weight: 'Set weight in the line sheet', colours: 'Random assorted motifs and colours', lead: 'Confirmed per order', care: 'Keep dry; wipe gently', story: 'Tapered triangular bead panels end in lively straight tassels, with graphic stripes, diamonds and colour blocks across the assortment. Each wholesale set contains 10 pieces. Motifs and colours are packed at random, so the photographed arrangement is representative rather than a guaranteed combination.', img: 'Triangular Tassel Keychain Set in a spacious radial flat lay on warm ivory limestone and oat linen' },
-      { id: 'keychain-set-beaded-strand', name: 'Beaded Strand Keychain Set', cat: 'Keychains', src: '/images/keychains-2026/beaded-strand-keychain-set.webp', bleed: true, alt: 'Representative radial assortment of ten colourful beaded strand keychains with round accent beads', matsShort: 'set of 10 · random motifs & colours', materials: 'Glass seed beads, cotton thread, round accent beads, silver-tone metal chains and split rings', dims: '1 set = 10 pieces; individual dimensions in the line sheet', weight: 'Set weight in the line sheet', colours: 'Random assorted motifs and colours', lead: 'Confirmed per order', care: 'Keep dry; wipe gently', story: 'Slim multicolour bead strands fall from polished round accent beads, creating a light tassel form around each key ring. Each wholesale set contains 10 pieces. Motifs and colours are packed at random, so the photographed arrangement is representative rather than a guaranteed combination.', img: 'Beaded Strand Keychain Set in a radial flat lay on warm ivory limestone and oat linen' },
+      { id: 'keychain-set-floral-loop', name: 'Floral Loop Keychain Set', cat: 'Keychains', src: '/images/keychains-2026/floral-loop-keychain-set.webp', bleed: true, alt: 'Representative radial assortment of colourful flower-shaped loop beaded keychains on warm ivory stone', matsShort: 'set of 10 · random motifs & colours', materials: 'Glass seed beads, cotton thread, silver-tone metal chains and split rings', dims: '1 set = 10 pieces; individual dimensions with your enquiry', weight: 'Set weight with your enquiry', colours: 'Random assorted motifs and colours', lead: 'Confirmed per order', care: 'Keep dry; wipe gently', story: 'Flower-shaped centres open into playful looped beadwork around each metal key ring. Each wholesale set contains 10 pieces. Motifs and colours are packed at random, so the photographed arrangement is representative rather than a guaranteed combination.', img: 'Floral Loop Keychain Set in a radial flat lay on warm ivory limestone and oat linen' },
+      { id: 'keychain-set-geometric-loop', name: 'Geometric Loop Keychain Set', cat: 'Keychains', src: '/images/keychains-2026/geometric-loop-keychain-set.webp', bleed: true, alt: 'Representative radial assortment of colourful geometric loop beaded keychains on warm ivory stone', matsShort: 'set of 10 · random motifs & colours', materials: 'Glass seed beads, cotton thread, silver-tone metal chains and split rings', dims: '1 set = 10 pieces; individual dimensions with your enquiry', weight: 'Set weight with your enquiry', colours: 'Random assorted motifs and colours', lead: 'Confirmed per order', care: 'Keep dry; wipe gently', story: 'Square, diamond and rounded bead centres are finished with long looped edges in bright contrasting colours. Each wholesale set contains 10 pieces. Motifs and colours are packed at random, so the photographed arrangement is representative rather than a guaranteed combination.', img: 'Geometric Loop Keychain Set in a radial flat lay on warm ivory limestone and oat linen' },
+      { id: 'keychain-set-triangular-tassel', name: 'Triangular Tassel Keychain Set', cat: 'Keychains', src: '/images/keychains-2026/triangular-tassel-keychain-set-v2.webp', bleed: true, alt: 'Representative radial assortment of colourful triangular tassel beaded keychains on warm ivory stone', matsShort: 'set of 10 · random motifs & colours', materials: 'Glass seed beads, cotton thread, silver-tone metal chains and split rings', dims: '1 set = 10 pieces; individual dimensions with your enquiry', weight: 'Set weight with your enquiry', colours: 'Random assorted motifs and colours', lead: 'Confirmed per order', care: 'Keep dry; wipe gently', story: 'Tapered triangular bead panels end in lively straight tassels, with graphic stripes, diamonds and colour blocks across the assortment. Each wholesale set contains 10 pieces. Motifs and colours are packed at random, so the photographed arrangement is representative rather than a guaranteed combination.', img: 'Triangular Tassel Keychain Set in a spacious radial flat lay on warm ivory limestone and oat linen' },
+      { id: 'keychain-set-beaded-strand', name: 'Beaded Strand Keychain Set', cat: 'Keychains', src: '/images/keychains-2026/beaded-strand-keychain-set.webp', bleed: true, alt: 'Representative radial assortment of ten colourful beaded strand keychains with round accent beads', matsShort: 'set of 10 · random motifs & colours', materials: 'Glass seed beads, cotton thread, round accent beads, silver-tone metal chains and split rings', dims: '1 set = 10 pieces; individual dimensions with your enquiry', weight: 'Set weight with your enquiry', colours: 'Random assorted motifs and colours', lead: 'Confirmed per order', care: 'Keep dry; wipe gently', story: 'Slim multicolour bead strands fall from polished round accent beads, creating a light tassel form around each key ring. Each wholesale set contains 10 pieces. Motifs and colours are packed at random, so the photographed arrangement is representative rather than a guaranteed combination.', img: 'Beaded Strand Keychain Set in a radial flat lay on warm ivory limestone and oat linen' },
       // REAL PRODUCTS from Catalog PT. AWT Euro (2024). Dims and HS codes are the catalog's;
       // per the catalog, motifs and colours vary piece to piece because each is handcrafted.
-      { id: 'amira', name: 'Amira Tote', cat: 'Bags', motif: "Aso'", src: '/images/bags/amira-styled.jpg', bleed: true, hs: '4202 29 00', matsShort: 'full beadwork, twin handles', materials: 'Glass seed beads, hand-strung; twin beaded rope handles; zip closure', dims: 'L 32 × W 9 × H 27 cm', weight: 'In the line sheet', colours: 'Black / white / lime / magenta / yellow shown; handcrafted variations available', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'The largest bag in the line, beaded edge to edge on a black ground. The piece shown pairs mirrored white figures and lime forms with yellow curls and a strong magenta centre line, finished with twin black beaded handles and a zip top.', img: 'Amira beaded tote on limestone in soft morning light' },
-      { id: 'zania', name: 'Zania Handbag', cat: 'Bags', motif: "Aso'", src: '/images/bags/zania-styled.jpg', bleed: true, hs: '4202 29 00', matsShort: 'full beadwork, arch handle', materials: 'Glass seed beads, hand-strung; single beaded arch handle; zip closure', dims: 'L 27 × W 9 × H 18 cm', weight: 'In the line sheet', colours: 'Black / turquoise / white / red shown; handcrafted variations available', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'A structured day bag with turquoise and white curls sweeping in interlocking rows across a black field, punctuated by tiny red accents. One tall black beaded handle and a zip top keep the silhouette clean.', img: 'Zania beaded handbag on travertine in warm light' },
-      { id: 'lisha', name: 'Lisha Crossbody', cat: 'Bags', motif: 'Borders', src: '/images/bags/lisha-crossbody-natural.png', bleed: true, alt: 'Lisha black-and-white beaded crossbody with its full long black strap', hs: '4202 29 00', matsShort: 'beadwork, 55 cm beaded strap', materials: 'Glass seed beads, hand-strung; beaded shoulder strap (≈ 55 cm drop)', dims: 'L 18 × W 9 × H 21 cm', weight: 'In the line sheet', colours: 'Black / white shown; handcrafted variations available', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'A monochrome crossbody centred on a large white diamond, with curling bead lines mirrored across the black field. Its long black-and-white beaded strap carries the same alternating rhythm as the bag.', img: 'Lisha black-and-white beaded crossbody hanging on warm plaster' },
-      { id: 'ratna', name: 'Ratna Wristlet', cat: 'Bags', motif: 'Borders', src: '/images/bags/ratna-styled.jpg', bleed: true, hs: '4202 29 00', matsShort: 'flat beadwork, wrist loop', materials: 'Glass seed beads, hand-strung; beaded wrist loop; zip closure', dims: 'L 27 × W 3 × H 15 cm', weight: 'In the line sheet', colours: 'Black / white / turquoise / orange shown; handcrafted variations available', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'A slim zip wristlet sized for a phone and cards, with white scroll borders picked out in turquoise and orange on a black ground. The blue-and-black beaded loop makes it easy to carry alone.', img: 'Ratna beaded wristlet on natural linen' },
-      { id: 'gitta', name: 'Gitta Mini Handbag', cat: 'Bags', motif: 'Borders', src: '/images/bags/gitta-styled.jpg', bleed: true, hs: '4202 29 00', matsShort: 'full beadwork, arch handle', materials: 'Glass seed beads, hand-strung; single beaded arch handle; zip closure', dims: 'L 17 × W 7 × H 10 cm', weight: 'In the line sheet', colours: 'Black / yellow / white / red / pink shown; handcrafted variations available', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'A palm-sized handbag with two red-centred diamonds held inside bright yellow scrollwork. Small white-and-pink flowers finish the border beneath its single black beaded handle.', img: 'Gitta mini beaded handbag on a limestone plinth' },
-      { id: 'defni', name: 'Defni Zip Pouch', cat: 'Bags', motif: 'Borders', src: '/images/bags/defni-styled.jpg', bleed: true, hs: '4202 29 00', matsShort: 'flat beadwork, zip', materials: 'Glass seed beads, hand-strung; zip closure', dims: 'L 17 × W 2 × H 10 cm', weight: 'In the line sheet', colours: 'Pink / turquoise / red · white / black · green / white · red / white / black shown', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'The largest flat pouch is shown in four colourways, each built around a diamond-and-scroll field and finished with a black zip. Sized for small daily essentials without the bulk of a bag.', img: 'Four Defni beaded zip pouches arranged on natural linen' },
-      { id: 'viona', name: 'Viona Zip Pouch', cat: 'Bags', motif: 'Borders', src: '/images/bags/viona-styled.jpg', bleed: true, hs: '4202 29 00', matsShort: 'flat beadwork, zip', materials: 'Glass seed beads, hand-strung; zip closure', dims: 'L 14 × W 2 × H 9 cm', weight: 'In the line sheet', colours: 'Nine assorted multicolour designs shown; each assortment varies', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'Nine mid-size pouches show how the same diamond-and-scroll structure changes with each beader’s palette. The flat zip shape is sized for coins, cards and earbuds.', img: 'Nine Viona beaded zip pouches in an editorial grid' },
-      { id: 'halda', name: 'Halda Zip Pouch', cat: 'Bags', motif: 'Borders', src: '/images/bags/halda-styled.jpg', bleed: true, hs: '4202 29 00', matsShort: 'flat beadwork, zip', materials: 'Glass seed beads, hand-strung; zip closure and small beaded loop', dims: 'L 11 × W 2 × H 8 cm', weight: 'In the line sheet', colours: 'Eight assorted multicolour designs shown; each assortment varies', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'The smallest pouch in the bag line is shown as an eight-piece assortment of scroll-and-diamond patterns. Each compact zip pouch carries coins and cards and finishes with a small beaded loop.', img: 'Eight Halda beaded coin pouches on a woven natural-fibre mat' },
-      { id: 'kanaya', name: 'Kanaya Rattan Crossbody', cat: 'Bags', motif: 'Borders', src: '/images/bags/kanaya-styled-v2.jpg', bleed: true, hs: '4602 12 90', matsShort: 'woven rattan, shoulder strap', materials: 'Hand-woven natural rattan with black trim; adjustable shoulder strap; metal hardware', dims: 'L 23 × W 10 × H 16 cm', weight: 'In the line sheet', colours: 'Natural rattan / black', lead: 'Confirmed per order', care: 'Wipe dry; keep out of rain', story: 'The woven piece in the line: a structured trapezoid crossbody with central diamonds and stepped borders worked directly into the natural-and-black rattan face, finished with black trim and a long adjustable strap.', img: 'Kanaya woven rattan crossbody hanging naturally from a light-teak peg' },
+      { id: 'amira', name: 'Amira Tote', cat: 'Bags', motif: "Aso'", src: '/images/bags/amira-styled.jpg', bleed: true, hs: '4202 29 00', matsShort: 'full beadwork, twin handles', materials: 'Glass seed beads, hand-strung; twin beaded rope handles; zip closure', dims: 'L 32 × W 9 × H 27 cm', weight: 'In the wholesale enquiry', colours: 'Black / white / lime / magenta / yellow shown; handcrafted variations available', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'The largest bag in the line, beaded edge to edge on a black ground. The piece shown pairs mirrored white figures and lime forms with yellow curls and a strong magenta centre line, finished with twin black beaded handles and a zip top.', img: 'Amira beaded tote on limestone in soft morning light' },
+      { id: 'zania', name: 'Zania Handbag', cat: 'Bags', motif: "Aso'", src: '/images/bags/zania-styled.jpg', bleed: true, hs: '4202 29 00', matsShort: 'full beadwork, arch handle', materials: 'Glass seed beads, hand-strung; single beaded arch handle; zip closure', dims: 'L 27 × W 9 × H 18 cm', weight: 'In the wholesale enquiry', colours: 'Black / turquoise / white / red shown; handcrafted variations available', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'A structured day bag with turquoise and white curls sweeping in interlocking rows across a black field, punctuated by tiny red accents. One tall black beaded handle and a zip top keep the silhouette clean.', img: 'Zania beaded handbag on travertine in warm light' },
+      { id: 'lisha', name: 'Lisha Crossbody', cat: 'Bags', motif: 'Borders', src: '/images/bags/lisha-crossbody-natural.png', bleed: true, alt: 'Lisha black-and-white beaded crossbody with its full long black strap', hs: '4202 29 00', matsShort: 'beadwork, 55 cm beaded strap', materials: 'Glass seed beads, hand-strung; beaded shoulder strap (≈ 55 cm drop)', dims: 'L 18 × W 9 × H 21 cm', weight: 'In the wholesale enquiry', colours: 'Black / white shown; handcrafted variations available', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'A monochrome crossbody centred on a large white diamond, with curling bead lines mirrored across the black field. Its long black-and-white beaded strap carries the same alternating rhythm as the bag.', img: 'Lisha black-and-white beaded crossbody hanging on warm plaster' },
+      { id: 'ratna', name: 'Ratna Wristlet', cat: 'Bags', motif: 'Borders', src: '/images/bags/ratna-styled.jpg', bleed: true, hs: '4202 29 00', matsShort: 'flat beadwork, wrist loop', materials: 'Glass seed beads, hand-strung; beaded wrist loop; zip closure', dims: 'L 27 × W 3 × H 15 cm', weight: 'In the wholesale enquiry', colours: 'Black / white / turquoise / orange shown; handcrafted variations available', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'A slim zip wristlet sized for a phone and cards, with white scroll borders picked out in turquoise and orange on a black ground. The blue-and-black beaded loop makes it easy to carry alone.', img: 'Ratna beaded wristlet on natural linen' },
+      { id: 'gitta', name: 'Gitta Mini Handbag', cat: 'Bags', motif: 'Borders', src: '/images/bags/gitta-styled.jpg', bleed: true, hs: '4202 29 00', matsShort: 'full beadwork, arch handle', materials: 'Glass seed beads, hand-strung; single beaded arch handle; zip closure', dims: 'L 17 × W 7 × H 10 cm', weight: 'In the wholesale enquiry', colours: 'Black / yellow / white / red / pink shown; handcrafted variations available', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'A palm-sized handbag with two red-centred diamonds held inside bright yellow scrollwork. Small white-and-pink flowers finish the border beneath its single black beaded handle.', img: 'Gitta mini beaded handbag on a limestone plinth' },
+      { id: 'defni', name: 'Defni Zip Pouch', cat: 'Bags', motif: 'Borders', src: '/images/bags/defni-styled.jpg', bleed: true, hs: '4202 29 00', matsShort: 'flat beadwork, zip', materials: 'Glass seed beads, hand-strung; zip closure', dims: 'L 17 × W 2 × H 10 cm', weight: 'In the wholesale enquiry', colours: 'Pink / turquoise / red · white / black · green / white · red / white / black shown', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'The largest flat pouch is shown in four colourways, each built around a diamond-and-scroll field and finished with a black zip. Sized for small daily essentials without the bulk of a bag.', img: 'Four Defni beaded zip pouches arranged on natural linen' },
+      { id: 'viona', name: 'Viona Zip Pouch', cat: 'Bags', motif: 'Borders', src: '/images/bags/viona-styled.jpg', bleed: true, hs: '4202 29 00', matsShort: 'flat beadwork, zip', materials: 'Glass seed beads, hand-strung; zip closure', dims: 'L 14 × W 2 × H 9 cm', weight: 'In the wholesale enquiry', colours: 'Nine assorted multicolour designs shown; each assortment varies', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'Nine mid-size pouches show how the same diamond-and-scroll structure changes with each beader’s palette. The flat zip shape is sized for coins, cards and earbuds.', img: 'Nine Viona beaded zip pouches in an editorial grid' },
+      { id: 'halda', name: 'Halda Zip Pouch', cat: 'Bags', motif: 'Borders', src: '/images/bags/halda-styled.jpg', bleed: true, hs: '4202 29 00', matsShort: 'flat beadwork, zip', materials: 'Glass seed beads, hand-strung; zip closure and small beaded loop', dims: 'L 11 × W 2 × H 8 cm', weight: 'In the wholesale enquiry', colours: 'Eight assorted multicolour designs shown; each assortment varies', lead: 'Confirmed per order', care: 'Keep dry; spot-clean', story: 'The smallest pouch in the bag line is shown as an eight-piece assortment of scroll-and-diamond patterns. Each compact zip pouch carries coins and cards and finishes with a small beaded loop.', img: 'Eight Halda beaded coin pouches on a woven natural-fibre mat' },
+      { id: 'kanaya', name: 'Kanaya Rattan Crossbody', cat: 'Bags', motif: 'Borders', src: '/images/bags/kanaya-styled-v2.jpg', bleed: true, hs: '4602 12 90', matsShort: 'woven rattan, shoulder strap', materials: 'Hand-woven natural rattan with black trim; adjustable shoulder strap; metal hardware', dims: 'L 23 × W 10 × H 16 cm', weight: 'In the wholesale enquiry', colours: 'Natural rattan / black', lead: 'Confirmed per order', care: 'Wipe dry; keep out of rain', story: 'The woven piece in the line: a structured trapezoid crossbody with central diamonds and stepped borders worked directly into the natural-and-black rattan face, finished with black trim and a long adjustable strap.', img: 'Kanaya woven rattan crossbody hanging naturally from a light-teak peg' },
     ].filter((p) => !p.archived).map((p) => {
       const slug = p.slug || this.slugify(p.name);
       const gallery = Array.isArray(p.gallery) ? p.gallery : [];
-      return { ...p, ...(COPY[p.id] || {}), gallery, hasGallery: gallery.length > 0, noGallery: gallery.length === 0, slug, href: this.categoryPath(p.cat) + '/' + slug, hasMotif: !!p.motif, motifLine: p.motif ? M[p.motif] : '', catLine: p.motif ? this.displayCategory(p.cat) + ' · ' + p.motif + ' motif' : this.displayCategory(p.cat), imgId: 'prod-' + p.id, d1: 'prod-' + p.id + '-d1', d2: 'prod-' + p.id + '-d2', ph: '4:5 · ' + p.img, meta: p.motif ? p.motif + ' motif · ' + p.matsShort : p.matsShort, hs: p.hs || 'Included in the line sheet', hasImg: !!p.src && !p.bleed, bleedImg: !!p.src && !!p.bleed, noImg: !p.src, alt: p.alt || (p.src ? p.name + ', hand-beaded craft from Kampung Manik, Samarinda' : '') };
+      return { ...p, ...(COPY[p.id] || {}), gallery, hasGallery: gallery.length > 0, noGallery: gallery.length === 0, slug, href: this.categoryPath(p.cat) + '/' + slug, hasMotif: !!p.motif, motifLine: p.motif ? M[p.motif] : '', catLine: p.motif ? this.displayCategory(p.cat) + ' · ' + p.motif + ' motif' : this.displayCategory(p.cat), imgId: 'prod-' + p.id, d1: 'prod-' + p.id + '-d1', d2: 'prod-' + p.id + '-d2', ph: '4:5 · ' + p.img, meta: p.motif ? p.motif + ' motif · ' + p.matsShort : p.matsShort, hs: p.hs || 'Included with your enquiry', hasImg: !!p.src && !p.bleed, bleedImg: !!p.src && !!p.bleed, noImg: !p.src, alt: p.alt || (p.src ? p.name + ', hand-beaded craft from Kampung Manik, Samarinda' : '') };
     });
   }
 
@@ -1627,8 +1394,8 @@ class Component extends DCLogic {
       barWholesale: s.page === 'wholesale' ? '#8E2321' : 'transparent', barAbout: s.page === 'about' ? '#8E2321' : 'transparent',
       barContact: s.page === 'contact' ? '#8E2321' : 'transparent',
       toHome: this.nav('home'), toCollection: this.nav('collection'), toMotifs: this.nav('motifs'),
-      toWholesale: this.nav('wholesale'), toAbout: this.nav('about'), toContact: this.nav('contact'),
-      toForm: this.nav('wholesale', 'linesheet-form'), toHow: this.nav('wholesale', 'ws-how'), toTerms: this.nav('wholesale', 'ws-terms'),
+      toWholesale: this.nav('wholesale'), toAbout: this.nav('about'), toContact: this.nav('contact'), toPrivacy: this.nav('privacy'),
+      toForm: this.nav('wholesale', 'wholesale-enquiry'), toHow: this.nav('wholesale', 'ws-how'), toTerms: this.nav('wholesale', 'ws-terms'),
       toPricing: this.nav('wholesale', 'ws-pricing'), toShipping: this.nav('wholesale', 'ws-shipping'), toDocs: this.nav('wholesale', 'ws-docs'),
       toCatDecor: this.goFiltered('Home décor'), toCatEarrings: this.goFiltered('Earrings'), toCatNecklaces: this.goFiltered('Necklaces'),
       toCatBracelets: this.goFiltered('Bracelets'), toCatBags: this.goFiltered('Bags'),
@@ -1638,7 +1405,8 @@ class Component extends DCLogic {
       totalCount: all.length, shownCount: shown.length, shown,
       catChips: cats.map((c) => chip(c, c === 'All' ? 'All categories' : this.displayCategory(c), s.cat === c, this.goFiltered(c))),
       product: s.product, closeModal: () => this.closeModal(), stopModal: (e) => e.stopPropagation(),
-      modalToForm: (e) => { if (e) e.preventDefault(); this.goTo('wholesale', 'linesheet-form'); },
+      trapProductDialogFocus: (e) => this.trapProductDialogFocus(e), addProductToEnquiry: (e) => this.addProductToEnquiry(s.product, e),
+      modalToForm: (e) => { if (e) e.preventDefault(); this.goTo('wholesale', 'wholesale-enquiry'); },
       modalToMotifs: (e) => { if (e) e.preventDefault(); this.goTo('motifs'); },
       vidFull: s.vidFull, vidFullOff: !s.vidFull, playFull: () => this.setState({ vidFull: true }),
       vidShort: s.vidShort, vidShortOff: !s.vidShort, playShort: () => this.setState({ vidShort: true }),
@@ -1646,8 +1414,14 @@ class Component extends DCLogic {
       fullPosterErr: (e) => { if (!e.target.dataset.f) { e.target.dataset.f = '1'; e.target.src = 'https://i.ytimg.com/vi/WNEcb6La0Nk/hqdefault.jpg'; } },
       shortPosterErr: (e) => { if (!e.target.dataset.f) { e.target.dataset.f = '1'; e.target.src = 'https://i.ytimg.com/vi/weOzeAlgBjI/hqdefault.jpg'; } },
       flags: this.props.showIllustrativeFlags ?? true,
-      submit: (e) => this.submit(e), formDone: s.formDone, formNotDone: !s.formDone,
-      submitLabel: s.sending ? 'Sending…' : 'Request the line sheet',
+      submit: (e) => this.submit(e), selectedProducts: (s.selectedProducts || []).map((product) => ({ ...product, remove: () => this.removeProductFromEnquiry(product.id) })),
+      selectedAny: (s.selectedProducts || []).length > 0, formSuccess: s.formStatus === 'success', formErrorVisible: s.formStatus === 'error',
+      sending: s.sending, sendingMessage: s.sending ? 'Sending your wholesale enquiry…' : '', formError: s.formError,
+      nameInvalid: !!s.invalidFields.name, companyInvalid: !!s.invalidFields.company, emailInvalid: !!s.invalidFields.email,
+      countryInvalid: !!s.invalidFields.country, messageInvalid: !!s.invalidFields.message, websiteInvalid: false,
+      nameError: s.invalidFields.name || '', companyError: s.invalidFields.company || '', emailError: s.invalidFields.email || '',
+      countryError: s.invalidFields.country || '', messageError: s.invalidFields.message || '', websiteError: '',
+      submitLabel: s.sending ? 'Sending…' : 'Send a wholesale enquiry',
       noopLink: (e) => { if (e) e.preventDefault(); },
       navOpenClass: s.menuOpen ? 'open' : '',
       menuIsOpen: s.menuOpen,

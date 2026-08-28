@@ -23,4 +23,4 @@ Deployed on **Cloudflare Pages**, connected to this repo. Every push to `main` r
 - [ ] `og-1200x630.jpg` and `logo.png` (referenced in `<head>`, don't exist yet)
 - [ ] Confirm Instagram handle (@alwintru) and WhatsApp number (placeholders in Contact)
 - [ ] Faire / Ankorstore marketplace links (marked "link TBD")
-- [ ] Line-sheet form endpoint (`formEndpoint` prop — currently demo mode, logs to console)
+- [ ] Wholesale enquiry endpoint (`formEndpoint` prop)

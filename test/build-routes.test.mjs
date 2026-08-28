@@ -7,7 +7,7 @@ import { runInNewContext } from 'node:vm';
 import { buildSite, outputFileForPath } from '../build-lib.mjs';
 import { PRIMARY_ROUTES, allIndexableRoutes, categoryPath, productPath } from '../site-routes.mjs';
 
-async function loadRuntimeComponent() {
+async function loadRuntimeComponent({ enquiryApi, elements = new Map(), FormDataImpl = FormData } = {}) {
   const [html, rawCatalogue] = await Promise.all([
     readFile('index.html', 'utf8'),
     readFile('catalogue.json', 'utf8')
@@ -21,14 +21,31 @@ async function loadRuntimeComponent() {
     ['awt-catalogue', JSON.stringify(catalogue)],
     ['awt-route-data', JSON.stringify(routeData)]
   ]);
+  class TestLogic {
+    setState(update, callback) {
+      const patch = typeof update === 'function' ? update(this.state) : update;
+      this.state = { ...this.state, ...patch };
+      if (callback) callback();
+    }
+  }
+  const document = {
+    body: { style: {} },
+    activeElement: null,
+    getElementById: id => elements.get(id) || ({ textContent: markers.get(id) || '' })
+  };
   const sandbox = {
-    DCLogic: class {},
-    document: { getElementById: id => ({ textContent: markers.get(id) || '' }) }
+    DCLogic: TestLogic,
+    document,
+    window: { AWTEnquiry: enquiryApi },
+    FormData: FormDataImpl,
+    requestAnimationFrame: callback => callback(),
+    setTimeout,
+    clearTimeout
   };
   runInNewContext(`${script[1]}\nglobalThis.Component = Component;`, sandbox);
   const component = new sandbox.Component();
   component.props = {};
-  return { component, html };
+  return { component, document, html };
 }
 
 test('route helpers produce flat canonical collection paths', () => {
@@ -153,6 +170,197 @@ test('fallback HTML uses route headings, descriptions, product facts, and active
   assert.match(productHtml, /<dt>Production location<\/dt><dd>Kampung Manik, Samarinda, East Kalimantan, Indonesia<\/dd>/);
   assert.match(productHtml, /Contemporary Borneo beadwork\./);
   assert.match(productHtml, /href="\/wholesale#wholesale-enquiry"/);
+});
+
+test('enquiry UI exposes the short accessible buyer form', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const html = await readFile(join(outDir, 'wholesale.html'), 'utf8');
+
+  for (const name of ['name', 'company', 'email', 'country', 'message', 'website']) {
+    assert.match(html, new RegExp(`name="${name}"`));
+  }
+  assert.doesNotMatch(html, /name="businessType"|name="orderSize"|name="phone"/);
+  assert.match(html, /id="wholesale-enquiry"/);
+  assert.match(html, /Wholesale enquiry|Send a wholesale enquiry/);
+  assert.match(html, /aria-live="(polite|assertive)"/);
+});
+
+test('enquiry UI labels fields, protects the honeypot, and exposes accessible status summaries', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const html = await readFile(join(outDir, 'wholesale.html'), 'utf8');
+
+  for (const field of ['name', 'company', 'email', 'country', 'message', 'website']) {
+    assert.match(html, new RegExp(`<label[^>]*for="enquiry-${field}"`));
+    assert.match(html, new RegExp(`id="enquiry-${field}"[^>]*aria-describedby="enquiry-${field}-error"`));
+  }
+  assert.match(html, /name="fax"[^>]*tabindex="-1"[^>]*autocomplete="off"/);
+  assert.match(html, /href="\/privacy"/);
+  assert.match(html, /id="enquiry-success"[^>]*tabindex="-1"[^>]*aria-live="polite"/);
+  assert.match(html, /id="enquiry-error"[^>]*tabindex="-1"[^>]*aria-live="assertive"/);
+});
+
+test('session shortlist stays unique, can remove products, and routes to the focused enquiry', async () => {
+  const enquiryApi = {
+    uniqueSelections(items) {
+      const seen = new Set();
+      return items.filter(item => !seen.has(item.id) && seen.add(item.id));
+    }
+  };
+  const { component } = await loadRuntimeComponent({ enquiryApi });
+  const product = { id: 'amira', name: 'Amira Tote' };
+  const routes = [];
+  component.goTo = (...args) => routes.push(args);
+  component.state = { ...component.state, product };
+
+  component.addProductToEnquiry(product, { preventDefault() {} });
+  component.state = { ...component.state, product };
+  component.addProductToEnquiry(product, { preventDefault() {} });
+
+  assert.equal(component.state.selectedProducts.length, 1);
+  assert.equal(component.state.selectedProducts[0].id, 'amira');
+  assert.deepEqual(routes.at(-1), ['wholesale', 'wholesale-enquiry', 'enquiry-heading']);
+  component.removeProductFromEnquiry('amira');
+  assert.equal(component.state.selectedProducts.length, 0);
+});
+
+test('enquiry submission validates before sending and resets only after success', async () => {
+  const calls = [];
+  const focused = [];
+  const elements = new Map([
+    ['enquiry-success', { focus: () => focused.push('success') }],
+    ['enquiry-error', { focus: () => focused.push('error') }]
+  ]);
+  class TestFormData {
+    constructor(form) { this.form = form; }
+    entries() { return this.form.entries[Symbol.iterator](); }
+  }
+  const enquiryApi = {
+    uniqueSelections: items => items,
+    buildPayload(formData, selectedProducts) {
+      return { name: formData.form.values.name, selectedProducts };
+    },
+    async submitEnquiry(request) {
+      calls.push(request);
+      return { ok: true };
+    }
+  };
+  const { component } = await loadRuntimeComponent({ enquiryApi, elements, FormDataImpl: TestFormData });
+  component.props.formEndpoint = '/test';
+  component.state = { ...component.state, selectedProducts: [{ id: 'amira', name: 'Amira Tote' }] };
+  const invalidForm = { reportValidity: () => false };
+  await component.submit({ preventDefault() {}, target: invalidForm });
+  assert.equal(calls.length, 0);
+  assert.equal(component.state.formStatus, 'idle');
+
+  let reset = false;
+  const form = {
+    values: { name: 'Buyer' },
+    entries: [['name', 'Buyer']],
+    reportValidity: () => true,
+    reset: () => { reset = true; }
+  };
+  await component.submit({ preventDefault() {}, target: form });
+
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].endpoint, '/test');
+  assert.equal(calls[0].payload.name, 'Buyer');
+  assert.equal(component.state.formStatus, 'success');
+  assert.equal(component.state.sending, false);
+  assert.equal(component.state.selectedProducts.length, 0);
+  assert.equal(reset, true);
+  assert.deepEqual(focused, ['success']);
+});
+
+test('failed enquiry keeps form values and selections and permits retry without live requests', async () => {
+  const focused = [];
+  const elements = new Map([['enquiry-error', { focus: () => focused.push('error') }]]);
+  class TestFormData {
+    constructor(form) { this.form = form; }
+    entries() { return this.form.entries[Symbol.iterator](); }
+  }
+  let attempts = 0;
+  const enquiryApi = {
+    uniqueSelections: items => items,
+    buildPayload: (formData, selectedProducts) => ({ name: formData.form.values.name, selectedProducts }),
+    async submitEnquiry() {
+      attempts += 1;
+      throw new Error('offline');
+    }
+  };
+  const { component } = await loadRuntimeComponent({ enquiryApi, elements, FormDataImpl: TestFormData });
+  component.props.formEndpoint = '/test';
+  component.state = { ...component.state, selectedProducts: [{ id: 'amira', name: 'Amira Tote' }] };
+  let reset = false;
+  const form = {
+    values: { name: 'Buyer' },
+    entries: [['name', 'Buyer']],
+    reportValidity: () => true,
+    reset: () => { reset = true; }
+  };
+
+  await component.submit({ preventDefault() {}, target: form });
+
+  assert.equal(attempts, 1);
+  assert.equal(component.state.formStatus, 'error');
+  assert.equal(component.state.formError, 'offline');
+  assert.equal(component.state.sending, false);
+  assert.equal(component.state.selectedProducts[0].id, 'amira');
+  assert.equal(form.values.name, 'Buyer');
+  assert.equal(reset, false);
+  assert.deepEqual(focused, ['error']);
+});
+
+test('sending enquiry ignores duplicate submits', async () => {
+  let resolveRequest;
+  let attempts = 0;
+  class TestFormData { entries() { return [][Symbol.iterator](); } }
+  const enquiryApi = {
+    uniqueSelections: items => items,
+    buildPayload: () => ({}),
+    submitEnquiry: async () => {
+      attempts += 1;
+      await new Promise(resolve => { resolveRequest = resolve; });
+      return { ok: true };
+    }
+  };
+  const { component } = await loadRuntimeComponent({ enquiryApi, FormDataImpl: TestFormData });
+  component.props.formEndpoint = '/test';
+  const form = { reportValidity: () => true, reset() {} };
+
+  const first = component.submit({ preventDefault() {}, target: form });
+  const second = component.submit({ preventDefault() {}, target: form });
+  assert.equal(attempts, 1);
+  resolveRequest();
+  await Promise.all([first, second]);
+});
+
+test('product dialog focuses close, traps tab, and returns focus to its opener', async () => {
+  const focusOrder = [];
+  const opener = { focus: () => focusOrder.push('opener') };
+  const close = { focus: () => focusOrder.push('close') };
+  const action = { focus: () => focusOrder.push('action') };
+  const dialog = { querySelectorAll: () => [close, action] };
+  const elements = new Map([
+    ['product-dialog-close', close],
+    ['product-dialog', dialog]
+  ]);
+  const { component, document } = await loadRuntimeComponent({ elements });
+  component.pushCollectionRoute = () => {};
+  const product = { id: 'amira', name: 'Amira Tote' };
+
+  component.openProduct(product, { preventDefault() {}, currentTarget: opener });
+  assert.deepEqual(focusOrder, ['close']);
+  document.activeElement = action;
+  let prevented = false;
+  component.trapProductDialogFocus({ key: 'Tab', shiftKey: false, preventDefault: () => { prevented = true; } });
+  assert.equal(prevented, true);
+  assert.deepEqual(focusOrder, ['close', 'close']);
+  component.closeModal();
+  assert.deepEqual(focusOrder, ['close', 'close', 'opener']);
 });
 
 test('all generated structured data and fallback fragments avoid legacy line-sheet copy', async t => {
