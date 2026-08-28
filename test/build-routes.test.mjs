@@ -86,6 +86,52 @@ test('build emits primary, category, and active product routes', async t => {
   assert.ok(![...paths].some(path => path.includes('mahulu-woven-rattan-cuff-set')));
 });
 
+test('homepage preserves its place, craft, and wholesale action contract', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const html = await readFile(join(outDir, 'index.html'), 'utf8');
+
+  assert.match(html, /Kampung Manik &middot; Samarinda &middot; East Kalimantan/);
+  assert.match(html, /We believe Borneo beadwork belongs in contemporary life\./);
+  assert.match(html, />Wholesale enquiry<\/button>/);
+  assert.match(html, />Explore the collection<\/button>/);
+});
+
+test('wholesale trust section presents only supported at-a-glance facts', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const html = await readFile(join(outDir, 'wholesale.html'), 'utf8');
+
+  assert.match(html, /Wholesale at a glance/);
+  assert.match(html, /Made in Samarinda, East Kalimantan/);
+  assert.match(html, /Samples can be discussed/);
+  assert.match(html, /Tracked courier for samples and smaller cartons/);
+  assert.match(html, /Volume shipping via Balikpapan/);
+  assert.match(html, /Handmade variations are expected/);
+  assert.match(html, /coordinated with beading groups/i);
+  assert.match(html, /href="\/wholesale#wholesale-enquiry"/);
+  assert.doesNotMatch(html, /<dt[^>]*>Incoterms<\/dt>|<dt[^>]*>Lead times<\/dt>|<dt[^>]*>Payment<\/dt>/);
+});
+
+test('contact consistency keeps email, social, and InaExport URLs on every generated page', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  const manifest = await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const contactUrls = [
+    'mailto:beads@alwintru.com',
+    'https://www.instagram.com/alanawinatrudi',
+    'https://www.linkedin.com/company/pt-alana-wina-trudi/',
+    'https://inaexport.id/perusahaan/80801-alana-wina-trudi'
+  ];
+
+  for (const route of manifest.routes) {
+    const html = await readFile(outputFileForPath(outDir, route.path), 'utf8');
+    for (const url of contactUrls) assert.match(html, new RegExp(`href="${url}"`), route.path);
+  }
+});
+
 test('product HTML contains static route metadata and catalogue JSON', async t => {
   const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
   t.after(() => rm(outDir, { recursive: true, force: true }));

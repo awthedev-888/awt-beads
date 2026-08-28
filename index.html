@@ -97,6 +97,7 @@ a{color:#8E2321}a:hover{color:#601614}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #8E2321;outline-offset:2px}
 input::placeholder,textarea::placeholder{color:#A08A6C}
 a,button{transition:color .18s ease,background-color .18s ease,border-color .18s ease}
+button{min-height:44px}
 ::selection{background:#DACBAE;color:#34291D}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 .card .imgwrap{overflow:hidden}
@@ -113,10 +114,13 @@ textarea.enquiry-control{min-height:132px;resize:vertical}
 .enquiry-field-error{display:block;min-height:1.25em;margin-top:5px;font-size:13px;color:#8E2321}
 .enquiry-category-checks{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
 .enquiry-category-checks input{width:18px;height:18px;margin:0;accent-color:#8E2321}
-.enquiry-category-checks label{font-size:15px;color:#34291D;margin:0 10px 0 -10px}
+.enquiry-category-checks label{display:inline-flex;align-items:center;min-height:44px;font-size:15px;color:#34291D;margin:0 10px 0 -10px}
 .enquiry-submit-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:26px}
 .enquiry-submit-button{min-height:44px;padding:12px 24px;background:#8E2321;color:#F7F1E5;border:0;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
-.enquiry-submit-button:disabled,.enquiry-product-action:disabled{opacity:.55;cursor:not-allowed}
+.enquiry-submit-button:disabled,.enquiry-product-action:disabled{opacity:.55;filter:saturate(.35);cursor:not-allowed}
+.main-nav>a,.wholesale-nav a{display:inline-flex;align-items:center;min-height:44px}
+.collection-filter-row a:not(.collection-motif-link),.product-detail-link{display:inline-flex;align-items:center;min-height:44px}
+#enquiry-sending,#enquiry-success,#enquiry-error{overflow-wrap:anywhere}
 @media (max-width:840px){
   .site-header-inner{padding-inline:24px !important;min-height:68px !important;gap:8px 16px !important}
   .site-header-brand{flex:1 1 auto;min-width:0}
@@ -169,6 +173,7 @@ textarea.enquiry-control{min-height:132px;resize:vertical}
   .form-grid{grid-template-columns:1fr !important;gap:16px !important}
   .form-grid>[style*="grid-column"]{grid-column:auto !important}
   .category-checks{gap:12px 16px !important}
+  .enquiry-category-checks label{margin-right:2px}
   .form-submit-row{align-items:stretch !important;flex-direction:column !important}
   .form-submit-row>span{text-align:center}
   .product-modal-overlay{padding:0 !important;align-items:stretch !important}
@@ -549,12 +554,23 @@ textarea.enquiry-control{min-height:132px;resize:vertical}
     <p class="cmb" style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:64ch;margin:16px 0 0">Send a wholesale enquiry for current products, wholesale prices, colourways and order information. We keep the public site price-free so we can quote the right details for your market and order.</p>
     <nav class="wholesale-nav" aria-label="On this page" style="display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid #DACBAE;border-bottom:1px solid #DACBAE;padding:14px 0;margin-top:clamp(24px,3vw,40px)">
       <a href="/wholesale#ws-how" onClick="{{ toHow }}" style="font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5C4B36;text-decoration:none" style-hover="color:#8E2321">How it works</a>
-      <a href="/wholesale#ws-terms" onClick="{{ toTerms }}" style="font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5C4B36;text-decoration:none" style-hover="color:#8E2321">Terms</a>
       <a href="/wholesale#ws-pricing" onClick="{{ toPricing }}" style="font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5C4B36;text-decoration:none" style-hover="color:#8E2321">Landed cost</a>
       <a href="/wholesale#ws-shipping" onClick="{{ toShipping }}" style="font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5C4B36;text-decoration:none" style-hover="color:#8E2321">Shipping</a>
       <a href="/wholesale#ws-docs" onClick="{{ toDocs }}" style="font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5C4B36;text-decoration:none" style-hover="color:#8E2321">Documentation</a>
       <a href="/wholesale#wholesale-enquiry" onClick="{{ toForm }}" style="font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8E2321;text-decoration:none;margin-left:auto" style-hover="color:#601614">Wholesale enquiry &darr;</a>
     </nav>
+
+    <section aria-labelledby="wholesale-glance-heading" style="padding:clamp(36px,5vw,60px) 0 0" data-reveal="">
+      <p style="margin:0;font-family:Archivo,sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8E2321">Wholesale at a glance</p>
+      <h2 id="wholesale-glance-heading" style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(24px,2.8vw,32px);margin:10px 0 0">A considered wholesale offer, close to the making</h2>
+      <div class="wholesale-glance-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0 clamp(24px,3vw,48px);margin-top:clamp(20px,3vw,32px)">
+        <div style="border-top:1px solid #DACBAE;padding:16px 0 18px"><h3 style="font-family:'Young Serif',serif;font-weight:400;font-size:19px;margin:0">Wholesale only</h3><p style="font-size:15px;line-height:1.65;color:#4A3B2A;margin:10px 0 0">The collection is made for retail buyers and is not sold through consumer checkout.</p></div>
+        <div style="border-top:1px solid #DACBAE;padding:16px 0 18px"><h3 style="font-family:'Young Serif',serif;font-weight:400;font-size:19px;margin:0">Made in Samarinda, East Kalimantan</h3><p style="font-size:15px;line-height:1.65;color:#4A3B2A;margin:10px 0 0">Work is coordinated with beading groups in Kampung Manik, Samarinda.</p></div>
+        <div style="border-top:1px solid #DACBAE;padding:16px 0 18px"><h3 style="font-family:'Young Serif',serif;font-weight:400;font-size:19px;margin:0">Samples can be discussed</h3><p style="font-size:15px;line-height:1.65;color:#4A3B2A;margin:10px 0 0">We can advise on sample selection when you tell us what you are considering.</p></div>
+        <div style="border-top:1px solid #DACBAE;padding:16px 0 18px"><h3 style="font-family:'Young Serif',serif;font-weight:400;font-size:19px;margin:0">Volume shipping via Balikpapan</h3><p style="font-size:15px;line-height:1.65;color:#4A3B2A;margin:10px 0 0">Tracked courier for samples and smaller cartons; volume shipping can be coordinated from Balikpapan.</p></div>
+        <div style="border-top:1px solid #DACBAE;padding:16px 0 18px"><h3 style="font-family:'Young Serif',serif;font-weight:400;font-size:19px;margin:0">Handmade variations are expected</h3><p style="font-size:15px;line-height:1.65;color:#4A3B2A;margin:10px 0 0">Each piece is made by hand, so small differences are part of the work.</p></div>
+      </div>
+    </section>
 
     <section id="ws-how" style="padding:clamp(44px,6vw,72px) 0 0" data-reveal="">
       <h2 style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(24px,2.8vw,32px);margin:0">From first enquiry to reorder</h2>
@@ -572,7 +588,7 @@ textarea.enquiry-control{min-height:132px;resize:vertical}
         <div style="border-top:2px solid #34291D;padding-top:16px">
           <p style="margin:0;font-family:'Young Serif',serif;font-size:15px;color:#8E2321">03</p>
           <h3 style="font-family:'Young Serif',serif;font-weight:400;font-size:19px;margin:8px 0 0">Agree the order</h3>
-          <p style="font-size:15px;line-height:1.65;color:#4A3B2A;margin:10px 0 0">We confirm quantities, colourways, lead time, payment and shipping in your pro forma invoice before production begins.</p>
+          <p style="font-size:15px;line-height:1.65;color:#4A3B2A;margin:10px 0 0">Together, we confirm suitable pieces and colourways for your shop before work begins.</p>
         </div>
         <div style="border-top:2px solid #34291D;padding-top:16px">
           <p style="margin:0;font-family:'Young Serif',serif;font-size:15px;color:#8E2321">04</p>
@@ -580,39 +596,6 @@ textarea.enquiry-control{min-height:132px;resize:vertical}
           <p style="font-size:15px;line-height:1.65;color:#4A3B2A;margin:10px 0 0">When you know what works for your shelves, we can build the next order around those learnings and current availability.</p>
         </div>
       </div>
-    </section>
-
-    <section id="ws-terms" style="padding:clamp(44px,6vw,72px) 0 0" data-reveal="">
-      <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 18px">
-        <h2 style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(24px,2.8vw,32px);margin:0">Terms</h2>
-        <sc-if value="{{ flags }}" hint-placeholder-val="{{ true }}"><span style="font-family:Archivo,sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8E2321;border:1px solid #D9A79C;border-radius:2px;padding:3px 8px">Indicative: your pro forma carries the binding terms</span></sc-if>
-      </div>
-      <dl class="terms-grid" style="margin:clamp(20px,3vw,32px) 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 clamp(24px,3vw,48px)">
-        <div style="border-top:1px solid #DACBAE;padding:16px 0 18px">
-          <dt style="font-family:Archivo,sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6D5B45">Lead times</dt>
-          <dd style="margin:8px 0 0;font-size:15.5px;line-height:1.6;color:#34291D">Samples and production timing vary by assortment, volume and season. Current timing is confirmed per order.</dd>
-        </div>
-        <div style="border-top:1px solid #DACBAE;padding:16px 0 18px">
-          <dt style="font-family:Archivo,sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6D5B45">Incoterms</dt>
-          <dd style="margin:8px 0 0;font-size:15.5px;line-height:1.6;color:#34291D">Where relevant, we can discuss collection from Samarinda or shipment via Balikpapan. The applicable Incoterm is confirmed in the pro forma.</dd>
-        </div>
-        <div style="border-top:1px solid #DACBAE;padding:16px 0 18px">
-          <dt style="font-family:Archivo,sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6D5B45">Payment</dt>
-          <dd style="margin:8px 0 0;font-size:15.5px;line-height:1.6;color:#34291D">Payment arrangements are confirmed in the pro forma invoice before production or sample dispatch.</dd>
-        </div>
-        <div style="border-top:1px solid #DACBAE;padding:16px 0 18px">
-          <dt style="font-family:Archivo,sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6D5B45">Packaging</dt>
-          <dd style="margin:8px 0 0;font-size:15.5px;line-height:1.6;color:#34291D">Packaging and retail-ready details are agreed per order, including any maker-story or barcode requirements your market needs.</dd>
-        </div>
-        <div style="border-top:1px solid #DACBAE;padding:16px 0 18px">
-          <dt style="font-family:Archivo,sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6D5B45">Order quantities</dt>
-          <dd style="margin:8px 0 0;font-size:15.5px;line-height:1.6;color:#34291D">Order quantities are confirmed in conversation. We work with independent shops as well as larger buyers.</dd>
-        </div>
-        <div style="border-top:1px solid #DACBAE;padding:16px 0 18px">
-          <dt style="font-family:Archivo,sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6D5B45">Currency</dt>
-          <dd style="margin:8px 0 0;font-size:15.5px;line-height:1.6;color:#34291D">We confirm the price basis and currency for your order. Ask if you need a quote in a particular currency.</dd>
-        </div>
-      </dl>
     </section>
 
     <section id="ws-pricing" style="padding:clamp(44px,6vw,72px) 0 0" data-reveal="">
@@ -906,7 +889,6 @@ textarea.enquiry-control{min-height:132px;resize:vertical}
           <a href="/wholesale#wholesale-enquiry" onClick="{{ toForm }}" style="color:#EAE0CC;text-decoration:none;font-size:15px" style-hover="color:#C99435">Wholesale enquiry</a>
           <a href="/wholesale#ws-shipping" onClick="{{ toShipping }}" style="color:#EAE0CC;text-decoration:none;font-size:15px" style-hover="color:#C99435">Shipping &amp; order details</a>
           <a href="/wholesale#ws-docs" onClick="{{ toDocs }}" style="color:#EAE0CC;text-decoration:none;font-size:15px" style-hover="color:#C99435">Documentation</a>
-          <a href="/wholesale#ws-terms" onClick="{{ toTerms }}" style="color:#EAE0CC;text-decoration:none;font-size:15px" style-hover="color:#C99435">Terms</a>
         </div>
       </div>
       <div>
@@ -1463,7 +1445,7 @@ class Component extends DCLogic {
       barContact: s.page === 'contact' ? '#8E2321' : 'transparent',
       toHome: this.nav('home'), toCollection: this.nav('collection'), toMotifs: this.nav('motifs'),
       toWholesale: this.nav('wholesale'), toAbout: this.nav('about'), toContact: this.nav('contact'), toPrivacy: this.nav('privacy'),
-      toForm: this.nav('wholesale', 'wholesale-enquiry'), toHow: this.nav('wholesale', 'ws-how'), toTerms: this.nav('wholesale', 'ws-terms'),
+      toForm: this.nav('wholesale', 'wholesale-enquiry'), toHow: this.nav('wholesale', 'ws-how'),
       toPricing: this.nav('wholesale', 'ws-pricing'), toShipping: this.nav('wholesale', 'ws-shipping'), toDocs: this.nav('wholesale', 'ws-docs'),
       toCatDecor: this.goFiltered('Home décor'), toCatEarrings: this.goFiltered('Earrings'), toCatNecklaces: this.goFiltered('Necklaces'),
       toCatBracelets: this.goFiltered('Bracelets'), toCatBags: this.goFiltered('Bags'),
