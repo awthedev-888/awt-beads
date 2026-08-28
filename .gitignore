@@ -2,3 +2,4 @@
 .thumbnail
 .claude/
 dist/
+.worktrees/
