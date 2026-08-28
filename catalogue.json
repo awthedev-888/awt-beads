@@ -258,19 +258,19 @@
     },
     {
       "id": "hanging",
-      "name": "Ulin-framed Dayak Wall Hanging",
+      "name": "Ulin-framed Beaded Wall Hanging",
       "slug": "ulin-framed-dayak-wall-hanging",
       "categoryId": "home-decor",
       "status": "active",
       "image": "/images/home-decor/ulin-dayak-bead-wall-hanging.jpg",
-      "alt": "Ulin-framed Dayak Wall Hanging, hand-beaded craft from Kampung Manik, Samarinda",
+      "alt": "Ulin-framed beaded wall hanging, hand-beaded craft from Kampung Manik, Samarinda",
       "summary": "glass seed beads, carved ulin wood",
-      "description": "A mirrored field of Dayak figures and curling forms, hand-strung from small glass seed beads and held between richly carved ulin wood rails. The black ground brings the white, turquoise, red and yellow pattern forward from across a room; up close, every bead and line of wood carving shows the handwork.",
+      "description": "A mirrored field of figures and curling forms, hand-strung from small glass seed beads and held between richly carved ulin wood rails. The black ground brings the white, turquoise, red and yellow pattern forward from across a room; up close, every bead and line of wood carving shows the handwork.",
       "productionLocation": "Kampung Manik, Samarinda, East Kalimantan, Indonesia",
       "gallery": [],
       "provenance": {
         "classification": "contemporary-borneo",
-        "visualDescription": "A mirrored field of Dayak figures and curling forms, hand-strung from small glass seed beads and held between richly carved ulin wood rails. The black ground brings the white, turquoise, red and yellow pattern forward from across a room; up close, every bead and line of wood carving shows the handwork."
+        "visualDescription": "A mirrored field of figures and curling forms, hand-strung from small glass seed beads and held between richly carved ulin wood rails. The black ground brings the white, turquoise, red and yellow pattern forward from across a room; up close, every bead and line of wood carving shows the handwork."
       },
       "materials": "Glass seed beads, cotton thread, carved ulin wood rails",
       "colours": "Black / white / turquoise / red / yellow · Natural ulin wood",
@@ -1109,7 +1109,7 @@
       "slug": "lisha-crossbody",
       "categoryId": "bags",
       "status": "active",
-"image": "/images/bags/lisha-crossbody-natural.png",
+      "image": "/images/bags/lisha-crossbody-natural.png",
       "alt": "Lisha black-and-white beaded crossbody with its full long black strap",
       "summary": "beadwork, 55 cm beaded strap",
       "description": "A monochrome crossbody centred on a large white diamond, with curling bead lines mirrored across the black field. Its long black-and-white beaded strap carries the same alternating rhythm as the bag.",

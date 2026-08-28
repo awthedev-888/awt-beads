@@ -37,3 +37,20 @@ test('specific cultural claims require evidence', async () => {
     }
   }
 });
+
+test('non-verified products use neutral public copy', async () => {
+  const { products } = await readCatalogue();
+  const unsupportedCulturalTerms = /\b(?:Dayak|Kayan|Kenyah|Banjar|Bugis)\b/i;
+  for (const product of products) {
+    if (product.provenance.classification === 'verified-heritage') continue;
+    for (const [field, value] of Object.entries({
+      name: product.name,
+      alt: product.alt,
+      summary: product.summary,
+      description: product.description,
+      visualDescription: product.provenance.visualDescription
+    })) {
+      assert.doesNotMatch(value, unsupportedCulturalTerms, `${product.id}.${field}`);
+    }
+  }
+});
