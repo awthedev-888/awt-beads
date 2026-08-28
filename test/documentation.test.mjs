@@ -8,4 +8,6 @@ test('README documents the production architecture', async () => {
     assert.ok(readme.includes(required), required);
   }
   assert.doesNotMatch(readme, /no build step/i);
+  assert.match(readme, /site-root-relative URL such as `\/images\/product\.webp`/i);
+  assert.doesNotMatch(readme, /repository-relative URL/i);
 });

@@ -69,7 +69,7 @@ Each category has `id`, `name`, `slug`, `image`, `alt`, and `description`. Each 
 
 To add a product:
 
-1. Put its image under `images/` and use the repository-relative URL in `image`.
+1. Put its image under `images/` and set `image` to a site-root-relative URL such as `/images/product.webp`; this keeps image URLs correct on nested generated routes.
 2. Add a unique product object to `catalogue.json` with a category ID that exists in `categories`, a canonical slug, `status: "active"`, complete required copy, and a provenance classification.
 3. Keep claims and specifications to facts that have a source or maker confirmation. Leave unknown commercial or product values absent rather than inventing them.
 4. Run `node --test test/*.test.mjs && node build.mjs`, then inspect the generated category/product page and sitemap entry.
