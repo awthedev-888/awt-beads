@@ -1194,7 +1194,7 @@ class Component extends DCLogic {
   trapProductDialogFocus(e) {
     if (!e || e.key !== 'Tab') return;
     const dialog = document.getElementById('product-dialog');
-    const focusable = dialog && dialog.querySelectorAll ? Array.from(dialog.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')) : [];
+    const focusable = dialog && dialog.querySelectorAll ? Array.from(dialog.querySelectorAll('button:not(:disabled), [href], input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex]:not([tabindex^="-"]):not(:disabled)')) : [];
     if (!focusable.length) return;
     const first = focusable[0], last = focusable[focusable.length - 1];
     if ((e.shiftKey && document.activeElement === first) || (!e.shiftKey && document.activeElement === last)) {

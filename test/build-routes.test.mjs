@@ -412,7 +412,13 @@ test('product dialog focuses close, traps tab, and returns focus to its opener',
   const opener = { focus: () => focusOrder.push('opener') };
   const close = { focus: () => focusOrder.push('close') };
   const action = { focus: () => focusOrder.push('action') };
-  const dialog = { querySelectorAll: () => [close, action] };
+  const selectors = [];
+  const dialog = {
+    querySelectorAll: (selector) => {
+      selectors.push(selector);
+      return selectors.length === 1 ? [close, action] : [close];
+    }
+  };
   const elements = new Map([
     ['product-dialog-close', close],
     ['product-dialog', dialog]
@@ -428,8 +434,18 @@ test('product dialog focuses close, traps tab, and returns focus to its opener',
   component.trapProductDialogFocus({ key: 'Tab', shiftKey: false, preventDefault: () => { prevented = true; } });
   assert.equal(prevented, true);
   assert.deepEqual(focusOrder, ['close', 'close']);
+  assert.match(selectors[0], /button:not\(:disabled\)/);
+  assert.match(selectors[0], /input:not\(:disabled\)/);
+  assert.match(selectors[0], /select:not\(:disabled\)/);
+  assert.match(selectors[0], /textarea:not\(:disabled\)/);
+
+  document.activeElement = close;
+  let oneElementPrevented = false;
+  component.trapProductDialogFocus({ key: 'Tab', shiftKey: true, preventDefault: () => { oneElementPrevented = true; } });
+  assert.equal(oneElementPrevented, true);
+  assert.deepEqual(focusOrder, ['close', 'close', 'close']);
   component.closeModal();
-  assert.deepEqual(focusOrder, ['close', 'close', 'opener']);
+  assert.deepEqual(focusOrder, ['close', 'close', 'close', 'opener']);
 });
 
 test('all generated structured data and fallback fragments avoid legacy line-sheet copy', async t => {
