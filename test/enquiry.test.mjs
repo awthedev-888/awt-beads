@@ -1,8 +1,26 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
+import { readFileSync } from 'node:fs';
+import { runInNewContext } from 'node:vm';
 const require = createRequire(import.meta.url);
-const { uniqueSelections, buildPayload, submitEnquiry } = require('../enquiry.js');
+const { uniqueSelections, buildPayload, submitEnquiry, EnquirySubmissionError } = require('../enquiry.js');
+
+test('CommonJS export includes EnquirySubmissionError', () => {
+  assert.equal(typeof EnquirySubmissionError, 'function');
+  const error = new EnquirySubmissionError('failed', 422);
+  assert.equal(error.name, 'EnquirySubmissionError');
+  assert.equal(error.status, 422);
+});
+
+test('browser global exposes the enquiry API on globalThis', () => {
+  const source = readFileSync(new URL('../enquiry.js', import.meta.url), 'utf8');
+  const sandbox = { window: {} };
+  runInNewContext(source, sandbox);
+  assert.equal(typeof sandbox.AWTEnquiry, 'object');
+  assert.equal(typeof sandbox.AWTEnquiry.submitEnquiry, 'function');
+  assert.equal(sandbox.window.AWTEnquiry, sandbox.AWTEnquiry);
+});
 
 test('shortlist is unique by stable product ID', () => {
   assert.deepEqual(uniqueSelections([
