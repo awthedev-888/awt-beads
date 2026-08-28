@@ -105,6 +105,18 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 .card:hover button{color:#8E2321}
 .menu-btn{display:none}
 .mobile-menu-cta{display:none}
+.enquiry-form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px 24px}
+.enquiry-field{min-width:0}
+.enquiry-field label{display:block;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5C4B36;margin-bottom:8px}
+.enquiry-control{width:100%;min-height:44px;padding:12px 14px;background:#FDFAF2;border:1px solid #C9B694;border-radius:3px;font-family:Karla,sans-serif;font-size:16px;line-height:1.35;color:#34291D}
+textarea.enquiry-control{min-height:132px;resize:vertical}
+.enquiry-field-error{display:block;min-height:1.25em;margin-top:5px;font-size:13px;color:#8E2321}
+.enquiry-category-checks{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.enquiry-category-checks input{width:18px;height:18px;margin:0;accent-color:#8E2321}
+.enquiry-category-checks label{font-size:15px;color:#34291D;margin:0 10px 0 -10px}
+.enquiry-submit-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:26px}
+.enquiry-submit-button{min-height:44px;padding:12px 24px;background:#8E2321;color:#F7F1E5;border:0;border-radius:3px;font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.enquiry-submit-button:disabled,.enquiry-product-action:disabled{opacity:.55;cursor:not-allowed}
 @media (max-width:840px){
   .site-header-inner{padding-inline:24px !important;min-height:68px !important;gap:8px 16px !important}
   .site-header-brand{flex:1 1 auto;min-width:0}
@@ -665,20 +677,20 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       <div style="max-width:880px">
         <h2 id="enquiry-heading" tabindex="-1" class="cmb" style="font-family:serif;font-weight:400;font-size:clamp(28px,3.4vw,40px);margin:0">Wholesale enquiry</h2>
         <p style="font-size:16px;line-height:1.65;color:#4A3B2A;margin:14px 0 0">Tell us about your shop, the pieces you are considering, and your timing. We will reply with the practical next step.</p>
-        <sc-if value="{{ selectedAny }}" hint-placeholder-val="{{ false }}"><section aria-labelledby="enquiry-shortlist-heading" style="margin-top:24px;padding:18px;border:1px solid #B79B7C;background:#F7F1E5"><h3 id="enquiry-shortlist-heading" tabindex="-1" style="font-family:serif;font-weight:400;font-size:21px;margin:0">Pieces in your enquiry</h3><div role="list" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px"><sc-for list="{{ selectedProducts }}" as="selection" hint-placeholder-count="1"><div role="listitem" style="display:flex;align-items:center;gap:8px;border:1px solid #C9B694;border-radius:999px;padding:7px 10px 7px 12px;background:#FDFAF2"><span>{{ selection.name }}</span><button type="button" onClick="{{ selection.remove }}" aria-label="Remove {{ selection.name }} from enquiry" style="border:0;background:transparent;color:#8E2321;font-size:18px;line-height:1;cursor:pointer">&times;</button></div></sc-for></div></section></sc-if>
+        <sc-if value="{{ selectedAny }}" hint-placeholder-val="{{ false }}"><section aria-labelledby="enquiry-shortlist-heading" style="margin-top:24px;padding:18px;border:1px solid #B79B7C;background:#F7F1E5"><h3 id="enquiry-shortlist-heading" tabindex="-1" style="font-family:serif;font-weight:400;font-size:21px;margin:0">Pieces in your enquiry</h3><div role="list" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px"><sc-for list="{{ selectedProducts }}" as="selection" hint-placeholder-count="1"><div role="listitem" style="display:flex;align-items:center;gap:8px;border:1px solid #C9B694;border-radius:999px;padding:7px 10px 7px 12px;background:#FDFAF2"><span>{{ selection.name }}</span><button type="button" onClick="{{ selection.remove }}" disabled="{{ enquiryActionsDisabled }}" aria-label="Remove {{ selection.name }} from enquiry" style="border:0;background:transparent;color:#8E2321;font-size:18px;line-height:1;cursor:pointer">&times;</button></div></sc-for></div></section></sc-if>
         <p id="enquiry-sending" aria-live="polite" style="min-height:1.5em;margin:20px 0 0;color:#4A3B2A">{{ sendingMessage }}</p>
         <sc-if value="{{ formSuccess }}" hint-placeholder-val="{{ false }}"><div id="enquiry-success" tabindex="-1" aria-live="polite" style="border:1px solid #B79B7C;background:#F7F1E5;padding:18px;margin-top:20px"><strong>Thank you — your wholesale enquiry has been sent.</strong><p style="margin:8px 0 0">We will reply from Samarinda with the next practical step.</p></div></sc-if>
         <sc-if value="{{ formErrorVisible }}" hint-placeholder-val="{{ false }}"><div id="enquiry-error" tabindex="-1" aria-live="assertive" style="border:1px solid #8E2321;background:#F7F1E5;padding:18px;margin-top:20px"><strong>We could not send your enquiry.</strong><p style="margin:8px 0 0">{{ formError }} You can try again, or email <a href="mailto:beads@alwintru.com">beads@alwintru.com</a>.</p></div></sc-if>
-        <form onSubmit="{{ submit }}" style="margin-top:clamp(24px,3vw,36px)"><div class="form-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px 24px">
-          <div><label for="enquiry-name">Your name *</label><input id="enquiry-name" name="name" required="{{ true }}" aria-describedby="enquiry-name-error" aria-invalid="{{ nameInvalid }}" autocomplete="name"/><span id="enquiry-name-error">{{ nameError }}</span></div>
-          <div><label for="enquiry-company">Company / organisation *</label><input id="enquiry-company" name="company" required="{{ true }}" aria-describedby="enquiry-company-error" aria-invalid="{{ companyInvalid }}" autocomplete="organization"/><span id="enquiry-company-error">{{ companyError }}</span></div>
-          <div><label for="enquiry-email">Email *</label><input id="enquiry-email" name="email" type="email" required="{{ true }}" aria-describedby="enquiry-email-error" aria-invalid="{{ emailInvalid }}" autocomplete="email"/><span id="enquiry-email-error">{{ emailError }}</span></div>
-          <div><label for="enquiry-country">Country *</label><input id="enquiry-country" name="country" required="{{ true }}" aria-describedby="enquiry-country-error" aria-invalid="{{ countryInvalid }}" autocomplete="country-name"/><span id="enquiry-country-error">{{ countryError }}</span></div>
-          <div><label for="enquiry-website">Website or Instagram (optional)</label><input id="enquiry-website" name="website" type="text" aria-describedby="enquiry-website-error" aria-invalid="{{ websiteInvalid }}" autocomplete="url" placeholder="Website or @handle"/><span id="enquiry-website-error">{{ websiteError }}</span></div>
-          <div style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden"><label for="enquiry-fax">Fax</label><input id="enquiry-fax" name="fax" tabindex="-1" autocomplete="off"/></div>
-          <div style="grid-column:1/-1"><p>Categories of interest (optional)</p><div class="category-checks"><input id="enquiry-category-decor" type="checkbox" name="categories" value="Home décor"/><label for="enquiry-category-decor">Home décor</label><input id="enquiry-category-earrings" type="checkbox" name="categories" value="Earrings"/><label for="enquiry-category-earrings">Earrings</label><input id="enquiry-category-necklaces" type="checkbox" name="categories" value="Necklaces"/><label for="enquiry-category-necklaces">Necklaces</label><input id="enquiry-category-bracelets" type="checkbox" name="categories" value="Bracelets"/><label for="enquiry-category-bracelets">Bracelets</label><input id="enquiry-category-bags" type="checkbox" name="categories" value="Bags"/><label for="enquiry-category-bags">Bags</label><input id="enquiry-category-keychains" type="checkbox" name="categories" value="Keychains"/><label for="enquiry-category-keychains">Keychains</label><input id="enquiry-category-coasters" type="checkbox" name="categories" value="Coasters"/><label for="enquiry-category-coasters">Coasters</label><input id="enquiry-category-runners" type="checkbox" name="categories" value="Beaded Table Runners"/><label for="enquiry-category-runners">Beaded Table Runners</label></div></div>
-          <div style="grid-column:1/-1"><label for="enquiry-message">What are you looking for? *</label><textarea id="enquiry-message" name="message" rows="5" required="{{ true }}" aria-describedby="enquiry-message-error" aria-invalid="{{ messageInvalid }}" placeholder="The pieces, shop, market or timing you are considering"></textarea><span id="enquiry-message-error">{{ messageError }}</span></div>
-        </div><p>We use your details only to respond to this enquiry. <a href="/privacy" onClick="{{ toPrivacy }}">Read our privacy notice</a>.</p><div class="form-submit-row"><button type="submit" disabled="{{ sending }}">{{ submitLabel }}</button><span>We answer every enquiry personally from Samarinda.</span></div></form>
+        <form onSubmit="{{ submit }}" style="margin-top:clamp(24px,3vw,36px)"><div class="form-grid enquiry-form-grid">
+          <div class="enquiry-field"><label for="enquiry-name">Your name *</label><input class="enquiry-control" id="enquiry-name" name="name" required="{{ true }}" aria-describedby="enquiry-name-error" aria-invalid="{{ nameInvalid }}" autocomplete="name"/><span class="enquiry-field-error" id="enquiry-name-error">{{ nameError }}</span></div>
+          <div class="enquiry-field"><label for="enquiry-company">Company / organisation *</label><input class="enquiry-control" id="enquiry-company" name="company" required="{{ true }}" aria-describedby="enquiry-company-error" aria-invalid="{{ companyInvalid }}" autocomplete="organization"/><span class="enquiry-field-error" id="enquiry-company-error">{{ companyError }}</span></div>
+          <div class="enquiry-field"><label for="enquiry-email">Email *</label><input class="enquiry-control" id="enquiry-email" name="email" type="email" required="{{ true }}" aria-describedby="enquiry-email-error" aria-invalid="{{ emailInvalid }}" autocomplete="email"/><span class="enquiry-field-error" id="enquiry-email-error">{{ emailError }}</span></div>
+          <div class="enquiry-field"><label for="enquiry-country">Country *</label><input class="enquiry-control" id="enquiry-country" name="country" required="{{ true }}" aria-describedby="enquiry-country-error" aria-invalid="{{ countryInvalid }}" autocomplete="country-name"/><span class="enquiry-field-error" id="enquiry-country-error">{{ countryError }}</span></div>
+          <div class="enquiry-field"><label for="enquiry-website">Website or Instagram (optional)</label><input class="enquiry-control" id="enquiry-website" name="website" type="text" aria-describedby="enquiry-website-error" aria-invalid="{{ websiteInvalid }}" autocomplete="url" placeholder="Website or @handle"/><span class="enquiry-field-error" id="enquiry-website-error">{{ websiteError }}</span></div>
+          <div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden"><label for="enquiry-fax">Fax</label><input id="enquiry-fax" name="fax" tabindex="-1" autocomplete="off"/></div>
+          <div style="grid-column:1/-1"><p>Categories of interest (optional)</p><div class="category-checks enquiry-category-checks"><input id="enquiry-category-decor" type="checkbox" name="categories" value="Home décor"/><label for="enquiry-category-decor">Home décor</label><input id="enquiry-category-earrings" type="checkbox" name="categories" value="Earrings"/><label for="enquiry-category-earrings">Earrings</label><input id="enquiry-category-necklaces" type="checkbox" name="categories" value="Necklaces"/><label for="enquiry-category-necklaces">Necklaces</label><input id="enquiry-category-bracelets" type="checkbox" name="categories" value="Bracelets"/><label for="enquiry-category-bracelets">Bracelets</label><input id="enquiry-category-bags" type="checkbox" name="categories" value="Bags"/><label for="enquiry-category-bags">Bags</label><input id="enquiry-category-keychains" type="checkbox" name="categories" value="Keychains"/><label for="enquiry-category-keychains">Keychains</label><input id="enquiry-category-coasters" type="checkbox" name="categories" value="Coasters"/><label for="enquiry-category-coasters">Coasters</label><input id="enquiry-category-runners" type="checkbox" name="categories" value="Beaded Table Runners"/><label for="enquiry-category-runners">Beaded Table Runners</label></div></div>
+          <div class="enquiry-field" style="grid-column:1/-1"><label for="enquiry-message">What are you looking for? *</label><textarea class="enquiry-control" id="enquiry-message" name="message" rows="5" required="{{ true }}" aria-describedby="enquiry-message-error" aria-invalid="{{ messageInvalid }}" placeholder="The pieces, shop, market or timing you are considering"></textarea><span class="enquiry-field-error" id="enquiry-message-error">{{ messageError }}</span></div>
+        </div><p>We use your details only to respond to this enquiry. <a href="/privacy" onClick="{{ toPrivacy }}">Read our privacy notice</a>.</p><div class="form-submit-row enquiry-submit-row"><button class="enquiry-submit-button" type="submit" disabled="{{ sending }}">{{ submitLabel }}</button><span>We answer every enquiry personally from Samarinda.</span></div></form>
       </div>
     </div>
   </section>
@@ -850,7 +862,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
         <sc-if value="{{ product.hasMotif }}" hint-placeholder-val="{{ true }}"><p style="font-family:Karla,sans-serif;font-style:italic;font-size:14.5px;line-height:1.6;color:#6D5B45;margin:12px 0 0">Motif: {{ product.motifLine }}. <a href="/motifs" onClick="{{ modalToMotifs }}" style="color:#8E2321">More on the Motifs page</a></p></sc-if>
         <div style="border:1px solid #B79B7C;background:#EFE6D3;padding:16px 18px;margin:18px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px">
           <span style="font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#34291D">Ask us about this piece</span>
-          <button type="button" onClick="{{ addProductToEnquiry }}" style="font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#8E2321;margin-left:auto;border:0;background:transparent;cursor:pointer">Enquire about this piece &rarr;</button>
+          <button type="button" class="enquiry-product-action" onClick="{{ addProductToEnquiry }}" disabled="{{ enquiryActionsDisabled }}" style="font-family:Archivo,sans-serif;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#8E2321;margin-left:auto;border:0;background:transparent;cursor:pointer">Enquire about this piece &rarr;</button>
         </div>
         <dl style="margin:20px 0 0">
           <div style="display:flex;gap:16px;border-top:1px solid #DACBAE;padding:11px 0"><dt style="flex:0 0 118px;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6D5B45;padding-top:2px">Materials</dt><dd style="margin:0;font-size:15px;line-height:1.55">{{ product.materials }}</dd></div>
@@ -955,8 +967,9 @@ class Component extends DCLogic {
       const page = this.pageFromPath(location.pathname);
       const collection = page === 'collection' ? this.collectionStateFromPath(location.pathname) : null;
       const next = { page, cat: collection ? collection.cat : 'All', product: collection ? collection.product : null };
+      const previousProduct = this.state.product;
       this.setState(next, () => {
-        document.body.style.overflow = next.product ? 'hidden' : '';
+        this.activateProductDialog(previousProduct, next.product);
         this.syncMeta(page, next.product, next.cat);
         this.reveal();
       });
@@ -965,8 +978,9 @@ class Component extends DCLogic {
         const collectionState = p === 'collection' ? this.collectionStateFromPath(location.pathname) : null;
         const product = collectionState ? collectionState.product : null;
         const cat = collectionState ? collectionState.cat : 'All';
+        const previousProduct = this.state.product;
         this.setState({ page: p, cat, product, menuOpen: false }, () => {
-          document.body.style.overflow = product ? 'hidden' : '';
+          this.activateProductDialog(previousProduct, product);
           this.syncMeta(p, product, cat);
           const hash = location.hash.slice(1);
           if (hash) this.scrollToAnchor(hash); else this.scrollToTop();
@@ -1130,9 +1144,10 @@ class Component extends DCLogic {
   }
 
   goTo(page, anchor, focusId) {
+    const previousProduct = this.state.product;
     const cat = page === 'collection' ? 'All' : this.state.cat;
     this.setState({ page, cat, product: null, menuOpen: false }, () => {
-      document.body.style.overflow = '';
+      this.activateProductDialog(previousProduct, null);
       this.pushRoute(page, anchor);
       if (anchor) {
         requestAnimationFrame(() => {
@@ -1145,25 +1160,32 @@ class Component extends DCLogic {
     });
   }
   nav(page, anchor) { return (e) => { if (e && e.preventDefault) e.preventDefault(); this.goTo(page, anchor); }; }
-  goFiltered(cat) { return (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ page: 'collection', cat, product: null, menuOpen: false }, () => { document.body.style.overflow = ''; this.pushCollectionRoute(cat, null, false); this.scrollToTop(); this.reveal(); }); }; }
-  openProduct(product, e) {
-    if (e && e.preventDefault) e.preventDefault();
-    this._modalOpener = (e && e.currentTarget) || document.activeElement;
-    document.body.style.overflow = 'hidden';
-    this.setState({ page: 'collection', product, menuOpen: false }, () => {
-      this.pushCollectionRoute(this.state.cat, product, false);
+  goFiltered(cat) { return (e) => { if (e && e.preventDefault) e.preventDefault(); const previousProduct = this.state.product; this.setState({ page: 'collection', cat, product: null, menuOpen: false }, () => { this.activateProductDialog(previousProduct, null); this.pushCollectionRoute(cat, null, false); this.scrollToTop(); this.reveal(); }); }; }
+  activateProductDialog(previousProduct, nextProduct) {
+    document.body.style.overflow = nextProduct ? 'hidden' : '';
+    if (!previousProduct && nextProduct) {
       requestAnimationFrame(() => {
         const close = document.getElementById('product-dialog-close');
         if (close && typeof close.focus === 'function') close.focus();
       });
+    }
+  }
+  openProduct(product, e) {
+    if (e && e.preventDefault) e.preventDefault();
+    this._modalOpener = (e && e.currentTarget) || document.activeElement;
+    const previousProduct = this.state.product;
+    this.setState({ page: 'collection', product, menuOpen: false }, () => {
+      this.activateProductDialog(previousProduct, product);
+      this.pushCollectionRoute(this.state.cat, product, false);
     });
   }
 
   closeModal() {
-    document.body.style.overflow = '';
+    const previousProduct = this.state.product;
     const cat = this.state.cat;
     const opener = this._modalOpener;
     this.setState({ product: null }, () => {
+      this.activateProductDialog(previousProduct, null);
       this.pushCollectionRoute(cat, null, true);
       if (opener && typeof opener.focus === 'function') opener.focus();
     });
@@ -1183,16 +1205,19 @@ class Component extends DCLogic {
 
   addProductToEnquiry(product, e) {
     if (e && e.preventDefault) e.preventDefault();
+    if (this.state.sending) return;
     const selected = product || this.state.product;
     if (!selected) return;
     const api = window.AWTEnquiry;
-    const next = (api && api.uniqueSelections ? api.uniqueSelections([...(this.state.selectedProducts || []), { id: selected.id, name: selected.name }]) : []);
-    document.body.style.overflow = '';
-    this.setState({ selectedProducts: next, product: null, menuOpen: false }, () => this.goTo('wholesale', 'wholesale-enquiry', 'enquiry-heading'));
+    this.setState((state) => {
+      const selectedProducts = api && api.uniqueSelections ? api.uniqueSelections([...(state.selectedProducts || []), { id: selected.id, name: selected.name }]) : state.selectedProducts;
+      return { selectedProducts, product: null, menuOpen: false, formStatus: 'idle', formError: '', invalidFields: {} };
+    }, () => this.goTo('wholesale', 'wholesale-enquiry', 'enquiry-heading'));
   }
 
   removeProductFromEnquiry(id) {
-    this.setState((state) => ({ selectedProducts: (state.selectedProducts || []).filter((product) => product.id !== id) }));
+    if (this.state.sending) return;
+    this.setState((state) => ({ selectedProducts: (state.selectedProducts || []).filter((product) => product.id !== id), formStatus: 'idle', formError: '', invalidFields: {} }));
   }
 
   validationErrors(form) {
@@ -1416,7 +1441,7 @@ class Component extends DCLogic {
       flags: this.props.showIllustrativeFlags ?? true,
       submit: (e) => this.submit(e), selectedProducts: (s.selectedProducts || []).map((product) => ({ ...product, remove: () => this.removeProductFromEnquiry(product.id) })),
       selectedAny: (s.selectedProducts || []).length > 0, formSuccess: s.formStatus === 'success', formErrorVisible: s.formStatus === 'error',
-      sending: s.sending, sendingMessage: s.sending ? 'Sending your wholesale enquiry…' : '', formError: s.formError,
+      sending: s.sending, enquiryActionsDisabled: s.sending, sendingMessage: s.sending ? 'Sending your wholesale enquiry…' : '', formError: s.formError,
       nameInvalid: !!s.invalidFields.name, companyInvalid: !!s.invalidFields.company, emailInvalid: !!s.invalidFields.email,
       countryInvalid: !!s.invalidFields.country, messageInvalid: !!s.invalidFields.message, websiteInvalid: false,
       nameError: s.invalidFields.name || '', companyError: s.invalidFields.company || '', emailError: s.invalidFields.email || '',

@@ -7,7 +7,7 @@ import { runInNewContext } from 'node:vm';
 import { buildSite, outputFileForPath } from '../build-lib.mjs';
 import { PRIMARY_ROUTES, allIndexableRoutes, categoryPath, productPath } from '../site-routes.mjs';
 
-async function loadRuntimeComponent({ enquiryApi, elements = new Map(), FormDataImpl = FormData } = {}) {
+async function loadRuntimeComponent({ enquiryApi, elements = new Map(), FormDataImpl = FormData, windowImpl = {}, globals = {} } = {}) {
   const [html, rawCatalogue] = await Promise.all([
     readFile('index.html', 'utf8'),
     readFile('catalogue.json', 'utf8')
@@ -36,11 +36,12 @@ async function loadRuntimeComponent({ enquiryApi, elements = new Map(), FormData
   const sandbox = {
     DCLogic: TestLogic,
     document,
-    window: { AWTEnquiry: enquiryApi },
+    window: { AWTEnquiry: enquiryApi, ...windowImpl },
     FormData: FormDataImpl,
     requestAnimationFrame: callback => callback(),
     setTimeout,
-    clearTimeout
+    clearTimeout,
+    ...globals
   };
   runInNewContext(`${script[1]}\nglobalThis.Component = Component;`, sandbox);
   const component = new sandbox.Component();
@@ -198,9 +199,41 @@ test('enquiry UI labels fields, protects the honeypot, and exposes accessible st
     assert.match(html, new RegExp(`id="enquiry-${field}"[^>]*aria-describedby="enquiry-${field}-error"`));
   }
   assert.match(html, /name="fax"[^>]*tabindex="-1"[^>]*autocomplete="off"/);
+  assert.match(html, /aria-hidden="true"[^>]*><label for="enquiry-fax"/);
   assert.match(html, /href="\/privacy"/);
   assert.match(html, /id="enquiry-success"[^>]*tabindex="-1"[^>]*aria-live="polite"/);
   assert.match(html, /id="enquiry-error"[^>]*tabindex="-1"[^>]*aria-live="assertive"/);
+  assert.match(html, /\.enquiry-form-grid\{[^}]*display:grid/);
+  assert.match(html, /\.enquiry-control\{[^}]*width:100%[^}]*min-height:44px/);
+  assert.match(html, /\.enquiry-submit-row\{[^}]*display:flex/);
+});
+
+test('direct and popstate product routes focus the dialog close control', async () => {
+  const focusOrder = [];
+  const close = { focus: () => focusOrder.push('close') };
+  const product = { id: 'amira', name: 'Amira Tote' };
+  const location = { pathname: '/collection/bags/amira-tote', hash: '', protocol: 'https:' };
+  const { component } = await loadRuntimeComponent({
+    elements: new Map([['product-dialog-close', close]]),
+    windowImpl: { addEventListener() {}, removeEventListener() {} },
+    globals: { history: { pushState() {}, replaceState() {} }, location }
+  });
+  component.catalogue = () => ({});
+  component.routeData = () => [];
+  component.syncMeta = () => {};
+  component.reveal = () => {};
+  component.scrollToTop = () => {};
+  component.pageFromPath = () => 'collection';
+  component.collectionStateFromPath = () => ({ cat: 'Bags', product });
+
+  component.componentDidMount();
+  assert.deepEqual(focusOrder, ['close']);
+
+  component.collectionStateFromPath = () => ({ cat: 'Bags', product: null });
+  component._pop();
+  component.collectionStateFromPath = () => ({ cat: 'Bags', product });
+  component._pop();
+  assert.deepEqual(focusOrder, ['close', 'close']);
 });
 
 test('session shortlist stays unique, can remove products, and routes to the focused enquiry', async () => {
@@ -336,6 +369,42 @@ test('sending enquiry ignores duplicate submits', async () => {
   assert.equal(attempts, 1);
   resolveRequest();
   await Promise.all([first, second]);
+});
+
+test('sending enquiry protects its submitted shortlist and new shortlist work resets success state', async () => {
+  let resolveRequest;
+  class TestFormData { entries() { return [][Symbol.iterator](); } }
+  const enquiryApi = {
+    uniqueSelections: items => [...new Map(items.map(item => [item.id, item])).values()],
+    buildPayload: (_formData, selectedProducts) => ({ selectedProducts }),
+    submitEnquiry: () => new Promise(resolve => { resolveRequest = resolve; })
+  };
+  const { component } = await loadRuntimeComponent({ enquiryApi, FormDataImpl: TestFormData });
+  component.props.formEndpoint = '/test';
+  component.goTo = () => {};
+  component.state = { ...component.state, selectedProducts: [{ id: 'amira', name: 'Amira Tote' }] };
+  const form = { reportValidity: () => true, reset() {} };
+
+  const pending = component.submit({ preventDefault() {}, target: form });
+  component.addProductToEnquiry({ id: 'zania', name: 'Zania Handbag' }, { preventDefault() {} });
+  component.removeProductFromEnquiry('amira');
+  assert.deepEqual(Array.from(component.state.selectedProducts, product => product.id), ['amira']);
+
+  resolveRequest({ ok: true });
+  await pending;
+  assert.equal(component.state.formStatus, 'success');
+  assert.deepEqual(Array.from(component.state.selectedProducts), []);
+
+  component.addProductToEnquiry({ id: 'zania', name: 'Zania Handbag' }, { preventDefault() {} });
+  assert.equal(component.state.formStatus, 'idle');
+  assert.deepEqual(Array.from(component.state.selectedProducts, product => product.id), ['zania']);
+  component.removeProductFromEnquiry('zania');
+  assert.equal(component.state.formStatus, 'idle');
+
+  component.state = { ...component.state, formStatus: 'error', formError: 'offline', selectedProducts: [{ id: 'amira', name: 'Amira Tote' }] };
+  component.removeProductFromEnquiry('amira');
+  assert.equal(component.state.formStatus, 'idle');
+  assert.equal(component.state.formError, '');
 });
 
 test('product dialog focuses close, traps tab, and returns focus to its opener', async () => {
