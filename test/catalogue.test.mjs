@@ -33,6 +33,8 @@ test('specific cultural claims require evidence', async () => {
       assert.ok(p.community, product.id);
       assert.ok(p.source || p.makerConfirmed === true, product.id);
     } else {
+      assert.equal(p.motifName, undefined, product.id);
+      assert.equal(p.community, undefined, product.id);
       assert.equal(p.meaning, undefined, product.id);
     }
   }

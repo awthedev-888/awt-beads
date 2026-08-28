@@ -20,9 +20,9 @@ export const PRIMARY_ROUTES = Object.freeze([
   {
     key: 'motifs',
     path: '/motifs',
-    heading: 'How to read the beadwork',
-    title: 'Motifs & Meaning | Dayak Beadwork | Alana Wina Trudi',
-    description: 'Learn how Dayak beadwork uses cosmology, colour, figure and form — with cultural context written for contemporary retail and product storytelling.',
+    heading: 'How to describe beadwork with care',
+    title: 'Motifs & Composition | Borneo Beadwork | Alana Wina Trudi',
+    description: 'Learn how Alana Wina Trudi distinguishes verified heritage attribution from contemporary Borneo and decorative compositions without assigning unconfirmed meanings.',
     ogImage: '/og-1200x630.jpg',
     kind: 'primary'
   },

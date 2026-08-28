@@ -504,6 +504,54 @@ test('privacy has a static and runtime-visible minimum data-use contract', async
   const html = await readFile(join(outDir, 'privacy.html'), 'utf8');
   assert.match(source, /<sc-if value="\{\{ isPrivacy \}\}"/);
   assert.match(html, /<h1[^>]*>Privacy<\/h1>/);
+  assert.match(html, /name, company \/ organisation, email, country, website or Instagram, and message/i);
+  assert.match(html, /Formspree/);
   assert.match(html, /beads@alwintru\.com/);
-  assert.match(html, /Enquiry data is used to respond\./);
+  assert.match(html, /reasonable business records/i);
+  assert.match(html, /correction or deletion/i);
+  assert.match(html, /no method of transmission or storage is completely secure/i);
+  assert.match(html, /YouTube.*only after you choose to play/i);
+  assert.match(html, /external social and official links/i);
+});
+
+test('runtime provenance avoids unverified motif meanings and only exposes known specifications', async () => {
+  const { component } = await loadRuntimeComponent();
+  const products = component.products();
+  const coaster = products.find(product => product.id === 'coaster-turquoise-fringe');
+  const amira = products.find(product => product.id === 'amira');
+
+  assert.equal(component.provenanceLabel(coaster), 'Contemporary decorative');
+  assert.equal(coaster.provenanceDescription, 'A circular coaster built around an open centre, with yellow petals outlined in black across a red field and a bright turquoise fringe around the edge.');
+  assert.equal(coaster.motifMeaning, undefined);
+  assert.equal(coaster.hasDimensions, false);
+  assert.equal(coaster.hasWeight, false);
+  assert.equal(coaster.hasHsCode, false);
+  assert.equal(coaster.productId, 'coaster-turquoise-fringe');
+  assert.equal(coaster.productionLocation, 'Kampung Manik, Samarinda, East Kalimantan, Indonesia');
+  assert.equal(amira.hasDimensions, true);
+  assert.equal(amira.hasHsCode, true);
+  assert.equal(amira.hasVariationNote, true);
+});
+
+test('generated product fallback omits missing specifications', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const html = await readFile(join(outDir, 'collection/coasters/manik-turquoise-fringe-coaster.html'), 'utf8');
+
+  assert.match(html, /<dt>Materials<\/dt><dd>Glass seed beads, cotton thread, protective backing<\/dd>/);
+  assert.match(html, /<dt>Production location<\/dt><dd>Kampung Manik, Samarinda, East Kalimantan, Indonesia<\/dd>/);
+  assert.doesNotMatch(html, /<dt>Dimensions<\/dt>/);
+  assert.doesNotMatch(html, /<dt>Weight<\/dt>/);
+  assert.doesNotMatch(html, /<dt>HS code<\/dt>/);
+});
+
+test('motifs output states the multiple-community and no-unconfirmed-attribution policy', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const html = await readFile(join(outDir, 'motifs.html'), 'utf8');
+
+  assert.match(html, /multiple communities and traditions/i);
+  assert.match(html, /do not assign cultural meanings without confirmation/i);
 });
