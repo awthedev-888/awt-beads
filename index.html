@@ -72,6 +72,8 @@
   }
 }
 </script>
+<script type="application/json" id="awt-catalogue"></script>
+<script type="application/json" id="awt-route-data"></script>
 <script src="/support.js"></script>
 </head>
 <body>
@@ -1230,6 +1232,11 @@ class Component extends DCLogic {
   state = { page: 'home', cat: 'All', product: null, vidFull: false, vidShort: false, formDone: false, sending: false, menuOpen: false };
 
   componentDidMount() {
+    // Generated builds embed these records. Serving index.html directly skips
+    // that required build step, so surface a readable error instead of an
+    // empty or stale catalogue.
+    this.catalogue();
+    this.routeData();
     this._kd = (e) => { if (e.key === 'Escape' && this.state.product) this.closeModal(); };
     window.addEventListener('keydown', this._kd);
     if (this.routingOn()) {
@@ -1269,19 +1276,24 @@ class Component extends DCLogic {
   // Each screen gets a real URL so it can be linked, shared and indexed.
   // Cloudflare Pages serves index.html for every path (see _redirects), and the
   // component picks the screen from location.pathname on load and on popstate.
-  // NOTE: build.mjs reads this table with a plain regex to pre-render each
-  // route's static <head>. Keep every value a single double-quoted literal on
-  // one line — no concatenation, no template strings — or the build will fail.
+  // Static metadata comes from site-routes.mjs via the generated build-data
+  // marker; this table intentionally contains navigation paths only.
   ROUTES() {
     return {
-      home:       { path: "/", title: "Alana Wina Trudi | Borneo Beadwork for Contemporary Retail", desc: "Bring living Borneo beadwork to contemporary retail: hand-beaded bags, jewellery, décor, beaded table runners and small accessories from Kampung Manik, Samarinda. Wholesale only." },
-      collection: { path: "/collection", title: "Collection | Hand-beaded Borneo Craft | Alana Wina Trudi", desc: "Explore 56 hand-beaded bags, jewellery, décor, beaded table runners and small accessories from Kampung Manik, Samarinda. Wholesale collection for independent retailers." },
-      motifs:     { path: "/motifs", title: "Motifs & Meaning | Dayak Beadwork | Alana Wina Trudi", desc: "Learn how Dayak beadwork uses cosmology, colour, figure and form — with cultural context written for contemporary retail and product storytelling." },
-      wholesale:  { path: "/wholesale", title: "Wholesale Borneo Beadwork | Alana Wina Trudi", desc: "Explore the wholesale process for hand-beaded Borneo craft: line sheet, samples, order terms, landed cost, shipping and export documentation." },
-      about:      { path: "/our-makers", title: "Our Makers | Kampung Manik Bead Village", desc: "Meet the people and place behind Alana Wina Trudi: hand-beaded Dayak visual language made with beading groups in Kampung Manik, Samarinda." },
-      contact:    { path: "/contact", title: "Contact | Alana Wina Trudi Wholesale", desc: "Contact Alana Wina Trudi in Samarinda for the current wholesale line sheet, product range and order information." }
+      home: { path: '/' }, collection: { path: '/collection' }, motifs: { path: '/motifs' },
+      wholesale: { path: '/wholesale' }, about: { path: '/our-makers' },
+      contact: { path: '/contact' }, privacy: { path: '/privacy' }
     };
   }
+  buildJson(id, label) {
+    const marker = document.getElementById(id);
+    const raw = marker && marker.textContent ? marker.textContent.trim() : '';
+    if (!raw) throw new Error('AWT site build required: ' + label + ' data is missing. Run `node build.mjs` and serve the generated dist directory.');
+    try { return JSON.parse(raw); }
+    catch (error) { throw new Error('AWT site build error: embedded ' + label + ' data is invalid JSON. ' + error.message); }
+  }
+  catalogue() { if (!this._catalogue) this._catalogue = this.buildJson('awt-catalogue', 'catalogue'); return this._catalogue; }
+  routeData() { if (!this._routeData) this._routeData = this.buildJson('awt-route-data', 'route'); return this._routeData; }
   routingOn() { return typeof history !== 'undefined' && !!history.pushState && location.protocol !== 'file:'; }
   pageFromPath(path) {
     const r = this.ROUTES(), p = (path || '/').replace(/\/+$/, '') || '/';
@@ -1312,9 +1324,10 @@ class Component extends DCLogic {
   syncMeta(page, product, cat) {
     const r = this.ROUTES()[page]; if (!r) return;
     const category = page === 'collection' && cat && cat !== 'All' ? cat : '';
-    const title = product ? product.name + ' | Alana Wina Trudi' : category ? category + ' Collection | Alana Wina Trudi' : r.title;
-    const desc = product ? product.story : r.desc;
     const path = product ? product.href : category ? this.categoryPath(category) : r.path;
+    const built = this.routeData().find((route) => route.path === path);
+    const title = built ? built.title : product ? product.name + ' | Alana Wina Trudi' : category ? category + ' Collection | Alana Wina Trudi' : document.title;
+    const desc = built ? built.description : product ? product.story : document.head.querySelector('meta[name="description"]').getAttribute('content');
     document.title = title;
     const url = 'https://beads.alwintru.com' + path;
     const set = (sel, attr, val) => { const el = document.head.querySelector(sel); if (el) el.setAttribute(attr, val); };
@@ -1325,6 +1338,11 @@ class Component extends DCLogic {
     set('meta[name="twitter:description"]', 'content', desc);
     set('link[rel="canonical"]', 'href', url);
     set('meta[property="og:url"]', 'content', url);
+    if (built && built.ogImage) {
+      const image = built.ogImage.indexOf('http') === 0 ? built.ogImage : 'https://beads.alwintru.com' + built.ogImage;
+      set('meta[property="og:image"]', 'content', image);
+      set('meta[name="twitter:image"]', 'content', image);
+    }
   }
   pushRoute(page, anchor) {
     if (!this.routingOn()) return;
