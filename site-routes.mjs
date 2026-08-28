@@ -2,6 +2,7 @@ export const PRIMARY_ROUTES = Object.freeze([
   {
     key: 'home',
     path: '/',
+    heading: 'We believe Borneo beadwork belongs in contemporary life.',
     title: 'Alana Wina Trudi | Borneo Beadwork for Contemporary Retail',
     description: 'Bring living Borneo beadwork to contemporary retail: hand-beaded bags, jewellery, décor, beaded table runners and small accessories from Kampung Manik, Samarinda. Wholesale only.',
     ogImage: '/og-1200x630.jpg',
@@ -10,14 +11,16 @@ export const PRIMARY_ROUTES = Object.freeze([
   {
     key: 'collection',
     path: '/collection',
+    heading: 'Hand-beaded pieces for contemporary retail',
     title: 'Collection | Hand-beaded Borneo Craft | Alana Wina Trudi',
-    description: 'Explore 56 hand-beaded bags, jewellery, décor, beaded table runners and small accessories from Kampung Manik, Samarinda. Wholesale collection for independent retailers.',
+    description: 'Explore hand-beaded bags, jewellery, décor, beaded table runners and small accessories from Kampung Manik, Samarinda. Wholesale collection for independent retailers.',
     ogImage: '/og-1200x630.jpg',
     kind: 'primary'
   },
   {
     key: 'motifs',
     path: '/motifs',
+    heading: 'How to read the beadwork',
     title: 'Motifs & Meaning | Dayak Beadwork | Alana Wina Trudi',
     description: 'Learn how Dayak beadwork uses cosmology, colour, figure and form — with cultural context written for contemporary retail and product storytelling.',
     ogImage: '/og-1200x630.jpg',
@@ -26,6 +29,7 @@ export const PRIMARY_ROUTES = Object.freeze([
   {
     key: 'wholesale',
     path: '/wholesale',
+    heading: 'Wholesale for retailers who want a line with a point of view',
     title: 'Wholesale Borneo Beadwork | Alana Wina Trudi',
     description: 'Explore the wholesale process for hand-beaded Borneo craft: line sheet, samples, order terms, landed cost, shipping and export documentation.',
     ogImage: '/og-1200x630.jpg',
@@ -34,6 +38,7 @@ export const PRIMARY_ROUTES = Object.freeze([
   {
     key: 'about',
     path: '/our-makers',
+    heading: 'Kampung Manik, the Bead Village',
     title: 'Our Makers | Kampung Manik Bead Village',
     description: 'Meet the people and place behind Alana Wina Trudi: hand-beaded Dayak visual language made with beading groups in Kampung Manik, Samarinda.',
     ogImage: '/og-1200x630.jpg',
@@ -42,6 +47,7 @@ export const PRIMARY_ROUTES = Object.freeze([
   {
     key: 'contact',
     path: '/contact',
+    heading: 'Let’s find the right line for your shelves',
     title: 'Contact | Alana Wina Trudi Wholesale',
     description: 'Contact Alana Wina Trudi in Samarinda for the current wholesale line sheet, product range and order information.',
     ogImage: '/og-1200x630.jpg',
@@ -50,6 +56,7 @@ export const PRIMARY_ROUTES = Object.freeze([
   {
     key: 'privacy',
     path: '/privacy',
+    heading: 'Privacy',
     title: 'Privacy | Alana Wina Trudi',
     description: 'Read how Alana Wina Trudi handles information submitted through this wholesale website.',
     ogImage: '/og-1200x630.jpg',
@@ -71,6 +78,7 @@ function categoryRoute(category) {
   return {
     key: `category-${category.id}`,
     path: categoryPath(category),
+    heading: category.name,
     title: `${category.name} Collection | Alana Wina Trudi`,
     description: category.description,
     ogImage: category.image,
@@ -87,6 +95,7 @@ function productRoute(product, catalogue) {
   return {
     key: `product-${product.id}`,
     path: productPath(product, catalogue),
+    heading: product.name,
     title: `${product.name} | Alana Wina Trudi`,
     description: product.description,
     ogImage: product.image,

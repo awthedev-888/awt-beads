@@ -88,6 +88,88 @@ test('category HTML uses the authoritative category image alt text', async t => 
   assert.match(html, /name="twitter:image:alt" content="Amira beaded tote on limestone in soft morning light"/);
 });
 
+test('build generates a duplicate-free sitemap from active manifest routes', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  const manifest = await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const sitemap = await readFile(join(outDir, 'sitemap.xml'), 'utf8');
+  const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
+
+  assert.equal(urls.length, new Set(urls).size);
+  assert.equal(urls.length, manifest.routes.length);
+  assert.ok(urls.includes('https://beads.alwintru.com/privacy'));
+  assert.ok(urls.includes('https://beads.alwintru.com/collection/bags/amira-tote'));
+  assert.ok(!urls.some(url => url.includes('mahulu-woven-rattan-cuff-set')));
+});
+
+test('product and category pages contain truthful route structured data', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const [productHtml, categoryHtml] = await Promise.all([
+    readFile(join(outDir, 'collection/bags/amira-tote.html'), 'utf8'),
+    readFile(join(outDir, 'collection/bags.html'), 'utf8')
+  ]);
+  const productJson = JSON.parse(productHtml.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+  const categoryJson = JSON.parse(categoryHtml.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+  const product = productJson['@graph'].find(item => item['@type'] === 'Product');
+  const collection = categoryJson['@graph'].find(item => item['@type'] === 'CollectionPage');
+
+  assert.match(productHtml, /"@type":"Product"/);
+  assert.match(productHtml, /"@type":"BreadcrumbList"/);
+  assert.equal(product.name, 'Amira Tote');
+  assert.equal(product.description, 'The largest bag in the line, beaded edge to edge on a black ground. The piece shown pairs mirrored white figures and lime forms with yellow curls and a strong magenta centre line, finished with twin black beaded handles and a zip top.');
+  assert.equal(product.image, 'https://beads.alwintru.com/images/bags/amira-styled.jpg');
+  assert.equal(product.productID, 'amira');
+  assert.equal(product.material, 'Glass seed beads, hand-strung; twin beaded rope handles; zip closure');
+  assert.equal(product.category, 'Bags');
+  assert.equal(product.additionalProperty[0].value, 'Kampung Manik, Samarinda, East Kalimantan, Indonesia');
+  assert.doesNotMatch(productHtml, /"offers"|"aggregateRating"|"gtin"/);
+  assert.doesNotMatch(productHtml, /"@type":"WebPage"/);
+  assert.match(categoryHtml, /"@type":"CollectionPage"/);
+  assert.match(categoryHtml, /"@type":"BreadcrumbList"/);
+  assert.equal(collection.name, 'Bags');
+  assert.equal(collection.description, 'Hand-beaded bags, pouches and woven rattan crossbodies.');
+});
+
+test('fallback HTML uses route headings, descriptions, product facts, and active category links', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const [collectionHtml, categoryHtml, productHtml] = await Promise.all([
+    readFile(join(outDir, 'collection.html'), 'utf8'),
+    readFile(join(outDir, 'collection/bags.html'), 'utf8'),
+    readFile(join(outDir, 'collection/bags/amira-tote.html'), 'utf8')
+  ]);
+
+  assert.match(collectionHtml, /<h1[^>]*>Hand-beaded pieces for contemporary retail<\/h1>/);
+  assert.match(collectionHtml, /Explore hand-beaded bags, jewellery, décor, beaded table runners and small accessories from Kampung Manik, Samarinda\./);
+  assert.doesNotMatch(collectionHtml, /Explore 56 hand-beaded/);
+  assert.match(categoryHtml, /<h1[^>]*>Bags<\/h1>/);
+  assert.match(categoryHtml, /Hand-beaded bags, pouches and woven rattan crossbodies\./);
+  assert.match(categoryHtml, /href="\/collection\/bags\/amira-tote"/);
+  assert.match(productHtml, /<h1[^>]*>Amira Tote<\/h1>/);
+  assert.match(productHtml, /<dt>Materials<\/dt><dd>Glass seed beads, hand-strung; twin beaded rope handles; zip closure<\/dd>/);
+  assert.match(productHtml, /<dt>Production location<\/dt><dd>Kampung Manik, Samarinda, East Kalimantan, Indonesia<\/dd>/);
+  assert.match(productHtml, /Contemporary Borneo beadwork\./);
+  assert.match(productHtml, /href="\/wholesale#wholesale-enquiry"/);
+});
+
+test('generated sitemap redirects legacy routes before the SPA fallback', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const redirects = await readFile(join(outDir, '_redirects'), 'utf8');
+  const rules = redirects.split('\n').filter(line => line.startsWith('/'));
+
+  assert.ok(rules.includes('/collection/table-textiles  /collection/table-runners  301'));
+  assert.ok(rules.includes('/collection/table-textiles/*  /collection/table-runners/:splat  301'));
+  assert.ok(rules.includes('/collection/table-textiles/manik-coaster-set-6  /collection/coasters  301'));
+  assert.ok(rules.includes('/collection/jewelry/golden-sun-hoop-earrings  /collection/earrings/golden-sun-hoop-earrings  301'));
+  assert.ok(!rules.some(rule => rule.startsWith('/collection/jewelry/*')));
+  assert.equal(rules.at(-1), '/*  /index.html  200');
+});
+
 test('runtime routes resolve canonical table-runner category and product deep links', async () => {
   const { component } = await loadRuntimeComponent();
   const category = component.collectionStateFromPath('/collection/table-runners');

@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+# Generated from active build routes by build.mjs.
 Sitemap: https://beads.alwintru.com/sitemap.xml
