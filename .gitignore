@@ -2,4 +2,5 @@
 .thumbnail
 .claude/
 dist/
+.tmp-test-site/
 .worktrees/
