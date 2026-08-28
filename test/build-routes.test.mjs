@@ -132,6 +132,15 @@ test('contact consistency keeps email, social, and InaExport URLs on every gener
   }
 });
 
+test('footer links retain practical mobile touch targets without changing footer copy', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const html = await readFile(join(outDir, 'index.html'), 'utf8');
+
+  assert.match(html, /footer a\{display:inline-flex;align-items:center;min-height:44px/);
+});
+
 test('product HTML contains static route metadata and catalogue JSON', async t => {
   const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
   t.after(() => rm(outDir, { recursive: true, force: true }));
