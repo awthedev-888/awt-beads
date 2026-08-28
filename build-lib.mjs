@@ -3,6 +3,7 @@ import { dirname, isAbsolute, join } from 'node:path';
 import { allIndexableRoutes, productPath } from './site-routes.mjs';
 
 const STATIC_ASSETS = [
+  'enquiry.js',
   'support.js',
   'image-slot.js',
   'bead-band.svg',
