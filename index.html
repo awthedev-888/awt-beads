@@ -1102,6 +1102,16 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 </div>
 </sc-if>
 
+<!-- ================= PRIVACY ================= -->
+<sc-if value="{{ isPrivacy }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Privacy" style="max-width:860px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(24px,3.5vw,44px) clamp(64px,8vw,110px)">
+  <p class="cm" style="margin:0;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8E2321">Privacy</p>
+  <h1 style="font-family:'Young Serif',serif;font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.06;margin:14px 0 0">Privacy</h1>
+  <p style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:62ch;margin:16px 0 0">Enquiry data is used to respond.</p>
+  <p style="font-size:16.5px;line-height:1.65;color:#4A3B2A;max-width:62ch;margin:12px 0 0">For questions about information you have sent us, email <a href="mailto:beads@alwintru.com">beads@alwintru.com</a>.</p>
+</div>
+</sc-if>
+
 </main>
 
 <!-- ================= PRODUCT DETAIL MODAL ================= -->
@@ -1304,13 +1314,27 @@ class Component extends DCLogic {
   slugify(value) {
     return (value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/&/g, ' and ').replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-+|-+$/g, '').toLowerCase();
   }
-  categoryPath(cat) { return cat === 'All' ? '/collection' : '/collection/' + this.slugify(cat); }
+  categoryPath(cat) {
+    if (cat === 'All') return '/collection';
+    const category = this.catalogue().categories.find((item) => item.name === this.displayCategory(cat));
+    return '/collection/' + (category ? category.slug : this.slugify(cat));
+  }
   displayCategory(cat) { return cat === 'Table textiles' ? 'Beaded Table Runners' : cat; }
   collectionStateFromPath(path) {
     const p = (path || '/').replace(/\/+$/, '') || '/';
     if (p === '/collection') return { cat: 'All', product: null };
     const parts = p.replace(/^\/collection\//, '').split('/').filter(Boolean);
     const all = this.products();
+    const built = this.routeData().find((route) => route.path === p);
+    if (built && built.kind === 'product') {
+      const product = all.find((item) => item.id === built.productId);
+      if (product) return { cat: product.cat, product };
+    }
+    if (built && built.kind === 'category') {
+      const catalogueProduct = this.catalogue().products.find((item) => item.status === 'active' && item.categoryId === built.categoryId);
+      const product = catalogueProduct && all.find((item) => item.id === catalogueProduct.id);
+      if (product) return { cat: product.cat, product: null };
+    }
     const cat = all.map((item) => item.cat).find((name) => this.slugify(name) === parts[0]);
     if (!cat && parts[0] === 'jewelry') {
       const legacyProduct = parts[1] ? all.find((item) => ['Earrings', 'Necklaces', 'Bracelets'].includes(item.cat) && item.slug === parts[1]) || null : null;
@@ -1598,7 +1622,7 @@ class Component extends DCLogic {
     return {
       year: new Date().getFullYear(),
       isHome: s.page === 'home', isCollection: s.page === 'collection', isMotifs: s.page === 'motifs',
-      isWholesale: s.page === 'wholesale', isAbout: s.page === 'about', isContact: s.page === 'contact',
+      isWholesale: s.page === 'wholesale', isAbout: s.page === 'about', isContact: s.page === 'contact', isPrivacy: s.page === 'privacy',
       barCollection: s.page === 'collection' ? '#8E2321' : 'transparent', barMotifs: s.page === 'motifs' ? '#8E2321' : 'transparent',
       barWholesale: s.page === 'wholesale' ? '#8E2321' : 'transparent', barAbout: s.page === 'about' ? '#8E2321' : 'transparent',
       barContact: s.page === 'contact' ? '#8E2321' : 'transparent',

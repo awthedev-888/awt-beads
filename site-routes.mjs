@@ -74,7 +74,9 @@ function categoryRoute(category) {
     title: `${category.name} Collection | Alana Wina Trudi`,
     description: category.description,
     ogImage: category.image,
+    ogImageAlt: category.alt,
     kind: 'category',
+    categoryId: category.id,
     category
   };
 }
@@ -88,7 +90,10 @@ function productRoute(product, catalogue) {
     title: `${product.name} | Alana Wina Trudi`,
     description: product.description,
     ogImage: product.image,
+    ogImageAlt: product.alt,
     kind: 'product',
+    categoryId: category.id,
+    productId: product.id,
     category,
     product
   };

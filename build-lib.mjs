@@ -104,6 +104,7 @@ function fallbackContent(route, catalogue) {
 function renderRoute(source, route, catalogue, routes, siteUrl, formEndpoint) {
   const canonical = absoluteUrl(siteUrl, route.path);
   const image = absoluteUrl(siteUrl, route.ogImage || '/og-1200x630.jpg');
+  const imageAlt = route.ogImageAlt || route.title;
   let html = source;
   html = injectJsonMarker(html, 'awt-catalogue', catalogue);
   html = injectJsonMarker(html, 'awt-route-data', routes.map(({ category, product, ...record }) => record));
@@ -114,11 +115,11 @@ function renderRoute(source, route, catalogue, routes, siteUrl, formEndpoint) {
   html = setAttribute(html, '<meta property="og:description"', 'content', route.description, 'og:description');
   html = setAttribute(html, '<meta property="og:url"', 'content', canonical, 'og:url');
   html = setAttribute(html, '<meta property="og:image"', 'content', image, 'og:image');
-  html = setAttribute(html, '<meta property="og:image:alt"', 'content', route.kind === 'product' ? route.product.alt : route.title, 'og:image:alt');
+  html = setAttribute(html, '<meta property="og:image:alt"', 'content', imageAlt, 'og:image:alt');
   html = setAttribute(html, '<meta name="twitter:title"', 'content', route.title, 'twitter:title');
   html = setAttribute(html, '<meta name="twitter:description"', 'content', route.description, 'twitter:description');
   html = setAttribute(html, '<meta name="twitter:image"', 'content', image, 'twitter:image');
-  html = setAttribute(html, '<meta name="twitter:image:alt"', 'content', route.kind === 'product' ? route.product.alt : route.title, 'twitter:image:alt');
+  html = setAttribute(html, '<meta name="twitter:image:alt"', 'content', imageAlt, 'twitter:image:alt');
   html = setAttribute(html, '<link rel="canonical"', 'href', canonical, 'canonical');
   html = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, `<script type="application/ld+json">${escapeJsonForHtml(structuredData(route, siteUrl))}</script>`);
   html = html.replace('<x-dc>', `${fallbackContent(route, catalogue)}\n<x-dc>`);

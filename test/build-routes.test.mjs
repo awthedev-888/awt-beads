@@ -3,8 +3,33 @@ import assert from 'node:assert/strict';
 import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { runInNewContext } from 'node:vm';
 import { buildSite, outputFileForPath } from '../build-lib.mjs';
 import { PRIMARY_ROUTES, allIndexableRoutes, categoryPath, productPath } from '../site-routes.mjs';
+
+async function loadRuntimeComponent() {
+  const [html, rawCatalogue] = await Promise.all([
+    readFile('index.html', 'utf8'),
+    readFile('catalogue.json', 'utf8')
+  ]);
+  const script = html.match(/<script type="text\/x-dc"[^>]*>([\s\S]*?)<\/script>\s*<\/body>/);
+  assert.ok(script, 'runtime component script');
+  const catalogue = JSON.parse(rawCatalogue);
+  const routeData = allIndexableRoutes(catalogue)
+    .map(({ category, product, ...route }) => route);
+  const markers = new Map([
+    ['awt-catalogue', JSON.stringify(catalogue)],
+    ['awt-route-data', JSON.stringify(routeData)]
+  ]);
+  const sandbox = {
+    DCLogic: class {},
+    document: { getElementById: id => ({ textContent: markers.get(id) || '' }) }
+  };
+  runInNewContext(`${script[1]}\nglobalThis.Component = Component;`, sandbox);
+  const component = new sandbox.Component();
+  component.props = {};
+  return { component, html };
+}
 
 test('route helpers produce flat canonical collection paths', () => {
   const catalogue = {
@@ -52,4 +77,40 @@ test('product HTML contains static route metadata and catalogue JSON', async t =
   assert.match(html, /rel="canonical" href="https:\/\/beads\.alwintru\.com\/collection\/bags\/amira-tote"/);
   assert.match(html, /property="og:image"/);
   assert.match(html, /id="awt-catalogue"/);
+});
+
+test('category HTML uses the authoritative category image alt text', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const html = await readFile(join(outDir, 'collection/bags.html'), 'utf8');
+  assert.match(html, /property="og:image:alt" content="Amira beaded tote on limestone in soft morning light"/);
+  assert.match(html, /name="twitter:image:alt" content="Amira beaded tote on limestone in soft morning light"/);
+});
+
+test('runtime routes resolve canonical table-runner category and product deep links', async () => {
+  const { component } = await loadRuntimeComponent();
+  const category = component.collectionStateFromPath('/collection/table-runners');
+  const product = component.collectionStateFromPath('/collection/table-runners/emerald-mirror-borneo-beaded-table-runner');
+  const legacy = component.collectionStateFromPath('/collection/table-textiles');
+
+  assert.equal(component.categoryPath('Table textiles'), '/collection/table-runners');
+  assert.deepEqual({ cat: category.cat, product: category.product }, { cat: 'Table textiles', product: null });
+  assert.deepEqual({ cat: product.cat, product: product.product && product.product.id }, { cat: 'Table textiles', product: 'table-runner-emerald-mirror' });
+  assert.deepEqual({ cat: legacy.cat, product: legacy.product }, { cat: 'Table textiles', product: null });
+});
+
+test('privacy has a static and runtime-visible minimum data-use contract', async t => {
+  const { component, html: source } = await loadRuntimeComponent();
+  component.state = { ...component.state, page: 'privacy' };
+  assert.equal(component.renderVals().isPrivacy, true);
+
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const html = await readFile(join(outDir, 'privacy.html'), 'utf8');
+  assert.match(source, /<sc-if value="\{\{ isPrivacy \}\}"/);
+  assert.match(html, /<h1[^>]*>Privacy<\/h1>/);
+  assert.match(html, /beads@alwintru\.com/);
+  assert.match(html, /Enquiry data is used to respond\./);
 });
