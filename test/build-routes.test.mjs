@@ -96,6 +96,8 @@ test('homepage preserves its place, craft, and wholesale action contract', async
   assert.match(html, /We believe Borneo beadwork belongs in contemporary life\./);
   assert.match(html, />Wholesale enquiry<\/button>/);
   assert.match(html, />Explore the collection<\/button>/);
+  assert.match(html, /href="\/collection\/table-runners"/);
+  assert.doesNotMatch(html, /href="\/collection\/table-textiles"/);
 });
 
 test('wholesale trust section presents only supported at-a-glance facts', async t => {
@@ -258,9 +260,17 @@ test('enquiry UI labels fields, protects the honeypot, and exposes accessible st
   assert.match(html, /href="\/privacy"/);
   assert.match(html, /id="enquiry-success"[^>]*tabindex="-1"[^>]*aria-live="polite"/);
   assert.match(html, /id="enquiry-error"[^>]*tabindex="-1"[^>]*aria-live="assertive"/);
+  assert.match(html, /<form[^>]*noValidate="\{\{ true \}\}"/);
+  assert.match(html, /<label for="enquiry-name">Name \*<\/label>/);
+  assert.match(html, /<label for="enquiry-company">Company \/ shop \*<\/label>/);
+  assert.match(html, /<label for="enquiry-website">Website \/ Instagram — optional<\/label>/);
+  assert.match(html, /Thank you\. Your enquiry has been sent\./);
+  assert.match(html, /We couldn't send your enquiry\./);
   assert.match(html, /\.enquiry-form-grid\{[^}]*display:grid/);
   assert.match(html, /\.enquiry-control\{[^}]*width:100%[^}]*min-height:44px/);
   assert.match(html, /\.enquiry-submit-row\{[^}]*display:flex/);
+  assert.match(html, /\.enquiry-remove-button\{[^}]*min-width:44px/);
+  assert.match(html, /class="enquiry-remove-button"[^>]*aria-label="Remove \{\{ selection\.name \}\} from enquiry"/);
 });
 
 test('direct and popstate product routes focus the dialog close control', async () => {
@@ -576,7 +586,8 @@ test('runtime provenance avoids unverified motif meanings and only exposes known
   const amira = products.find(product => product.id === 'amira');
 
   assert.equal(component.provenanceLabel(coaster), 'Contemporary decorative');
-  assert.equal(coaster.provenanceDescription, 'A circular coaster built around an open centre, with yellow petals outlined in black across a red field and a bright turquoise fringe around the edge.');
+  assert.equal(coaster.provenanceDescription, '');
+  assert.equal(coaster.hasProvenanceDescription, false);
   assert.equal(coaster.motifMeaning, undefined);
   assert.equal(coaster.hasDimensions, false);
   assert.equal(coaster.hasWeight, false);
@@ -586,6 +597,17 @@ test('runtime provenance avoids unverified motif meanings and only exposes known
   assert.equal(amira.hasDimensions, true);
   assert.equal(amira.hasHsCode, true);
   assert.equal(amira.hasVariationNote, true);
+  assert.equal(amira.meta, amira.summary);
+  assert.ok(component.products().every(product => product.meta));
+});
+
+test('runtime suppresses contemporary provenance copy that repeats the product description', async () => {
+  const { component } = await loadRuntimeComponent();
+  const amira = component.products().find(product => product.id === 'amira');
+
+  assert.equal(amira.provenanceDescription, '');
+  assert.equal(amira.hasProvenanceDescription, false);
+  assert.equal(amira.provenanceLabel, 'Contemporary Borneo');
 });
 
 test('generated product fallback omits missing specifications', async t => {
