@@ -56,3 +56,12 @@ test('non-verified products use neutral public copy', async () => {
     }
   }
 });
+
+test('Kanaya factual image text describes woven rattan without claiming beadwork', async () => {
+  const { products } = await readCatalogue();
+  const kanaya = products.find(product => product.id === 'kanaya');
+
+  assert.ok(kanaya, 'kanaya');
+  assert.match(kanaya.alt, /woven.*rattan/i);
+  assert.doesNotMatch(kanaya.alt, /bead/i);
+});

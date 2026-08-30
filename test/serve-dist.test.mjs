@@ -2,12 +2,16 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import http from 'node:http';
+import { mkdtemp, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { buildSite } from '../build-lib.mjs';
 
-function startVerificationServer() {
+function startVerificationServer({ distDir } = {}) {
   return new Promise((resolve, reject) => {
     const child = spawn(process.execPath, ['test/serve-dist.mjs'], {
       cwd: process.cwd(),
-      env: { ...process.env, AWT_VERIFY_PORT: '0' },
+      env: { ...process.env, AWT_VERIFY_PORT: '0', ...(distDir ? { AWT_DIST_DIR: distDir } : {}) },
       stdio: ['ignore', 'pipe', 'pipe']
     });
     let output = '';
@@ -106,4 +110,30 @@ test('verification network-error endpoint closes the local connection', async t 
     request(server.origin, '/__verify/enquiry-network-error', { method: 'POST', body: '{}' }),
     /socket hang up|ECONNRESET/
   );
+});
+
+test('clean-route server matches generated production routes, redirects, assets, and 404s', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-serve-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const server = await startVerificationServer({ distDir: outDir });
+  t.after(() => server.child.kill());
+
+  const canonical = await request(server.origin, '/collection/bags/amira-tote');
+  assert.equal(canonical.response.statusCode, 200);
+  assert.match(canonical.body, /rel="canonical" href="https:\/\/beads\.alwintru\.com\/collection\/bags\/amira-tote"/);
+
+  const asset = await request(server.origin, '/enquiry.js');
+  assert.equal(asset.response.statusCode, 200);
+  assert.equal(asset.response.headers['content-type'], 'text/javascript; charset=utf-8');
+
+  const legacy = await request(server.origin, '/collection/table-textiles');
+  assert.equal(legacy.response.statusCode, 301);
+  assert.equal(legacy.response.headers.location, '/collection/table-runners');
+
+  const unknown = await request(server.origin, '/no-such-route');
+  assert.equal(unknown.response.statusCode, 404);
+  assert.equal(unknown.response.headers['content-type'], 'text/html; charset=utf-8');
+  assert.match(unknown.body, /<meta name="robots" content="noindex, nofollow">/);
+  assert.match(unknown.body, /<h1>Page not found<\/h1>/);
 });

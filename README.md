@@ -16,7 +16,7 @@ This is a statically built site. The browser experience uses the existing lightw
 
 ## Prerequisites and local workflow
 
-Use a current Node.js LTS release with native ESM and `node:test` support. `npm`/`npx` is only needed below for the optional static server.
+Use a current Node.js LTS release with native ESM and `node:test` support. The deployment integration test uses an installed `wrangler` binary when available and otherwise reports a skip.
 
 Run the production build from the repository root:
 
@@ -24,10 +24,10 @@ Run the production build from the repository root:
 node build.mjs
 ```
 
-Then serve the generated `dist/` directory with a static server that resolves clean URLs to their generated `.html` files. For example:
+Then serve the generated `dist/` directory with the repository's clean-route server, which applies the generated redirects and serves the generated not-found page with a 404 status:
 
 ```sh
-npx --yes serve dist
+node test/serve-dist.mjs
 ```
 
 Open the URL printed by the server and check `/`, `/collection`, a category or product route, `/privacy`, and `/sitemap.xml`. Serving the source `index.html` directly, or using a server that rewrites every path to the source file, bypasses the generated catalogue and route metadata.
@@ -53,13 +53,14 @@ node --test test/*.test.mjs && node build.mjs
 - `index.html` plus static primary pages for `/collection`, `/motifs`, `/wholesale`, `/our-makers`, `/contact`, and `/privacy`;
 - category pages under `/collection/{category-slug}`;
 - product pages under `/collection/{category-slug}/{product-slug}` for active products only;
-- route-specific title, description, canonical, Open Graph/Twitter metadata, structured data, and meaningful `<noscript>` fallback content;
+- route-specific title, description, canonical, Open Graph/Twitter metadata, structured data, and a progressively enhanced static fallback that remains visible until the browser runtime mounts successfully;
 - `sitemap.xml` containing the absolute URL of every generated indexable route, with archived products excluded;
-- `_redirects`, including the maintained legacy table-textiles/jewelry redirects and the site fallback rule;
+- `_redirects`, containing the maintained legacy table-textiles/jewelry redirects without an invalid catch-all rewrite;
+- a standalone, noindex `404.html` that Cloudflare Pages and the local clean-route server return for unknown paths;
 - `robots.txt`, copied from the repository, which references the canonical sitemap;
 - `server/index.js`, a generated asset-fetch handler, plus the runtime scripts, images, logos, and other static assets needed by the pages.
 
-The catalogue is embedded into each generated page in the `awt-catalogue` JSON marker; the build does not copy a standalone `catalogue.json` into `dist/`. The generated route records are embedded in the `awt-route-data` marker.
+An active-product, buyer-safe projection of the catalogue is embedded into each generated page in the `awt-catalogue` JSON marker; archived records and internal provenance evidence are not published. The build does not copy a standalone `catalogue.json` into `dist/`. The generated route records are embedded in the `awt-route-data` marker.
 
 ## Maintaining `catalogue.json`
 
@@ -74,7 +75,7 @@ To add a product:
 3. Keep claims and specifications to facts that have a source or maker confirmation. Leave unknown commercial or product values absent rather than inventing them.
 4. Run `node --test test/*.test.mjs && node build.mjs`, then inspect the generated category/product page and sitemap entry.
 
-To archive a product, retain its record and change only its status to `"archived"` after checking the intended ID. Archived products are omitted from the runtime product list, generated product routes, and sitemap. Rebuild so the generated redirects and pages reflect the current active catalogue.
+To archive a product, retain its record and change only its status to `"archived"` after checking the intended ID. Archived products are omitted from the embedded public catalogue, runtime product list, generated product routes, and sitemap. Rebuild so the generated redirects and pages reflect the current active catalogue.
 
 ### Provenance and attribution
 
@@ -84,11 +85,13 @@ Use `verified-heritage` only when the record includes a repository source citati
 
 ## Wholesale enquiries and privacy
 
-The wholesale form is rendered from `index.html`. Its `formEndpoint` data prop is the single endpoint configuration point; the current production value is a Formspree endpoint. `enquiry.js` builds a JSON payload containing the buyer fields, repeated category selections, the Formspree honeypot field, and selected product IDs/names, then posts it to that endpoint. If the endpoint changes, update the data prop and rebuild `dist/`.
+The wholesale form is rendered from `index.html`. Its `formEndpoint` data prop is the single endpoint configuration point; the current production value is a Formspree endpoint. The required country field is a native selector whose values are normalized ISO 3166-1 alpha-2 codes. `enquiry.js` builds a JSON payload containing the buyer fields, repeated category selections, Formspree's standard `_gotcha` honeypot field, and selected product IDs/names, then posts it to that endpoint. If the endpoint changes, update the data prop and rebuild `dist/`.
 
 Do not send automated or manual test submissions to the live Formspree endpoint. The enquiry tests provide safe local fetch implementations and verify success, non-2xx, and network-failure handling without contacting the owner inbox.
 
 The `/privacy` route is generated like the other primary routes. It documents the form fields, response/business-record purpose, Formspree processing while configured, reasonable retention, contact-based rights requests, security limitations, and external services. The enquiry form and footer link to this route.
+
+Homepage videos use self-hosted poster images. No YouTube iframe or poster request is created until a visitor activates the play button; playback then uses YouTube's privacy-enhanced embed domain.
 
 ## Cloudflare Pages deployment
 

@@ -2,5 +2,7 @@
 .thumbnail
 .claude/
 dist/
+.wrangler/
+node_modules/
 .tmp-test-site/
 .worktrees/

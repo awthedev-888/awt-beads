@@ -98,6 +98,8 @@ test('homepage preserves its place, craft, and wholesale action contract', async
   assert.match(html, />Explore the collection<\/button>/);
   assert.match(html, /href="\/collection\/table-runners"/);
   assert.doesNotMatch(html, /href="\/collection\/table-textiles"/);
+  assert.match(html, /Most pieces begin with glass seed beads and cotton thread; the collection also includes hand-woven natural rattan/i);
+  assert.doesNotMatch(html, /Every piece (?:begins|starts) with|Every piece is made[^.]*glass seed beads[^.]*cotton/i);
 });
 
 test('wholesale trust section presents only supported at-a-glance facts', async t => {
@@ -152,6 +154,81 @@ test('product HTML contains static route metadata and catalogue JSON', async t =
   assert.match(html, /rel="canonical" href="https:\/\/beads\.alwintru\.com\/collection\/bags\/amira-tote"/);
   assert.match(html, /property="og:image"/);
   assert.match(html, /id="awt-catalogue"/);
+});
+
+test('generated pages embed only active buyer-safe catalogue data', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const html = await readFile(join(outDir, 'index.html'), 'utf8');
+  const embedded = JSON.parse(html.match(/<script type="application\/json" id="awt-catalogue">([\s\S]*?)<\/script>/)[1]);
+  const allowedProductFields = new Set([
+    'id', 'name', 'slug', 'categoryId', 'status', 'image', 'alt', 'summary', 'description',
+    'productionLocation', 'gallery', 'materials', 'dimensions', 'weight', 'colours',
+    'hardware', 'closure', 'care', 'hsCode', 'variationNote', 'provenance'
+  ]);
+  const allowedProvenanceFields = new Set(['classification', 'visualDescription', 'motifName', 'community', 'meaning']);
+
+  assert.ok(embedded.products.length > 0);
+  assert.ok(embedded.products.every(product => product.status === 'active'));
+  assert.ok(!embedded.products.some(product => product.id === 'cuff'));
+  for (const product of embedded.products) {
+    assert.deepEqual(Object.keys(product).filter(key => !allowedProductFields.has(key)), [], product.id);
+    assert.deepEqual(Object.keys(product.provenance).filter(key => !allowedProvenanceFields.has(key)), [], `${product.id}.provenance`);
+  }
+  assert.doesNotMatch(html, /makerConfirmed|administrativeEvidence|"source"/);
+});
+
+test('non-default social images omit the homepage image dimensions', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const [home, category, product] = await Promise.all([
+    readFile(join(outDir, 'index.html'), 'utf8'),
+    readFile(join(outDir, 'collection/bags.html'), 'utf8'),
+    readFile(join(outDir, 'collection/bags/amira-tote.html'), 'utf8')
+  ]);
+
+  assert.match(home, /property="og:image:width" content="1200"/);
+  assert.match(home, /property="og:image:height" content="630"/);
+  for (const html of [category, product]) {
+    assert.doesNotMatch(html, /property="og:image:(?:width|height)"/);
+  }
+});
+
+test('generated media makes no YouTube request before the buyer presses play', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const html = await readFile(join(outDir, 'index.html'), 'utf8');
+  const loadableYouTubeMedia = [...html.matchAll(/<(?:img|iframe)\b[^>]*\bsrc="https:\/\/(?:i\.ytimg\.com|www\.youtube(?:-nocookie)?\.com)[^"]*"/gi)];
+
+  assert.deepEqual(loadableYouTubeMedia, []);
+  assert.match(html, /<img src="\/images\/editorial\/makers-at-work\.jpg" alt=""/);
+  assert.match(html, /nothing loads from YouTube until you press play/i);
+});
+
+test('video embeds receive their YouTube URL only after the play action', async () => {
+  const assigned = [];
+  const shortFrame = { set src(value) { assigned.push(value); } };
+  const fullFrame = { set src(value) { assigned.push(value); } };
+  const { component } = await loadRuntimeComponent({
+    elements: new Map([
+      ['kampung-video-short', shortFrame],
+      ['kampung-video-full', fullFrame]
+    ])
+  });
+
+  const vals = component.renderVals();
+  vals.playShort();
+  vals.playFull();
+
+  assert.equal(component.state.vidShort, true);
+  assert.equal(component.state.vidFull, true);
+  assert.deepEqual(assigned, [
+    'https://www.youtube-nocookie.com/embed/weOzeAlgBjI?autoplay=1&rel=0',
+    'https://www.youtube-nocookie.com/embed/WNEcb6La0Nk?autoplay=1&rel=0'
+  ]);
 });
 
 test('category HTML uses the authoritative category image alt text', async t => {
@@ -230,6 +307,36 @@ test('fallback HTML uses route headings, descriptions, product facts, and active
   assert.match(productHtml, /href="\/wholesale#wholesale-enquiry"/);
 });
 
+test('static fallback remains visible through JavaScript failure and hides only after runtime mount', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const html = await readFile(join(outDir, 'collection/bags/amira-tote.html'), 'utf8');
+
+  assert.match(html, /<style[^>]*>[^<]*x-dc\{display:none!important\}/);
+  assert.match(html, /<main id="awt-static-fallback"/);
+  assert.ok(html.indexOf('id="awt-static-fallback"') < html.indexOf('<x-dc>'));
+  assert.doesNotMatch(html, /<noscript><main/);
+
+  const failedFallback = { hidden: false };
+  const failed = await loadRuntimeComponent({
+    elements: new Map([['awt-static-fallback', failedFallback]]),
+    windowImpl: { addEventListener() {}, removeEventListener() {} }
+  });
+  failed.component.catalogue = () => { throw new Error('catalogue unavailable'); };
+  assert.throws(() => failed.component.componentDidMount(), /catalogue unavailable/);
+  assert.equal(failedFallback.hidden, false);
+
+  const mountedFallback = { hidden: false };
+  const mounted = await loadRuntimeComponent({
+    elements: new Map([['awt-static-fallback', mountedFallback]]),
+    windowImpl: { addEventListener() {}, removeEventListener() {} }
+  });
+  mounted.component.reveal = () => {};
+  mounted.component.componentDidMount();
+  assert.equal(mountedFallback.hidden, true);
+});
+
 test('enquiry UI exposes the short accessible buyer form', async t => {
   const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
   t.after(() => rm(outDir, { recursive: true, force: true }));
@@ -255,8 +362,13 @@ test('enquiry UI labels fields, protects the honeypot, and exposes accessible st
     assert.match(html, new RegExp(`<label[^>]*for="enquiry-${field}"`));
     assert.match(html, new RegExp(`id="enquiry-${field}"[^>]*aria-describedby="enquiry-${field}-error"`));
   }
-  assert.match(html, /name="fax"[^>]*tabindex="-1"[^>]*autocomplete="off"/);
-  assert.match(html, /aria-hidden="true"[^>]*><label for="enquiry-fax"/);
+  assert.match(html, /name="_gotcha"[^>]*tabindex="-1"[^>]*autocomplete="off"/);
+  assert.match(html, /aria-hidden="true"[^>]*><label for="enquiry-gotcha"/);
+  assert.doesNotMatch(html, /name="fax"/);
+  assert.match(html, /<label for="enquiry-country">Country \*<\/label><select[^>]*id="enquiry-country"[^>]*name="country"[^>]*required/);
+  assert.match(html, /<option value="">Select a country<\/option>/);
+  assert.match(html, /<option value="DE">Germany<\/option>/);
+  assert.match(html, /<option value="ID">Indonesia<\/option>/);
   assert.match(html, /href="\/privacy"/);
   assert.match(html, /id="enquiry-success"[^>]*tabindex="-1"[^>]*aria-live="polite"/);
   assert.match(html, /id="enquiry-error"[^>]*tabindex="-1"[^>]*aria-live="assertive"/);
@@ -522,7 +634,7 @@ test('all generated structured data and fallback fragments avoid legacy line-she
   for (const route of manifest.routes) {
     const html = await readFile(route.output, 'utf8');
     const structuredData = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
-    const fallback = html.match(/<noscript>([\s\S]*?)<\/noscript>/);
+    const fallback = html.match(/<main id="awt-static-fallback"([\s\S]*?)<\/main>/);
     assert.ok(structuredData, `${route.path}: structured data`);
     assert.ok(fallback, `${route.path}: fallback`);
     if (/\bline[ -]?sheet\b/i.test(`${structuredData[1]}\n${fallback[1]}`)) offenders.push(route.path);
@@ -531,7 +643,7 @@ test('all generated structured data and fallback fragments avoid legacy line-she
   assert.deepEqual(offenders, []);
 });
 
-test('generated sitemap redirects legacy routes before the SPA fallback', async t => {
+test('generated redirects preserve legacy routes without an invalid SPA catch-all', async t => {
   const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
   t.after(() => rm(outDir, { recursive: true, force: true }));
   await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
@@ -543,7 +655,20 @@ test('generated sitemap redirects legacy routes before the SPA fallback', async 
   assert.ok(rules.includes('/collection/table-textiles/manik-coaster-set-6  /collection/coasters  301'));
   assert.ok(rules.includes('/collection/jewelry/golden-sun-hoop-earrings  /collection/earrings/golden-sun-hoop-earrings  301'));
   assert.ok(!rules.some(rule => rule.startsWith('/collection/jewelry/*')));
-  assert.equal(rules.at(-1), '/*  /index.html  200');
+  assert.ok(!rules.some(rule => rule.startsWith('/*')));
+});
+
+test('build emits a top-level noindex 404 document outside the sitemap', async t => {
+  const outDir = await mkdtemp(join(tmpdir(), 'awt-site-'));
+  t.after(() => rm(outDir, { recursive: true, force: true }));
+  const manifest = await buildSite({ rootDir: process.cwd(), outDir, siteUrl: 'https://beads.alwintru.com' });
+  const notFound = await readFile(join(outDir, '404.html'), 'utf8');
+
+  assert.match(notFound, /<meta name="robots" content="noindex, nofollow">/);
+  assert.match(notFound, /<h1>Page not found<\/h1>/);
+  assert.match(notFound, /href="\/collection"/);
+  assert.match(notFound, /href="\/contact"/);
+  assert.ok(!manifest.sitemapUrls.some(url => url.endsWith('/404')));
 });
 
 test('runtime routes resolve canonical table-runner category and product deep links', async () => {
@@ -599,6 +724,14 @@ test('runtime provenance avoids unverified motif meanings and only exposes known
   assert.equal(amira.hasVariationNote, true);
   assert.equal(amira.meta, amira.summary);
   assert.ok(component.products().every(product => product.meta));
+  assert.ok(component.products().every(product => product.hasImg && product.bleedImg === undefined));
+});
+
+test('catalogue products render one primary image in cards and one in the dialog', async () => {
+  const { html } = await loadRuntimeComponent();
+
+  assert.equal([...html.matchAll(/src="\{\{ p\.src \}\}"/g)].length, 1);
+  assert.equal([...html.matchAll(/src="\{\{ product\.src \}\}"/g)].length, 1);
 });
 
 test('runtime suppresses contemporary provenance copy that repeats the product description', async () => {

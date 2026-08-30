@@ -4,7 +4,7 @@ import { createRequire } from 'node:module';
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 const require = createRequire(import.meta.url);
-const { uniqueSelections, buildPayload, submitEnquiry, EnquirySubmissionError } = require('../enquiry.js');
+const { COUNTRIES, uniqueSelections, buildPayload, submitEnquiry, EnquirySubmissionError } = require('../enquiry.js');
 
 test('CommonJS export includes EnquirySubmissionError', () => {
   assert.equal(typeof EnquirySubmissionError, 'function');
@@ -48,11 +48,20 @@ test('payload preserves repeated form keys as arrays and keeps Formspree honeypo
   const form = new FormData();
   form.append('categories', 'Bags');
   form.append('categories', 'Earrings');
-  form.append('fax', '');
+  form.append('_gotcha', '');
   const payload = buildPayload(form, []);
   assert.deepEqual(payload.categories, ['Bags', 'Earrings']);
-  assert.equal(payload.fax, '');
+  assert.equal(payload._gotcha, '');
+  assert.equal(payload.fax, undefined);
   assert.deepEqual(payload.selectedProducts, []);
+});
+
+test('country options use unique ISO alpha-2 values and accessible English labels', () => {
+  assert.equal(COUNTRIES.length, 249);
+  assert.equal(new Set(COUNTRIES.map(country => country.code)).size, COUNTRIES.length);
+  assert.deepEqual(COUNTRIES.find(country => country.code === 'DE'), { code: 'DE', name: 'Germany' });
+  assert.deepEqual(COUNTRIES.find(country => country.code === 'ID'), { code: 'ID', name: 'Indonesia' });
+  assert.deepEqual(COUNTRIES.find(country => country.code === 'GB'), { code: 'GB', name: 'United Kingdom' });
 });
 
 test('submission succeeds only for a successful HTTP response', async () => {

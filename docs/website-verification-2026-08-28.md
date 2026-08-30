@@ -1,6 +1,6 @@
 # Website verification — 2026-08-28
 
-Verified locally on 2026-08-29 against a fresh generated `dist/` build. This record distinguishes repository evidence from actions that require the owner’s external-account access.
+Verified locally on 2026-08-31 against a fresh generated `dist/` build. This record distinguishes repository evidence from actions that require the owner’s external-account access.
 
 ## Automated build and route evidence
 
@@ -14,15 +14,15 @@ git diff --check
 
 Results:
 
-- `node --test test/*.test.mjs`: **46 passed, 0 failed, 0 skipped**.
+- `node --test test/*.test.mjs`: **57 passed, 0 failed, 0 skipped**.
 - `node build.mjs`: **71 routes built**.
 - `git diff --check`: exit 0; no whitespace errors.
 
-The suite includes four verification-server tests: decoded traversal rejection, local delayed success, local non-2xx response, and local connection-reset simulation.
+The suite includes five clean-route server tests: decoded traversal rejection, local delayed success, local non-2xx response, local connection-reset simulation, and a production-semantics route matrix. It also starts the installed Wrangler Pages development server against a temporary build and checks canonical HTML, a static asset, a legacy 301, an unknown-path 404, and the absence of Wrangler's infinite-loop warning.
 
 ## Clean-route verification server
 
-`test/serve-dist.mjs` was run at `http://127.0.0.1:4173` while browser checks were performed. It serves flat generated routes as clean URLs, rejects decoded traversal, provides fixed content types, and returns 404 for unknown files.
+`test/serve-dist.mjs` was run at `http://127.0.0.1:4173` while browser checks were performed. It serves flat generated routes as clean URLs, applies generated `_redirects`, rejects decoded traversal, provides fixed content types, and returns the generated noindex `404.html` with status 404 for unknown paths.
 
 Observed HTTP checks:
 
@@ -31,7 +31,8 @@ Observed HTTP checks:
 | `/` | 200 `text/html; charset=utf-8` |
 | `/collection/bags/amira-tote` | 200 `text/html; charset=utf-8` |
 | `/enquiry.js` | 200 `text/javascript; charset=utf-8` |
-| `/no-such-route` | 404 |
+| `/collection/table-textiles` | 301 to `/collection/table-runners` |
+| `/no-such-route` | 404 with generated noindex page |
 
 The browser form tests used temporary local builds whose configurable endpoint was set to one of `/__verify/enquiry-success`, `/__verify/enquiry-http-error`, or `/__verify/enquiry-network-error`. No request was sent to the live Formspree endpoint; the final standard `node build.mjs` restored the production endpoint configuration in ignored `dist/`.
 
@@ -67,6 +68,16 @@ The browser form tests used temporary local builds whose configurable endpoint w
 - The sending region is polite; the rendered success and error summaries are polite and assertive respectively, and both received focus at completion.
 - Measured contrast ratios: primary submit 7.74:1, shortlist remove 8.35:1, and product enquiry action 7.02:1. These all exceed normal-text AA contrast.
 - At the checked widths, the clean menu operation, 44 px targets, no-overflow result, focus outline, dialog Escape/focus return, labels, status regions, and disabled sending state remained intact.
+
+### Final-review regression checks
+
+- Wrangler accepted the generated redirect file without the former catch-all infinite-loop warning. Canonical HTML and assets returned 200, the legacy collection URL returned 301, and an unknown path returned the generated 404 page with status 404.
+- The raw `x-dc` template is statically hidden. The generated route fallback is visible without JavaScript or when the runtime fails, and is hidden only after a successful runtime mount.
+- Generated pages embed active products only and an allow-listed buyer-safe provenance projection. The archived `cuff` ID and provenance evidence keys such as source citations and maker-confirmation flags are absent.
+- Homepage video posters are self-hosted. Browser inspection found zero YouTube iframes before activation; the play action created one `youtube-nocookie.com` iframe.
+- The wholesale country control is a labelled, required native select with a placeholder plus 249 ISO alpha-2 options. Browser selection normalized Germany to `DE`; the form uses Formspree's standard `_gotcha` field and no `fax` field.
+- The Amira product dialog contains one primary image branch. Product/category social images do not inherit the homepage's 1200 × 630 dimension declarations.
+- Kanaya's alternative text now describes woven natural rattan, and broad homepage copy is qualified so it does not claim that every collection piece begins with beads and cotton.
 
 ## Browser-found fixes and root causes
 
