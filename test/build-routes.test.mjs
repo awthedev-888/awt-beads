@@ -204,7 +204,7 @@ test('generated media makes no YouTube request before the buyer presses play', a
   const loadableYouTubeMedia = [...html.matchAll(/<(?:img|iframe)\b[^>]*\bsrc="https:\/\/(?:i\.ytimg\.com|www\.youtube(?:-nocookie)?\.com)[^"]*"/gi)];
 
   assert.deepEqual(loadableYouTubeMedia, []);
-  assert.match(html, /<img src="\/images\/editorial\/makers-at-work\.jpg" alt=""/);
+  assert.match(html, /<img src="\/images\/editorial\/kampung-manik-beading-preview\.jpg" alt=""/);
   assert.match(html, /nothing loads from YouTube until you press play/i);
 });
 
