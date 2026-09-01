@@ -240,6 +240,20 @@ test('BufferClient preflights image status, type, dimensions, and 4:5 ratio', as
 
   const badType = new BufferClient({ token: 'secret', fetchImpl: async () => {}, mediaFetchImpl: async () => ({ ok: true, headers: { get() { return 'text/html'; } } }) });
   await assert.rejects(badType.validateImageAssets([post]), /not an image/);
+
+  const unavailable = new BufferClient({ token: 'secret', fetchImpl: async () => {}, mediaFetchImpl: async () => ({ ok: false, status: 404 }) });
+  await assert.rejects(unavailable.validateImageAssets([post]), /HTTP 404/);
+
+  const squareJpeg = Buffer.from(jpeg);
+  squareJpeg.writeUInt16BE(1080, 7);
+  const wrongRatio = new BufferClient({
+    token: 'secret', fetchImpl: async () => {},
+    mediaFetchImpl: async () => ({
+      ok: true, headers: { get() { return 'image/jpeg'; } },
+      async arrayBuffer() { return squareJpeg.buffer.slice(squareJpeg.byteOffset, squareJpeg.byteOffset + squareJpeg.byteLength); },
+    }),
+  });
+  await assert.rejects(wrongRatio.validateImageAssets([post]), /expected 4:5 portrait/);
 });
 
 test('BufferClient rejects paused or ambiguous Instagram channels', async () => {
