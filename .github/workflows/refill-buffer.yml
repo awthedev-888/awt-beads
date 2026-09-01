@@ -1,0 +1,42 @@
+name: Refill Buffer Instagram queue
+
+on:
+  schedule:
+    # 02:15 UTC = 10:15 WITA (Asia/Makassar, UTC+8).
+    - cron: '15 2 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Read and validate Buffer without creating posts
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: refill-buffer-instagram-queue
+  cancel-in-progress: false
+
+jobs:
+  refill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+    steps:
+      - name: Check out campaign
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate refiller
+        run: node --test test/refill-buffer-campaign.test.mjs
+
+      - name: Refill available Buffer slots
+        run: node scripts/refill-buffer-campaign.mjs
