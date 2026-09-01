@@ -28,7 +28,7 @@ export function validateCampaign(campaign) {
       const date = new Date(post.dueAt);
       const makassarHour = (date.getUTCHours() + 8) % 24;
       const weekday = date.getUTCDay();
-      if (makassarHour !== 10 || date.getUTCMinutes() !== 0 || ![1, 3, 5].includes(weekday)) {
+      if (makassarHour !== 10 || date.getUTCMinutes() !== 0 || date.getUTCSeconds() !== 0 || date.getUTCMilliseconds() !== 0 || ![1, 3, 5].includes(weekday)) {
         errors.push(`invalid WITA schedule: ${label}`);
       }
     }
@@ -77,8 +77,12 @@ export async function runRefill({ client, campaign, dryRun, now = new Date() }) 
   const { organizationId, channelId } = await client.discoverInstagramChannel('alanawinatrudi');
   const existingPosts = await client.listCampaignPosts({ organizationId, channelId, campaign });
   const planned = selectPostsToCreate({ campaign, existingPosts, now });
+  const knownTimes = new Set(existingPosts.map(post => post.dueAt).filter(Boolean));
+  const knownTexts = new Set(existingPosts.map(post => normalizeText(post.text)).filter(Boolean));
+  const skipped = campaign.filter(post => knownTimes.has(post.dueAt) || knownTexts.has(normalizeText(post.text)));
   const created = [];
 
+  await client.validateImageAssets(planned);
   if (!dryRun) {
     for (const post of planned) {
       const result = await client.createScheduledImagePost({ channelId, post });
@@ -86,18 +90,52 @@ export async function runRefill({ client, campaign, dryRun, now = new Date() }) 
     }
   }
 
-  return { planned, created, existingPosts };
+  return { planned, created, skipped, failed: [], existingPosts };
 }
 
 function gqlString(value) {
   return JSON.stringify(String(value));
 }
 
+function jpegDimensions(bytes) {
+  if (bytes[0] !== 0xff || bytes[1] !== 0xd8) return null;
+  let offset = 2;
+  while (offset + 8 < bytes.length) {
+    if (bytes[offset] !== 0xff) { offset += 1; continue; }
+    const marker = bytes[offset + 1];
+    if (marker === 0xd8 || marker === 0xd9) { offset += 2; continue; }
+    const length = bytes.readUInt16BE(offset + 2);
+    if (length < 2 || offset + length + 2 > bytes.length) break;
+    if ([0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf].includes(marker)) {
+      return { height: bytes.readUInt16BE(offset + 5), width: bytes.readUInt16BE(offset + 7) };
+    }
+    offset += length + 2;
+  }
+  return null;
+}
+
+function imageDimensions(bytes, contentType) {
+  if (contentType.includes('png') && bytes.length >= 24 && bytes.subarray(1, 4).toString() === 'PNG') {
+    return { width: bytes.readUInt32BE(16), height: bytes.readUInt32BE(20) };
+  }
+  if (contentType.includes('webp') && bytes.length >= 30 && bytes.subarray(0, 4).toString() === 'RIFF') {
+    const kind = bytes.subarray(12, 16).toString();
+    if (kind === 'VP8X') return { width: 1 + bytes.readUIntLE(24, 3), height: 1 + bytes.readUIntLE(27, 3) };
+    if (kind === 'VP8 ') return { width: bytes.readUInt16LE(26) & 0x3fff, height: bytes.readUInt16LE(28) & 0x3fff };
+    if (kind === 'VP8L') {
+      const bits = bytes.readUInt32LE(21);
+      return { width: 1 + (bits & 0x3fff), height: 1 + ((bits >> 14) & 0x3fff) };
+    }
+  }
+  return jpegDimensions(bytes);
+}
+
 export class BufferClient {
-  constructor({ token, fetchImpl = fetch }) {
+  constructor({ token, fetchImpl = fetch, mediaFetchImpl = fetch }) {
     if (!token) throw new Error('BUFFER_API_KEY is required');
     this.token = token;
     this.fetchImpl = fetchImpl;
+    this.mediaFetchImpl = mediaFetchImpl;
   }
 
   async request(query) {
@@ -123,7 +161,7 @@ export class BufferClient {
     for (const organization of accountData.account.organizations) {
       const data = await this.request(`query GetChannels {
         channels(input: { organizationId: ${gqlString(organization.id)} }) {
-          id name displayName service isQueuePaused timezone
+          id name displayName service isQueuePaused timezone isDisconnected isLocked allowedActions
         }
       }`);
       for (const channel of data.channels) {
@@ -137,11 +175,35 @@ export class BufferClient {
       throw new Error(`expected exactly one Instagram channel named ${handle}; found ${matches.length}`);
     }
     const [{ organizationId, channel }] = matches;
+    if (channel.isDisconnected) throw new Error(`Buffer channel is disconnected for ${handle}`);
+    if (channel.isLocked) throw new Error(`Buffer channel is locked for ${handle}`);
+    if (!channel.allowedActions?.includes('viewPublish')) {
+      throw new Error(`Buffer channel does not grant Publish access for ${handle}`);
+    }
     if (channel.isQueuePaused) throw new Error(`Buffer queue is paused for ${handle}`);
     if (channel.timezone !== 'Asia/Makassar') {
       throw new Error(`expected Asia/Makassar timezone; found ${channel.timezone || 'unset'}`);
     }
     return { organizationId, channelId: channel.id, timezone: channel.timezone };
+  }
+
+  async validateImageAssets(posts) {
+    return Promise.all(posts.map(async post => {
+      const response = await this.mediaFetchImpl(post.imageUrl, { method: 'GET', redirect: 'follow' });
+      if (!response.ok) throw new Error(`invalid image asset ${post.id}: HTTP ${response.status || 'unknown'}`);
+      const contentType = (response.headers.get('content-type') || '').toLowerCase();
+      if (!contentType.startsWith('image/')) throw new Error(`invalid image asset ${post.id}: not an image`);
+      const contentLength = Number(response.headers.get('content-length') || 0);
+      if (contentLength > 15 * 1024 * 1024) throw new Error(`invalid image asset ${post.id}: exceeds 15 MB`);
+      const bytes = Buffer.from(await response.arrayBuffer());
+      if (bytes.length > 15 * 1024 * 1024) throw new Error(`invalid image asset ${post.id}: exceeds 15 MB`);
+      const dimensions = imageDimensions(bytes, contentType);
+      if (!dimensions?.width || !dimensions?.height) throw new Error(`invalid image asset ${post.id}: unsupported or unreadable dimensions`);
+      if (dimensions.width >= dimensions.height || Math.abs(dimensions.width / dimensions.height - 0.8) > 0.01) {
+        throw new Error(`invalid image asset ${post.id}: expected 4:5 portrait, found ${dimensions.width}x${dimensions.height}`);
+      }
+      return { id: post.id, ...dimensions };
+    }));
   }
 
   async listCampaignPosts({ organizationId, channelId, campaign }) {
@@ -215,8 +277,11 @@ export function formatSummary({ dryRun, result }) {
     `## Buffer campaign — ${dryRun ? 'Dry run' : 'Live refill'}`,
     '',
     `- Existing posts inspected: ${result.existingPosts.length}`,
+    `- ${dryRun ? 'Would queue' : 'Queued'}: ${dryRun ? result.planned.length : result.created.length}`,
     `- Planned: ${result.planned.length}`,
     `- Created: ${result.created.length}`,
+    `- Skipped: ${(result.skipped || []).length}`,
+    `- Failed: ${(result.failed || []).length}`,
   ];
   if (result.planned.length) {
     lines.push('', '### Planned campaign posts');
@@ -240,7 +305,7 @@ async function main() {
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch(error => {
-    const failure = `## Buffer campaign — Failed\n\n${error.message}\n`;
+    const failure = `## Buffer campaign — Failed\n\n- Queued: 0\n- Skipped: 0\n- Failed: 1\n\n${error.message}\n`;
     process.stderr.write(failure);
     if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, failure);
     process.exitCode = 1;
