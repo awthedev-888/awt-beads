@@ -4,6 +4,7 @@ import { campaign as fullCampaign } from '../campaigns/instagram-2026/campaign.m
 
 import {
   BufferClient,
+  formatFailureSummary,
   formatSummary,
   normalizeText,
   runRefill,
@@ -197,7 +198,7 @@ test('BufferClient discovers one exact Instagram handle across organizations', a
   const responses = [
     { data: { account: { organizations: [{ id: 'org-1' }, { id: 'org-2' }] } } },
     { data: { channels: [{ id: 'other', name: 'other', displayName: 'Other', service: 'instagram' }] } },
-    { data: { channels: [{ id: 'target', name: 'alanawinatrudi', displayName: 'AWT', service: 'instagram', isQueuePaused: false, isDisconnected: false, isLocked: false, allowedActions: ['viewPublish'], timezone: 'Asia/Makassar' }] } },
+    { data: { channels: [{ id: 'target', name: 'alanawinatrudi', displayName: 'AWT', service: 'instagram', isQueuePaused: false, isDisconnected: false, isLocked: false, allowedActions: ['manageUpdates'], timezone: 'Asia/Makassar' }] } },
   ];
   const fetchCalls = [];
   const fetchImpl = async (_url, options) => {
@@ -214,16 +215,16 @@ test('BufferClient discovers one exact Instagram handle across organizations', a
 
 test('BufferClient rejects disconnected, locked, or non-publishable channels', async () => {
   for (const state of [
-    { isDisconnected: true, isLocked: false, allowedActions: ['viewPublish'] },
-    { isDisconnected: false, isLocked: true, allowedActions: ['viewPublish'] },
-    { isDisconnected: false, isLocked: false, allowedActions: ['viewInsights'] },
+    { isDisconnected: true, isLocked: false, allowedActions: ['manageUpdates'] },
+    { isDisconnected: false, isLocked: true, allowedActions: ['manageUpdates'] },
+    { isDisconnected: false, isLocked: false, allowedActions: ['viewPublish'] },
   ]) {
     const responses = [
       { data: { account: { organizations: [{ id: 'org-1' }] } } },
       { data: { channels: [{ id: 'target', name: 'alanawinatrudi', service: 'instagram', isQueuePaused: false, timezone: 'Asia/Makassar', ...state }] } },
     ];
     const fetchImpl = async () => ({ ok: true, async json() { return responses.shift(); } });
-    await assert.rejects(new BufferClient({ token: 'secret', fetchImpl }).discoverInstagramChannel('alanawinatrudi'), /disconnected|locked|Publish access/);
+    await assert.rejects(new BufferClient({ token: 'secret', fetchImpl }).discoverInstagramChannel('alanawinatrudi'), /disconnected|locked|write access/);
   }
 });
 
@@ -347,4 +348,25 @@ test('formatSummary reports dry-run plans and live creations without secrets', (
   assert.match(live, /Skipped: 0/);
   assert.match(live, /Failed: 0/);
   assert.doesNotMatch(live, /secret|Bearer/);
+});
+
+test('runRefill and failure summary preserve partial creation progress', async () => {
+  let attempts = 0;
+  const campaign = [campaignPost('a', '2026-10-02T02:00:00.000Z'), campaignPost('b', '2026-10-05T02:00:00.000Z')];
+  const client = {
+    async discoverInstagramChannel() { return { organizationId: 'org-1', channelId: 'channel-1' }; },
+    async listCampaignPosts() { return []; },
+    async validateImageAssets() {},
+    async createScheduledImagePost() {
+      attempts += 1;
+      if (attempts === 2) throw new Error('Post limit reached');
+      return { id: 'buffer-1' };
+    },
+  };
+  const error = await runRefill({ client, campaign, dryRun: false, now: new Date('2026-09-30T00:00:00.000Z') }).catch(value => value);
+  assert.deepEqual(error.createdPosts, [{ campaignId: 'a', bufferPostId: 'buffer-1' }]);
+  assert.equal(error.failedCampaignId, 'b');
+  const summary = formatFailureSummary(error);
+  assert.match(summary, /Queued before failure: 1/);
+  assert.match(summary, /Failed campaign entry: b/);
 });

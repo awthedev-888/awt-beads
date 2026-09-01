@@ -85,8 +85,14 @@ export async function runRefill({ client, campaign, dryRun, now = new Date() }) 
   await client.validateImageAssets(planned);
   if (!dryRun) {
     for (const post of planned) {
-      const result = await client.createScheduledImagePost({ channelId, post });
-      created.push({ campaignId: post.id, bufferPostId: result.id });
+      try {
+        const result = await client.createScheduledImagePost({ channelId, post });
+        created.push({ campaignId: post.id, bufferPostId: result.id });
+      } catch (error) {
+        error.createdPosts = [...created];
+        error.failedCampaignId = post.id;
+        throw error;
+      }
     }
   }
 
@@ -177,8 +183,8 @@ export class BufferClient {
     const [{ organizationId, channel }] = matches;
     if (channel.isDisconnected) throw new Error(`Buffer channel is disconnected for ${handle}`);
     if (channel.isLocked) throw new Error(`Buffer channel is locked for ${handle}`);
-    if (!channel.allowedActions?.includes('viewPublish')) {
-      throw new Error(`Buffer channel does not grant Publish access for ${handle}`);
+    if (!channel.allowedActions?.includes('manageUpdates')) {
+      throw new Error(`Buffer channel does not grant post write access for ${handle}`);
     }
     if (channel.isQueuePaused) throw new Error(`Buffer queue is paused for ${handle}`);
     if (channel.timezone !== 'Asia/Makassar') {
@@ -294,6 +300,20 @@ export function formatSummary({ dryRun, result }) {
   return `${lines.join('\n')}\n`;
 }
 
+export function formatFailureSummary(error) {
+  const queued = Array.isArray(error.createdPosts) ? error.createdPosts.length : 'unknown';
+  const lines = [
+    '## Buffer campaign — Failed',
+    '',
+    `- Queued before failure: ${queued}`,
+    '- Skipped: unknown',
+    '- Failed: 1',
+  ];
+  if (error.failedCampaignId) lines.push(`- Failed campaign entry: ${error.failedCampaignId}`);
+  lines.push('', error.message);
+  return `${lines.join('\n')}\n`;
+}
+
 async function main() {
   const dryRun = String(process.env.DRY_RUN || 'false').toLowerCase() === 'true';
   const client = new BufferClient({ token: process.env.BUFFER_API_KEY });
@@ -305,7 +325,7 @@ async function main() {
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch(error => {
-    const failure = `## Buffer campaign — Failed\n\n- Queued: 0\n- Skipped: 0\n- Failed: 1\n\n${error.message}\n`;
+    const failure = formatFailureSummary(error);
     process.stderr.write(failure);
     if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, failure);
     process.exitCode = 1;
