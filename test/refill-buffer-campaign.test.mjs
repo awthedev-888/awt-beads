@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import { campaign as fullCampaign } from '../campaigns/instagram-2026/campaign.mjs';
 
@@ -13,6 +14,12 @@ import {
 } from '../scripts/refill-buffer-campaign.mjs';
 
 const hashtags = '#beads #glassbeads #beading #handicraft #womenartisan';
+
+test('GitHub Actions refills Buffer every Monday, Wednesday, and Friday at 10:15 WITA', () => {
+  const workflow = readFileSync(new URL('../.github/workflows/refill-buffer.yml', import.meta.url), 'utf8');
+  assert.match(workflow, /cron:\s*'15 2 \* \* 1,3,5'/);
+  assert.doesNotMatch(workflow, /cron:\s*'15 2 \* \* \*'/);
+});
 
 function campaignPost(id, dueAt, text = `Why this matters. ${hashtags}`) {
   return {
