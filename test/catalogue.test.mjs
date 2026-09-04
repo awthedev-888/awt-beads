@@ -14,7 +14,7 @@ test('active products satisfy the public catalogue contract', async () => {
   const { categories, products } = await readCatalogue();
   const categoryIds = new Set(categories.map(x => x.id));
   for (const product of products.filter(x => x.status === 'active')) {
-    for (const key of ['id', 'name', 'slug', 'categoryId', 'image', 'alt', 'summary', 'description', 'productionLocation']) {
+    for (const key of ['id', 'sku', 'name', 'slug', 'categoryId', 'image', 'alt', 'summary', 'description', 'productionLocation']) {
       assert.equal(typeof product[key], 'string', `${product.id}.${key}`);
       assert.ok(product[key].trim(), `${product.id}.${key}`);
     }

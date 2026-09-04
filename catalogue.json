@@ -68,6 +68,7 @@
   "products": [
     {
       "id": "table-runner-emerald-mirror",
+      "sku": "AWT-TR-001",
       "name": "Emerald Mirror Borneo Beaded Table Runner",
       "slug": "emerald-mirror-borneo-beaded-table-runner",
       "categoryId": "table-runners",
@@ -90,6 +91,7 @@
     },
     {
       "id": "table-runner-twin-tiger",
+      "sku": "AWT-TR-002",
       "name": "Twin Tiger Borneo Beaded Table Runner",
       "slug": "twin-tiger-borneo-beaded-table-runner",
       "categoryId": "table-runners",
@@ -112,6 +114,7 @@
     },
     {
       "id": "table-runner-four-bird",
+      "sku": "AWT-TR-003",
       "name": "Four-Bird Borneo Beaded Table Runner",
       "slug": "four-bird-borneo-beaded-table-runner",
       "categoryId": "table-runners",
@@ -134,6 +137,7 @@
     },
     {
       "id": "table-runner-diamond-scroll",
+      "sku": "AWT-TR-004",
       "name": "Diamond Scroll Borneo Beaded Table Runner",
       "slug": "diamond-scroll-borneo-beaded-table-runner",
       "categoryId": "table-runners",
@@ -156,6 +160,7 @@
     },
     {
       "id": "table-runner-crimson-mirror",
+      "sku": "AWT-TR-005",
       "name": "Crimson Mirror Borneo Beaded Table Runner",
       "slug": "crimson-mirror-borneo-beaded-table-runner",
       "categoryId": "table-runners",
@@ -178,6 +183,7 @@
     },
     {
       "id": "coaster-turquoise-fringe",
+      "sku": "AWT-CO-001",
       "name": "Manik Turquoise Fringe Coaster",
       "slug": "manik-turquoise-fringe-coaster",
       "categoryId": "coasters",
@@ -198,6 +204,7 @@
     },
     {
       "id": "coaster-white-star",
+      "sku": "AWT-CO-002",
       "name": "Manik White Star Coaster",
       "slug": "manik-white-star-coaster",
       "categoryId": "coasters",
@@ -218,6 +225,7 @@
     },
     {
       "id": "coaster-red-fringe",
+      "sku": "AWT-CO-003",
       "name": "Manik Red Fringe Coaster",
       "slug": "manik-red-fringe-coaster",
       "categoryId": "coasters",
@@ -238,6 +246,7 @@
     },
     {
       "id": "coaster-yellow-fringe",
+      "sku": "AWT-CO-004",
       "name": "Manik Yellow Fringe Coaster",
       "slug": "manik-yellow-fringe-coaster",
       "categoryId": "coasters",
@@ -258,6 +267,7 @@
     },
     {
       "id": "hanging",
+      "sku": "AWT-HD-001",
       "name": "Ulin-framed Beaded Wall Hanging",
       "slug": "ulin-framed-dayak-wall-hanging",
       "categoryId": "home-decor",
@@ -278,6 +288,7 @@
     },
     {
       "id": "hanging-central-vessel",
+      "sku": "AWT-HD-002",
       "name": "Central Vessel Ulin Wall Hanging",
       "slug": "central-vessel-ulin-wall-hanging",
       "categoryId": "home-decor",
@@ -299,6 +310,7 @@
     },
     {
       "id": "hanging-twin-tiger",
+      "sku": "AWT-HD-003",
       "name": "Twin Tiger Ulin Wall Hanging",
       "slug": "twin-tiger-ulin-wall-hanging",
       "categoryId": "home-decor",
@@ -320,6 +332,7 @@
     },
     {
       "id": "hanging-red-branch",
+      "sku": "AWT-HD-004",
       "name": "Red Branch Ulin Wall Hanging",
       "slug": "red-branch-ulin-wall-hanging",
       "categoryId": "home-decor",
@@ -341,6 +354,7 @@
     },
     {
       "id": "necklace-ketupat-emas",
+      "sku": "AWT-NE-001",
       "name": "Gold Diamond Beaded Necklace",
       "slug": "kalung-manik-ketupat-emas",
       "categoryId": "necklaces",
@@ -362,6 +376,7 @@
     },
     {
       "id": "necklace-ketupat-putih",
+      "sku": "AWT-NE-002",
       "name": "White Diamond Beaded Necklace",
       "slug": "kalung-manik-ketupat-putih",
       "categoryId": "necklaces",
@@ -383,6 +398,7 @@
     },
     {
       "id": "necklace-ketupat-kuning",
+      "sku": "AWT-NE-003",
       "name": "Yellow Diamond Beaded Necklace",
       "slug": "kalung-manik-ketupat-kuning",
       "categoryId": "necklaces",
@@ -404,6 +420,7 @@
     },
     {
       "id": "necklace-ketupat-mawar",
+      "sku": "AWT-NE-004",
       "name": "Pink Diamond Beaded Necklace",
       "slug": "kalung-manik-ketupat-mawar",
       "categoryId": "necklaces",
@@ -425,6 +442,7 @@
     },
     {
       "id": "necklace-ketupat-monokrom",
+      "sku": "AWT-NE-005",
       "name": "Monochrome Diamond Beaded Necklace",
       "slug": "kalung-manik-ketupat-monokrom",
       "categoryId": "necklaces",
@@ -446,6 +464,7 @@
     },
     {
       "id": "necklace-bunga-merah",
+      "sku": "AWT-NE-006",
       "name": "Red Flower Beaded Necklace",
       "slug": "kalung-manik-bunga-merah",
       "categoryId": "necklaces",
@@ -467,6 +486,7 @@
     },
     {
       "id": "necklace-bunga-biru",
+      "sku": "AWT-NE-007",
       "name": "Turquoise Flower Beaded Necklace",
       "slug": "kalung-manik-bunga-biru",
       "categoryId": "necklaces",
@@ -488,6 +508,7 @@
     },
     {
       "id": "necklace-bunga-putih",
+      "sku": "AWT-NE-008",
       "name": "White Flower Beaded Necklace",
       "slug": "kalung-manik-bunga-putih",
       "categoryId": "necklaces",
@@ -509,6 +530,7 @@
     },
     {
       "id": "necklace-bunga-merah-pelangi",
+      "sku": "AWT-NE-009",
       "name": "Red Multicolour Flower Beaded Necklace",
       "slug": "kalung-manik-bunga-merah-pelangi",
       "categoryId": "necklaces",
@@ -530,6 +552,7 @@
     },
     {
       "id": "necklace-bunga-putih-pelangi",
+      "sku": "AWT-NE-010",
       "name": "White Multicolour Flower Beaded Necklace",
       "slug": "kalung-manik-bunga-putih-pelangi",
       "categoryId": "necklaces",
@@ -551,6 +574,7 @@
     },
     {
       "id": "earrings-golden-sun-hoop",
+      "sku": "AWT-EA-001",
       "name": "Golden Sun Hoop Earrings",
       "slug": "golden-sun-hoop-earrings",
       "categoryId": "earrings",
@@ -571,6 +595,7 @@
     },
     {
       "id": "earrings-blush-gold-hoop",
+      "sku": "AWT-EA-002",
       "name": "Blush Gold Hoop Earrings",
       "slug": "blush-gold-hoop-earrings",
       "categoryId": "earrings",
@@ -591,6 +616,7 @@
     },
     {
       "id": "earrings-ruby-white-hoop",
+      "sku": "AWT-EA-003",
       "name": "Ruby White Hoop Earrings",
       "slug": "ruby-white-hoop-earrings",
       "categoryId": "earrings",
@@ -611,6 +637,7 @@
     },
     {
       "id": "earrings-scarlet-sun-hoop",
+      "sku": "AWT-EA-004",
       "name": "Scarlet Sun Hoop Earrings",
       "slug": "scarlet-sun-hoop-earrings",
       "categoryId": "earrings",
@@ -631,6 +658,7 @@
     },
     {
       "id": "earrings-sky-blossom-hoop",
+      "sku": "AWT-EA-005",
       "name": "Sky Blossom Hoop Earrings",
       "slug": "sky-blossom-hoop-earrings",
       "categoryId": "earrings",
@@ -651,6 +679,7 @@
     },
     {
       "id": "earrings-ember-bloom-hoop",
+      "sku": "AWT-EA-006",
       "name": "Ember Bloom Hoop Earrings",
       "slug": "ember-bloom-hoop-earrings",
       "categoryId": "earrings",
@@ -671,6 +700,7 @@
     },
     {
       "id": "earrings-ruby-white-flower",
+      "sku": "AWT-EA-007",
       "name": "Ruby White Flower Earrings",
       "slug": "ruby-white-flower-earrings",
       "categoryId": "earrings",
@@ -691,6 +721,7 @@
     },
     {
       "id": "earrings-golden-black-flower",
+      "sku": "AWT-EA-008",
       "name": "Golden Black Flower Earrings",
       "slug": "golden-black-flower-earrings",
       "categoryId": "earrings",
@@ -711,6 +742,7 @@
     },
     {
       "id": "earrings-green-white-flower",
+      "sku": "AWT-EA-009",
       "name": "Green White Flower Earrings",
       "slug": "green-white-flower-earrings",
       "categoryId": "earrings",
@@ -731,6 +763,7 @@
     },
     {
       "id": "earrings-scarlet-gold-flower",
+      "sku": "AWT-EA-010",
       "name": "Scarlet Gold Flower Earrings",
       "slug": "scarlet-gold-flower-earrings",
       "categoryId": "earrings",
@@ -751,6 +784,7 @@
     },
     {
       "id": "earrings-pink-white-flower",
+      "sku": "AWT-EA-011",
       "name": "Pink White Flower Earrings",
       "slug": "pink-white-flower-earrings",
       "categoryId": "earrings",
@@ -771,6 +805,7 @@
     },
     {
       "id": "earrings-golden-loop-fringe",
+      "sku": "AWT-EA-012",
       "name": "Golden Loop Fringe Earrings",
       "slug": "golden-loop-fringe-earrings",
       "categoryId": "earrings",
@@ -791,6 +826,7 @@
     },
     {
       "id": "earrings-scarlet-loop-fringe",
+      "sku": "AWT-EA-013",
       "name": "Scarlet Loop Fringe Earrings",
       "slug": "scarlet-loop-fringe-earrings",
       "categoryId": "earrings",
@@ -811,6 +847,7 @@
     },
     {
       "id": "earrings-midnight-gold-loop-fringe",
+      "sku": "AWT-EA-014",
       "name": "Midnight Gold Loop Fringe Earrings",
       "slug": "midnight-gold-loop-fringe-earrings",
       "categoryId": "earrings",
@@ -831,6 +868,7 @@
     },
     {
       "id": "earrings-ivory-scarlet-loop-fringe",
+      "sku": "AWT-EA-015",
       "name": "Ivory Scarlet Loop Fringe Earrings",
       "slug": "ivory-scarlet-loop-fringe-earrings",
       "categoryId": "earrings",
@@ -851,6 +889,7 @@
     },
     {
       "id": "earrings-ivory-sun-loop-fringe",
+      "sku": "AWT-EA-016",
       "name": "Ivory Sun Loop Fringe Earrings",
       "slug": "ivory-sun-loop-fringe-earrings",
       "categoryId": "earrings",
@@ -891,6 +930,7 @@
     },
     {
       "id": "bracelet-set-tricolour-braided",
+      "sku": "AWT-BR-001",
       "name": "Tricolour Braided Bracelet Set",
       "slug": "tricolour-braided-bracelet-set",
       "categoryId": "bracelets",
@@ -912,6 +952,7 @@
     },
     {
       "id": "bracelet-set-floral-panel",
+      "sku": "AWT-BR-002",
       "name": "Floral Panel Bracelet Set",
       "slug": "floral-panel-bracelet-set",
       "categoryId": "bracelets",
@@ -933,6 +974,7 @@
     },
     {
       "id": "bracelet-set-lattice-button",
+      "sku": "AWT-BR-003",
       "name": "Lattice Button Bracelet Set",
       "slug": "lattice-button-bracelet-set",
       "categoryId": "bracelets",
@@ -954,6 +996,7 @@
     },
     {
       "id": "bracelet-set-pastel-cord",
+      "sku": "AWT-BR-004",
       "name": "Pastel Cord Bracelet Set",
       "slug": "pastel-cord-bracelet-set",
       "categoryId": "bracelets",
@@ -975,6 +1018,7 @@
     },
     {
       "id": "keychain-set-floral-loop",
+      "sku": "AWT-KC-001",
       "name": "Floral Loop Keychain Set",
       "slug": "floral-loop-keychain-set",
       "categoryId": "keychains",
@@ -996,6 +1040,7 @@
     },
     {
       "id": "keychain-set-geometric-loop",
+      "sku": "AWT-KC-002",
       "name": "Geometric Loop Keychain Set",
       "slug": "geometric-loop-keychain-set",
       "categoryId": "keychains",
@@ -1017,6 +1062,7 @@
     },
     {
       "id": "keychain-set-triangular-tassel",
+      "sku": "AWT-KC-003",
       "name": "Triangular Tassel Keychain Set",
       "slug": "triangular-tassel-keychain-set",
       "categoryId": "keychains",
@@ -1038,6 +1084,7 @@
     },
     {
       "id": "keychain-set-beaded-strand",
+      "sku": "AWT-KC-004",
       "name": "Beaded Strand Keychain Set",
       "slug": "beaded-strand-keychain-set",
       "categoryId": "keychains",
@@ -1059,6 +1106,7 @@
     },
     {
       "id": "amira",
+      "sku": "AWT-BG-001",
       "name": "Amira Tote",
       "slug": "amira-tote",
       "categoryId": "bags",
@@ -1082,6 +1130,7 @@
     },
     {
       "id": "zania",
+      "sku": "AWT-BG-002",
       "name": "Zania Handbag",
       "slug": "zania-handbag",
       "categoryId": "bags",
@@ -1105,6 +1154,7 @@
     },
     {
       "id": "lisha",
+      "sku": "AWT-BG-003",
       "name": "Lisha Crossbody",
       "slug": "lisha-crossbody",
       "categoryId": "bags",
@@ -1128,6 +1178,7 @@
     },
     {
       "id": "ratna",
+      "sku": "AWT-BG-004",
       "name": "Ratna Wristlet",
       "slug": "ratna-wristlet",
       "categoryId": "bags",
@@ -1151,6 +1202,7 @@
     },
     {
       "id": "gitta",
+      "sku": "AWT-BG-005",
       "name": "Gitta Mini Handbag",
       "slug": "gitta-mini-handbag",
       "categoryId": "bags",
@@ -1174,6 +1226,7 @@
     },
     {
       "id": "defni",
+      "sku": "AWT-BG-006",
       "name": "Defni Zip Pouch",
       "slug": "defni-zip-pouch",
       "categoryId": "bags",
@@ -1196,6 +1249,7 @@
     },
     {
       "id": "viona",
+      "sku": "AWT-BG-007",
       "name": "Viona Zip Pouch",
       "slug": "viona-zip-pouch",
       "categoryId": "bags",
@@ -1219,6 +1273,7 @@
     },
     {
       "id": "halda",
+      "sku": "AWT-BG-008",
       "name": "Halda Zip Pouch",
       "slug": "halda-zip-pouch",
       "categoryId": "bags",
@@ -1242,6 +1297,7 @@
     },
     {
       "id": "kanaya",
+      "sku": "AWT-BG-009",
       "name": "Kanaya Rattan Crossbody",
       "slug": "kanaya-rattan-crossbody",
       "categoryId": "bags",
