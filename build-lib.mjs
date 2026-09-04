@@ -20,7 +20,7 @@ const PUBLIC_CATEGORY_FIELDS = [
 ];
 
 const PUBLIC_PRODUCT_FIELDS = [
-  'id', 'name', 'slug', 'categoryId', 'status', 'image', 'alt', 'summary',
+  'id', 'sku', 'name', 'slug', 'categoryId', 'status', 'image', 'alt', 'summary',
   'description', 'productionLocation', 'gallery', 'materials', 'dimensions',
   'weight', 'colours', 'hardware', 'closure', 'care', 'hsCode', 'variationNote'
 ];
@@ -167,6 +167,7 @@ function structuredData(route, siteUrl) {
 }
 
 const PRODUCT_FACTS = [
+  ['SKU', 'sku'],
   ['Materials', 'materials'],
   ['Dimensions', 'dimensions'],
   ['Weight', 'weight'],

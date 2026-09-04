@@ -163,7 +163,7 @@ test('generated pages embed only active buyer-safe catalogue data', async t => {
   const html = await readFile(join(outDir, 'index.html'), 'utf8');
   const embedded = JSON.parse(html.match(/<script type="application\/json" id="awt-catalogue">([\s\S]*?)<\/script>/)[1]);
   const allowedProductFields = new Set([
-    'id', 'name', 'slug', 'categoryId', 'status', 'image', 'alt', 'summary', 'description',
+    'id', 'sku', 'name', 'slug', 'categoryId', 'status', 'image', 'alt', 'summary', 'description',
     'productionLocation', 'gallery', 'materials', 'dimensions', 'weight', 'colours',
     'hardware', 'closure', 'care', 'hsCode', 'variationNote', 'provenance'
   ]);

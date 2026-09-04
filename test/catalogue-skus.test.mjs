@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
+import { publicCatalogueProjection } from '../build-lib.mjs';
 import { readCatalogue } from './helpers.mjs';
 
 const expectedSkus = new Map([
@@ -88,4 +89,15 @@ test('the product detail specification list renders the SKU', () => {
   assert.match(detail, />SKU<\/dt>/);
   assert.match(detail, /\{\{ product\.sku \}\}/);
   assert.equal((html.match(/\{\{ product\.sku \}\}/g) ?? []).length, 1);
+});
+
+test('the production catalogue projection preserves every SKU', async () => {
+  const catalogue = await readCatalogue();
+  const projected = publicCatalogueProjection(catalogue).products;
+
+  assert.equal(projected.length, 56);
+  assert.deepEqual(
+    new Map(projected.map(({ id, sku }) => [id, sku])),
+    expectedSkus,
+  );
 });
